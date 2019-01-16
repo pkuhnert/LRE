@@ -24,7 +24,6 @@ Imports:
     nlme,
     quantregForest
 Remotes:
-    joshuaulrich/TTR,
     pbreheny/visreg
 Description: 
     Estimates loads using a generalised rating curve approach with uncertainties.
