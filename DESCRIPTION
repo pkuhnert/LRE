@@ -1,0 +1,37 @@
+Package: LRE
+Type: Package
+Title: Loads Regression Estimator
+Version: 0.1
+Date: 2018-01-15
+Authors@R: c(
+    person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut", "cre")),
+    person("Dan", "Pagendam", role = "ctb", comment = "Flow regularisation method"),
+    person("Brent", "Henderson", role = "aut")
+    )
+Depends: 
+    R (>= 3.5.0)
+Imports:
+    methods,
+    mgcv,
+    ggplot2,
+    plotly,
+    gridExtra,
+    lubridate,
+    stats,
+    TTR,
+    visreg,
+    reshape2,
+    nlme,
+    quantregForest
+Remotes:
+    joshuaulrich/TTR,
+    pbreheny/visreg
+Description: 
+    Estimates loads using a generalised rating curve approach with uncertainties.
+License: GPL-2
+LazyLoad: TRUE
+LazyData: TRUE
+RoxygenNote: 6.1.0
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
