@@ -1,8 +1,8 @@
 Package: LRE
 Type: Package
 Title: Loads Regression Estimator
-Version: 0.1
-Date: 2018-01-15
+Version: 0.2
+Date: 2019-06-19
 Authors@R: c(
     person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut", "cre")),
     person("Dan", "Pagendam", role = "ctb", comment = "Flow regularisation method"),
