@@ -3,7 +3,7 @@
 CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
                     Qflush, Reg = list(type = "none", rainfall = NULL, date = NULL)){
 
-
+browser()
    ###################################
    # PRELIMINARIES
    ###################################
