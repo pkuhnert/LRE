@@ -27,7 +27,7 @@ Remotes:
     pbreheny/visreg
 Description: 
     Estimates loads using a generalised rating curve approach with uncertainties.
-License: GPL-2
+License: GPL-3 + file LICENSE
 LazyLoad: TRUE
 LazyData: TRUE
 RoxygenNote: 6.1.1
