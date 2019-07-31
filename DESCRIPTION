@@ -30,7 +30,7 @@ Description:
 License: GPL-2
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
