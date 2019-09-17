@@ -6,6 +6,7 @@
 #'
 #'
 #' @param fn file name
+#' @param format format for the date 
 #' @param Cnames concentration column label
 #' @param OmitCzeros a logical value indicating whether zeros should
 #' be omitted in the concentration record. If missing, it is assumed
@@ -18,7 +19,7 @@
 NULL
 
 #' @rdname LRE-Read-Internal
-ReadQ <- function(fn){
+ReadQ <- function(fn, format){
 
   dat.Q <- read.csv(fn)
   if(ncol(dat.Q) > 2){
@@ -40,7 +41,7 @@ ReadQ <- function(fn){
   }
 
 
-  datetime <- ExtractDT(datetime)
+  datetime <- ExtractDT(datetime, format = format)
 
   dat.Q <- data.frame(Date = datetime, Flow = Q)
   dat.Q <- dat.Q[!is.na(dat.Q$Date),]
@@ -52,13 +53,13 @@ ReadQ <- function(fn){
 }
 
 #' @rdname LRE-Read-Internal
-ReadC <-function(fn, Cnames, OmitCzeros = FALSE){
+ReadC <-function(fn, Cnames, OmitCzeros = FALSE, format){
 
   dat.C <- read.csv(fn)
   datetime <- as.vector(dat.C[,1])
   Conc <- as.numeric(as.vector(dat.C[,2]))
 
-  datetime <- ExtractDT(datetime)
+  datetime <- ExtractDT(datetime, format = format)
 
   dat.C <- data.frame(Date = datetime, Conc)
   names(dat.C)[2] <- Cnames
@@ -82,35 +83,11 @@ ReadC <-function(fn, Cnames, OmitCzeros = FALSE){
   }
 
 #' @rdname LRE-Read-Internal
-ExtractDT <- function(dt){
+ExtractDT <- function(dt, format = "%Y-%m-%d"){
 
-    val <- strsplit(dt, "/")
-    n <- unlist(lapply(val, length))
-    if(all(n > 1)){
-       sep <- "/"
-       dateonly <- ifelse(all(n == 3), TRUE, FALSE)
-    }
-    else
-       dateonly <- FALSE
-    val <- strsplit(dt, "-")
-    n <- unlist(lapply(val, length))
-    if(all(n > 1))
-       sep <- "-"
+    
+    datetime <- as.POSIXct(dt, format =  format, tz = "GMT")
 
-
-
-    if(sep != "/" & sep != "-")
-       stop("Date column not in standard date format.\n")
-    if(dateonly)
-       dat.format <- paste("%d", sep, "%m", sep, "%Y", sep = "")
-    else
-       dat.format <- paste("%d", sep, "%m", sep, "%Y", " %H:%M", sep = "")
-
-    datetime <- as.POSIXct(dt, format =  dat.format, tz = "GMT")
-    if(all(is.na(datetime))){
-       dat.format <- paste("%Y", sep, "%m", sep, "%d", " %H:%M", sep = "")
-       datetime <- as.POSIXct(dt, format =  dat.format, tz = "GMT")
-    }
     if(all(is.na(datetime)))
        stop("Date not recognised. Please check date.\n")
     datetime

@@ -6,7 +6,7 @@
 \alias{ReadInDataFromR}
 \title{Read In Data}
 \usage{
-ReadInData(dirnm = NULL, filenm, Cnames, OmitCzeros = FALSE)
+ReadInData(dirnm = NULL, filenm, Cnames, OmitCzeros = FALSE, format)
 ReadInDataFromR(x.C, x.Q)
 
 ReadInDataFromR(x.C, x.Q)
@@ -28,6 +28,8 @@ For example, \code{filenm = "test"} indicates that there is a
 \item{OmitCzeros}{a logical value indicating whether zeros should
 be omitted in the concentration record. If missing, it is assumed
 that no zeros should be omitted from the record if they exist.}
+
+\item{format}{date format}
 
 \item{x.C}{concentration dataframe}
 

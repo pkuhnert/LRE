@@ -7,14 +7,16 @@
 \alias{ExtractDT}
 \title{Internal functions for \code{ReadInData} function.}
 \usage{
-ReadQ(fn)
+ReadQ(fn, format)
 
-ReadC(fn, Cnames, OmitCzeros = FALSE)
+ReadC(fn, Cnames, OmitCzeros = FALSE, format)
 
-ExtractDT(dt)
+ExtractDT(dt, format = "\%Y-\%m-\%d")
 }
 \arguments{
 \item{fn}{file name}
+
+\item{format}{format for the date}
 
 \item{Cnames}{concentration column label}
 

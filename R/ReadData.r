@@ -14,7 +14,7 @@
 #' \code{LRE}.
 #'
 #' @usage
-#' ReadInData(dirnm = NULL, filenm, Cnames, OmitCzeros = FALSE)
+#' ReadInData(dirnm = NULL, filenm, Cnames, OmitCzeros = FALSE, format)
 #' ReadInDataFromR(x.C, x.Q)
 #'
 #' @param dirnm The directory name where the files are stored,
@@ -27,6 +27,7 @@
 #' \code{test_C.csv} and a \code{test_Q.csv} located in the specified
 #' \code{dirnm} directory.
 #' @param Cnames name of concentration variable
+#' @param format date format 
 #' @param OmitCzeros a logical value indicating whether zeros should
 #' be omitted in the concentration record. If missing, it is assumed
 #' that no zeros should be omitted from the record if they exist.
@@ -106,7 +107,7 @@
 
 #' @rdname Read-Data
 #' @export
-ReadInData <- function(dirnm = NULL, filenm, Cnames, OmitCzeros = FALSE){
+ReadInData <- function(dirnm = NULL, filenm, Cnames, OmitCzeros = FALSE, format = "%Y-%m-%d"){
 
   if(missing(filenm))
     stop("Please supply a file name for reading in data e.g. 'burdR'. This will assume that
@@ -119,6 +120,7 @@ ReadInData <- function(dirnm = NULL, filenm, Cnames, OmitCzeros = FALSE){
     fn <- paste(dirnm, filenm, sep = "")
   else
     fn <- filenm
+  
   Q <- ReadQ(fn = paste(fn, "_Q.csv", sep = ""))
   Conc <- ReadC(fn = paste(fn, "_C.csv", sep = ""), Cnames = Cnames, OmitCzeros)
   if(OmitCzeros){
