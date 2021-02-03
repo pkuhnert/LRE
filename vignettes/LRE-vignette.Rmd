@@ -1,9 +1,10 @@
 ---
+title: "Using the Loads Regression Estimator (LRE) to quantify loads and uncertainties"
 author: "Petra Kuhnert, Dan Pagendam and Brent Henderson"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteEngine{knitr::knitr}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Using the Loads Regression Estimator (LRE) to quantify loads and uncertainties}
   %\usepackage[UTF-8]{inputenc}
 ---
