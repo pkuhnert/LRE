@@ -1,4 +1,9 @@
-#' @describeIn LRE-CreateData-Internal Plot CQ relationship
+#' PlotCQ
+#' 
+#' LRE Internal function
+#' 
+#' @param Conc Concentration
+#' @param Q Flow
 #'
 PlotCQ <- function(Conc, Q){
 

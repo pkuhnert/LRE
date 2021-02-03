@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 # The Loads Regression Estimator (LRE)
 
 ```{r, out.width = "200px", echo = FALSE}
-knitr::include_graphics("docs/LRE_logo.jpg")
+knitr::include_graphics("inst/extdata/LRE_logo.jpg")
 ```
 
 ## About the LRE Package

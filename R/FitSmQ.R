@@ -1,4 +1,10 @@
-#' @describeIn LRE-CreateData-Internal Create Load Variables
+#' FitSmQ
+#' 
+#' LRE Internal function.
+#' 
+#' @param Q flow
+#' @param Qreg regularised flow
+#' @param method spline method for interpolation
 #'
 #'
 #' @importFrom "stats" "splinefun"

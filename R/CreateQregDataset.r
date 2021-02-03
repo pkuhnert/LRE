@@ -1,4 +1,12 @@
-#' @describeIn LRE-CreateData-Internal Create Load Variables
+#' CreateQregDataset
+#' 
+#' LRE Internal function.
+#' 
+#' @param Q Flow
+#' @param samp.unit sampling unit
+#' @param Qflush quantile corresponding to first flush
+#' @param Ytype Year type: water year ("WY"), financial year ("FY")
+#' @param Reg Regularisation parameters
 #'
 
 CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){

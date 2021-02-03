@@ -1,12 +1,20 @@
-#' @describeIn LRE-CreateData-Internal Create Load
+#' CreateLD
+#' 
+#' LRE Internal function
+#' 
+#' @param Q Flow data
+#' @param Conc Concentration data
+#' @param date.range Date range
+#' @param samp.unit Sampling unit
+#' @param Ytype Year type. One of water year ("WY") or financial year ("FY")
+#' @param Qflush Quantile for "first flush"
+#' @param Reg Parameters for regularisation (type, rainfall, date)
 #'
 CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
                     Qflush, Reg = list(type = "none", rainfall = NULL, date = NULL)){
 
 
-   ###################################
-   # PRELIMINARIES
-   ###################################
+   #---------------- Preliminaries --------------------------------------#
    # Remove any missing records in Q or Conc
    Q <- na.omit(Q)
    if(ncol(Conc) != 2) stop("Concentration dataset should have 2 columns: Date, Concentration\n")
@@ -18,10 +26,8 @@ CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
    # Create a Y variable: for estimating loads each year (WY/FY)
    Q$Y <- CreateY(Q$Date, Ytype = Ytype)
 
-   ###################################
-   # Extract modelling dataset
-   ###################################
-
+   #-----------------------  Extract modelling dataset ----------------------#
+ 
    if(!is.null(date.range$model)){
       # Restrict concentration data to specific dates set by user
       dateR <- as.Date(as.POSIXct(date.range$model, format = "%d-%m-%Y %H:%M:%S", tz = "GMT"),
@@ -37,9 +43,7 @@ CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
    indC <- with(Conc, as.Date(Date) >= mind & as.Date(Date) <= maxd)
    Conc <- Conc[indC,]
 
-   ###################################
-   # Extract prediction dataset
-   ###################################
+   #----------------------------- Extract prediction dataset --------------------------------#
    if(!is.null(date.range$pred)){
       # Restrict flow data to specific dates set by user
       dateR <- as.Date(as.POSIXct(date.range$pred, format = "%d-%m-%Y", tz = "GMT"), format = "%d-%m-%Y", tz = "GMT")
@@ -55,19 +59,15 @@ CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
    Q <- Q[ind,]
 
 
-   ###################################
-   # REGULARISATION
-   ###################################
-
+   #-------------------------------- REGULARISATION --------------------------------------------#
+ 
    Qreg <- CreateQregDataset(Q = Q, samp.unit = samp.unit, Qflush = Qflush, Ytype = Ytype,
                             Reg = Reg)
 
 
-   ###################################
-   # Creating modelling dataset by matching
-   # concentration dates with flow dates
-   ###################################
-
+   #----------------------------- Creating modelling dataset by matching ------------------------#
+   #----------------------------- concentration dates with flow dates ---------------------------#
+ 
    val <- CreateCQDataset(Conc = Conc, Qreg = Qreg, startdate = min(Q$Date), Ytype = Ytype)
 
    CQ <- val$CQ

@@ -1,4 +1,9 @@
-#' @describeIn LRE-CreateData-Internal Assign Value
+#' AssignVal
+#' 
+#' LRE function used internall
+#' 
+#' @param x vector of x-values
+#' @param y vector of y-values
 #'
 AssignVal <- function(x, y){
 

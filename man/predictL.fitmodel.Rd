@@ -4,9 +4,14 @@
 \alias{predictL.fitmodel}
 \title{predictL.fitmodel}
 \usage{
-\method{predictL}{fitmodel}(object, objfix = NULL, x,
-  flow.error = list(me = 0, ce = 0), samp.unit = "hour",
-  pvalue = 0.05)
+\method{predictL}{fitmodel}(
+  object,
+  objfix = NULL,
+  x,
+  flow.error = list(me = 0, ce = 0),
+  samp.unit = "hour",
+  pvalue = 0.05
+)
 }
 \arguments{
 \item{object}{GAM modelling object resulting from

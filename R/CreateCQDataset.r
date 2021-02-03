@@ -1,4 +1,11 @@
-#' @describeIn LRE-CreateData-Internal Create CQ Dataset
+#' CreateCQDAtaset
+#' 
+#' LRE Internal function 
+#' 
+#' @param Conc Concentration data
+#' @param Qreg Regularised flow data
+#' @param startdate Starting date
+#' @param Ytype Year type. One of water year "WY" or financial "FY"
 #'
 CreateCQDataset <- function(Conc, Qreg, startdate, Ytype){
 

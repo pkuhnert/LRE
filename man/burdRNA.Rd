@@ -4,7 +4,9 @@
 \name{burdRNA}
 \alias{burdRNA}
 \title{burdRNA}
-\format{An object of class \code{data} of length 2.}
+\format{
+An object of class \code{data} of length 2.
+}
 \usage{
 burdRNA
 }

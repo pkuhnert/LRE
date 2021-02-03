@@ -108,7 +108,9 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   # Plot:  Seasonal
   id <- match("month", allterms)
   if(!(any(is.na(id)) | length(id) == 0)){
-    p1 <- visreg(modelfit, "month", gg=TRUE) + ylab("Contribution to predicted concentration (log-scale)") +
+  
+    p1 <- visreg(modelfit, "month", gg=TRUE, data = data) + 
+      ylab("Contribution to predicted concentration (log-scale)") +
       xlab("Month (Oct - Sept)") + ggtitle("Seasonal Component")
     pSeas <- p1 + scale_x_continuous(breaks = seq(2, 12, by = 2), labels = c("Nov", "Jan", "Mar", "May", "Jul", "Sep"))
   }
@@ -121,7 +123,8 @@ plot.fitmodel <- function(x, Qreg, data, ...){
      sterms <- allterms[id]
      p <- list()
      for(i in 1:length(sterms))
-       p[[i]] <- visreg(modelfit, sterms[i], gg = TRUE) + ylab(paste("s(", sterms[i], ")")) +
+       p[[i]] <- visreg(modelfit, sterms[i], gg = TRUE, data = data) + 
+                  ylab(paste("s(", sterms[i], ")")) +
                   ggtitle(sterms[i])
      if(length(sterms) == 1)
         pMA <- p[[1]]
@@ -139,7 +142,7 @@ plot.fitmodel <- function(x, Qreg, data, ...){
     # Plot 6: trend (years)
   id <- match("trendY", allterms)
   if(!(any(is.na(id)) | length(id) == 0)){
-    pTrend <- visreg(modelfit, "trendY", gg = TRUE) + ylab("s(trend)") +
+    pTrend <- visreg(modelfit, "trendY", gg = TRUE, data = data) + ylab("s(trend)") +
       ggtitle("Trend term") + xlab("Year")
   }
   else

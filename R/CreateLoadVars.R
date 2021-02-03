@@ -1,4 +1,13 @@
-#' @describeIn LRE-CreateData-Internal Create Load Variables
+#' CreateLoadVars
+#' 
+#' LRE Internal function which create load features
+#' 
+#' @param Q Flow
+#' @param csQ Cumulative sum of flow
+#' @param Qflush quantile associated with first flush
+#' @param samp.unit sampling unit
+#' @param Date Date vector
+#' @param Y Year type
 #'
 #'
 #' @importFrom TTR EMA

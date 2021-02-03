@@ -2,10 +2,16 @@
 % Please edit documentation in R/predictL.r
 \name{predictL}
 \alias{predictL}
-\title{Predict Load}
+\title{predictL}
 \usage{
-predictL(object, objfix = NULL, x, flow.error = list(me = 0, ce = 0),
-  samp.unit = "hour", pvalue = 0.05)
+predictL(
+  object,
+  objfix = NULL,
+  x,
+  flow.error = list(me = 0, ce = 0),
+  samp.unit = "hour",
+  pvalue = 0.05
+)
 }
 \arguments{
 \item{object}{GAM modelling object resulting from
@@ -25,8 +31,6 @@ Default: none.}
 
 \item{pvalue}{for confidence intervals. Default: 0.05 (95 %
 confidence intervals)}
-
-\item{...}{other arguments to the predict function}
 }
 \description{
 Predicts the Load

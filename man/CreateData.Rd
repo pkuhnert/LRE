@@ -5,9 +5,15 @@
 \title{Creates datasets that will be used in loads modelling
   and prediction}
 \usage{
-CreateData(Q, Conc, date.range = list(model = NULL, pred = NULL, hour =
-  FALSE), samp.unit = "hour", Ytype = "WY", Qflush = 0.9,
-  Reg = list(type = "ss", rainfall = NULL, date = NULL))
+CreateData(
+  Q,
+  Conc,
+  date.range = list(model = NULL, pred = NULL, hour = FALSE),
+  samp.unit = "hour",
+  Ytype = "WY",
+  Qflush = 0.9,
+  Reg = list(type = "ss", rainfall = NULL, date = NULL)
+)
 }
 \arguments{
 \item{Q}{\code{n x 2} matrix of flow (Date, Flow) where flow is measured in cumecs}
@@ -40,6 +46,8 @@ modelling dataset with flow metrics that can be used in regression
 modelling.
 }
 \details{
+CreateData
+
 This function creates two datasets that are used in
 modelling and prediction. A third dataset is just a copy of
 the observed flow data.

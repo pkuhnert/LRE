@@ -3,7 +3,6 @@
 \docType{package}
 \name{LRE}
 \alias{LRE}
-\alias{LRE-package}
 \title{Loads Regression Estimator}
 \description{
 Estimates loads using a generalised rating curve approach with uncertainties.

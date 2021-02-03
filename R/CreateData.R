@@ -1,4 +1,4 @@
-#' @name CreateData
+#' CreateData
 #'
 #' @title Creates datasets that will be used in loads modelling
 #'   and prediction

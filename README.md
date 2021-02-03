@@ -3,7 +3,7 @@
 
 # The Loads Regression Estimator (LRE)
 
-<img src="docs/LRE_logo.jpg" width="200px" />
+<img src="inst/extdata/LRE_logo.jpg" width="200px" />
 
 ## About the LRE Package
 
@@ -44,13 +44,13 @@ We have developed a statistical methodology for estimating pollutant
 loads with uncertainties. The approach is regression based and
 incorporates a four step process:
 
-1)  Methods for flow regularisation to correct for sampling bias,
+1.  Methods for flow regularisation to correct for sampling bias,
 
-2)  Statistical model for concentration
+2.  Statistical model for concentration
 
-3)  The load calculated at regular time intervals, and
+3.  The load calculated at regular time intervals, and
 
-4)  An estimate of the uncertainty in the loads estimate.
+4.  An estimate of the uncertainty in the loads estimate.
 
 The statistical model incorporates terms for flow, and other
 characteristics of flow (e.g. rising or falling limb or flow history),
@@ -72,7 +72,7 @@ sites.
 
 ## License
 
-LRE is free under the GNU General Public License (GPL \>=2.0)
+LRE is free under the GNU General Public License (GPL &gt;=2.0)
 
 The Burdekin and Tully flow and TSS datasets have been provided by DSTIA
 and are provided under the Creative Commons Attribution 4.0.

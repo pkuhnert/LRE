@@ -1,4 +1,10 @@
-#' @describeIn LRE-CreateData-Internal Create Regularised Date
+#' CreateRegDate
+#' 
+#' LRE Internal function.
+#' 
+#' @param Q Flow 
+#' @param samp.unit sampling unit
+#' @param Ytype Year type: water year ("WY"), financial year ("FY")
 #'
 CreateRegDate <- function(Q, samp.unit, Ytype){
 

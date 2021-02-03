@@ -26,9 +26,13 @@ summary.regdata <- function(object, Qcutoff = NULL, ...){
     Qbar <- Qbar[id]
 
     qbar <- with(object$CQ, tapply(pQ, Y, function(x) mean(x, na.rm = TRUE)))
-
-    sumtab <- data.frame(Year = yr, n = as.vector(n), AvgFlowC = qbar, AvgFlowR = Q1bar,
-                       AvgFlowO = Qbar, FlowC.bias = qbar/Q1bar, FlowQ.bias = Q1bar/Qbar)
+    
+    # combining information from flow and concentration records
+    yrC <- unique(c(yr, names(n)))
+    id <- match(yrC, names(n))
+    sumtab <- data.frame(Year = yr, n = as.vector(n)[id], AvgFlowC = qbar[id], AvgFlowR = Q1bar,
+                         AvgFlowO = Qbar, FlowC.bias = qbar[id]/Q1bar, FlowQ.bias = Q1bar/Qbar)
+    
     row.names(sumtab) <- NULL
 
 

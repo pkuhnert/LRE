@@ -27,10 +27,10 @@ Remotes:
     pbreheny/visreg
 Description: 
     Estimates loads using a generalised rating curve approach with uncertainties.
-License: GPL-3 + file LICENSE
+License: GPL-3
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

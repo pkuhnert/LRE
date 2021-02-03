@@ -22,11 +22,32 @@ ConvertFacts(samp.unit)
 
 EstChat(Qdat, modobj, modobjfix)
 
-EstLoad(CQdat, Qdat, Xdesign, W, sig2, rho, alpha1, alpha2, beta1,
-  samp.unit, se = TRUE, Blocklen = 5000)
+EstLoad(
+  CQdat,
+  Qdat,
+  Xdesign,
+  W,
+  sig2,
+  rho,
+  alpha1,
+  alpha2,
+  beta1,
+  samp.unit,
+  se = TRUE,
+  Blocklen = 5000
+)
 
-EstLoadYS(CQdat, Qdat, concY, modobj, samp.unit = samp.unit, alpha1,
-  alpha2, se = TRUE, Blocklen = 5000)
+EstLoadYS(
+  CQdat,
+  Qdat,
+  concY,
+  modobj,
+  samp.unit = samp.unit,
+  alpha1,
+  alpha2,
+  se = TRUE,
+  Blocklen = 5000
+)
 
 ExtractDailyLoads(Date, Xdesign, Lhat, LhatC, Qhat, error, modparms)
 

@@ -1,5 +1,9 @@
-#' @describeIn LRE-CreateData-Internal Cumulative Summaries of Flow
-#'
+#' cumQ
+#' 
+#' LRE Internal function
+#' 
+#' @param dat vector of data
+#' 
 cumQ <-function(dat){
 
        newdat <- with(dat, {

@@ -4,8 +4,7 @@
 \alias{plot.PredictLoad}
 \title{plot.PredictLoad}
 \usage{
-\method{plot}{PredictLoad}(x, type = "annual", Conc, newQ = NULL,
-  scale = "Mt", ...)
+\method{plot}{PredictLoad}(x, type = "annual", Conc, newQ = NULL, scale = "Mt", ...)
 }
 \arguments{
 \item{x}{object}

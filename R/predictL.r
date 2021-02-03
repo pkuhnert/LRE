@@ -1,6 +1,4 @@
-#' @name predictL
-#'
-#' @title Predict Load
+#' predictL
 #'
 #' @description Predicts the Load
 #'
@@ -16,7 +14,6 @@
 #' @param samp.unit Sampling unit for the loads calculation, "day" or "hour"
 #' @param pvalue for confidence intervals. Default: 0.05 (95 %
 #' confidence intervals)
-#' @param ... other arguments to the predict function
 #'
 #'
 #' @export

@@ -4,7 +4,9 @@
 \name{burd_rain}
 \alias{burd_rain}
 \title{burd_rain}
-\format{An object of class \code{data.frame} with 2492 rows and 2 columns.}
+\format{
+An object of class \code{data.frame} with 2492 rows and 2 columns.
+}
 \usage{
 burd_rain
 }
