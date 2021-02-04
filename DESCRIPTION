@@ -6,7 +6,7 @@ Date: 2019-07-31
 Authors@R: c(
     person("Petra", "Kuhnert", email = "Petra.Kuhnert@data61.csiro.au", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-9070-0091")),
     person("Dan", "Pagendam", role = "ctb", comment = c(ORCID = "0000-0002-8347-4767"),
-    person("Brent", "Henderson", role = "ctb", comment = c(ORCID = "0000-0002-4825-3993))
+    person("Brent", "Henderson", role = "ctb", comment = c(ORCID = "0000-0002-4825-3993"))
     )
 Depends: 
     R (>= 3.5.0)
