@@ -1,9 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# The Loads Regression Estimator (LRE)
+# LRE <img src='man/figures/LRE_logo.jpg' align="right" height="138.5" />
 
-<img src="inst/extdata/LRE_logo.jpg" width="200px" />
+## The Loads Regression Estimator
+
+[![R-CMD-check](https://github.com/pkuhnert/LRE/workflows/R-CMD-check/badge.svg)](https://github.com/pkuhnert/LRE/actions)
+
+`LRE` pkgdown site with vignette: <https://pkuhnert.github.io/LRE/>.
 
 ## About the LRE Package
 
@@ -13,10 +17,10 @@ uncertainties.
 ## Installation
 
 You can install a development version of the LRE package from
-[GitHub](https://github.com/pkuhnert/VizU)
+[GitHub](https://github.com/pkuhnert/LRE)
 
     # install.packages("devtools")
-    devtools::install_github(repo = "pkuhnert/LRE", build_vignettes = TRUE, force = TRUE)
+    remotes::install_github(repo = "pkuhnert/LRE", build_vignettes = TRUE, force = TRUE)
 
 ## Authors
 
@@ -72,7 +76,7 @@ sites.
 
 ## License
 
-LRE is free under the GNU General Public License (GPL &gt;=2.0)
+LRE is free under the GNU General Public License (GPL &gt;= 3.0)
 
 The Burdekin and Tully flow and TSS datasets have been provided by DSTIA
 and are provided under the Creative Commons Attribution 4.0.
@@ -84,7 +88,15 @@ use of the LRE package, or any part of it, is the sole risk of the User.
 ## References
 
 Kuhnert, P.M., Henderson, B.L., Lewis, S.E., Bainbridge, Z.T.,
-Wilkinson, S.N. and Brodie, J.E. (2012) Quantifying total suspended
+Wilkinson, S.N. and Brodie, J.E. (2012) [Quantifying total suspended
 sediment export from the Burdekin River catchment using the loads
-regression estimator tool, Water Resources Research, 48,
-W04533,<doi:10.1029/2011WR011080>.
+regression estimator
+tool](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2011WR011080),
+Water Resources Research, 48, W04533,<doi:10.1029/2011WR011080>.
+
+Kroon, F.J., Kuhnert, P.M., Henderson, B.L., Wilkinson, S.N.,
+Kinsey-Henderson, A., Abbott, B., Brodie, J.E. and Turner, R.D.
+(2012)[River loads of suspended solids, nitrogen, phosphorus and
+herbicides delivered to the Great Barrier Reef
+Lagoon](https://www.sciencedirect.com/science/article/pii/S0025326X11005583),
+Marine Pollution Bulletin, 65, 4-9, 167-181.
