@@ -4,7 +4,7 @@
 #' 
 #' @param Q Flow 
 #' @param samp.unit sampling unit
-#' @param Ytype Year type: water year ("WY"), financial year ("FY")
+#' @param Ytype Year type: water year ("WY" or "WY2"), financial year ("FY")
 #'
 CreateRegDate <- function(Q, samp.unit, Ytype){
 

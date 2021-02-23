@@ -6,7 +6,7 @@
 #' @param Conc Concentration data
 #' @param date.range Date range
 #' @param samp.unit Sampling unit
-#' @param Ytype Year type. One of water year ("WY") or financial year ("FY")
+#' @param Ytype Year type. One of water year ("WY" or "WY2") or financial year ("FY")
 #' @param Qflush Quantile for "first flush"
 #' @param Reg Parameters for regularisation (type, rainfall, date)
 #'
@@ -68,7 +68,7 @@ CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
    #----------------------------- Creating modelling dataset by matching ------------------------#
    #----------------------------- concentration dates with flow dates ---------------------------#
  
-   val <- CreateCQDataset(Conc = Conc, Qreg = Qreg, startdate = min(Q$Date), Ytype = Ytype)
+   val <- CreateCQDataset(Conc = Conc, Qreg = Qreg, startdate = min(Q$Date))
 
    CQ <- val$CQ
    Cm <- val$Cm

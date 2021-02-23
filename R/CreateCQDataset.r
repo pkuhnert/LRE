@@ -5,9 +5,8 @@
 #' @param Conc Concentration data
 #' @param Qreg Regularised flow data
 #' @param startdate Starting date
-#' @param Ytype Year type. One of water year "WY" or financial "FY"
 #'
-CreateCQDataset <- function(Conc, Qreg, startdate, Ytype){
+CreateCQDataset <- function(Conc, Qreg, startdate){
 
   Cm <- Conc
  # Cm$Date <- as.Date(Cm$Date)
@@ -15,10 +14,6 @@ CreateCQDataset <- function(Conc, Qreg, startdate, Ytype){
   Cm$days <- as.numeric(difftime(Cm$Date, startdate, units = "days"))
   Cm$pQ <- Qreg$pQ[m]
  
-#  if(any(is.na(m))){
-#    Cm.na <- PredictQc(smf, Qreg, Cm, Ytype)
-#    Cm$pQ[is.na(m)] <- Cm.na$pQ[is.na(m)]
-#  }
   # Extract flow variables for Concentration dataset
   # Where concentration dates don't match, we linear interpolate between Qreg dates
   av <- AssignVal(Cm$Date, Qreg$Date)

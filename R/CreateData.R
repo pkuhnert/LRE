@@ -15,7 +15,7 @@
 #' @param date.range list containing date ranges for modelling and prediction
 #' datasets (default: NULL)
 #' @param samp.unit sampling unit 'hour' or 'daily'
-#' @param Ytype water year "WY" or financial year "FY" (note only WY
+#' @param Ytype water year "WY" or "WY2" or financial year "FY" (note only WY
 #'   implemented at this stage)
 #' @param Reg Regularisation check
 #'
@@ -78,8 +78,8 @@ function(Q, Conc, date.range = list(model = NULL, pred = NULL, hour = FALSE), sa
 
   if(!(samp.unit == "hour" | samp.unit == "day"))
     stop("Sampling unit needs to be either 'hour' or 'day'.\n")
-  if(!(Ytype == "WY" | Ytype == "FY"))
-    stop("Ytype needs to be either specified as a water year (WY) or financial year (FY).\n")
+  if(!(Ytype == "WY" | Ytype == "WY2" | Ytype == "FY"))
+    stop("Ytype needs to be either specified as a water year (WY or WY2) or financial year (FY).\n")
   if(is.nan(Qflush) | is.na(Qflush) | Qflush < 0 | Qflush > 1)
     stop("Qflush needs to be a value between 0 and 1.\n")
   if(!(Reg$type == "ss" | Reg$type == "qrforest" | Reg$type == "none" ))

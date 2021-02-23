@@ -5,7 +5,7 @@
 #' @param Q Flow
 #' @param samp.unit sampling unit
 #' @param Qflush quantile corresponding to first flush
-#' @param Ytype Year type: water year ("WY"), financial year ("FY")
+#' @param Ytype Year type: water year ("WY" or "WY2"), financial year ("FY")
 #' @param Reg Regularisation parameters
 #'
 
