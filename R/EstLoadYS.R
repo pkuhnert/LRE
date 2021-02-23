@@ -14,7 +14,7 @@ EstLoadYS <- function(CQdat, Qdat, concY, modobj, samp.unit = samp.unit,
   for(i in 1:length(uY)){
     cat("Year: ", uY[i], "\n")
     CQhatY <- CQdat$CQhat[CQdat$CQhat$Y == uY[i],]
-     #   CQhatY <- subset(CQdat$CQhat, Y == uY[i])
+     
 
     QdatY <- Qdat[Qdat$Y == uY[i],]
 

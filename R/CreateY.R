@@ -13,21 +13,21 @@
 #' @export
 
 CreateY <- function(Date, Ytype){
-
-  if(missing(Date))
-    stop("No date vector specified. \n")
-  if(missing(Ytype))
-    stop("Ytype needs to be specified. Either financial year (FY) or water
-           year (WY) are accepted.\n")
-
-  if(!(Ytype == "WY" | Ytype == "FY"))
-    stop("Either WY or FY need to be specified for Ytype.")
-
-
+   
+   if(missing(Date))
+      stop("No date vector specified. \n")
+   if(missing(Ytype))
+      stop("Ytype needs to be specified. Either financial year (FY) or water
+           year (WY or WY2) are accepted.\n")
+   
+   if(!(Ytype == "WY" | Ytype == "FY" | Ytype == "WY2"))
+      stop("Either WY, WY2 or FY need to be specified for Ytype.")
+   
+   
    dateL <- as.POSIXlt(Date)
    if(all(is.na(dateL)))
-     stop("Date has missing values.\n")
-
+      stop("Date has missing values.\n")
+   
    year <- dateL$year + 1900
    mon <- dateL$mon + 1
    Y <- rep("", length(Date))
@@ -35,11 +35,14 @@ CreateY <- function(Date, Ytype){
       id <- (mon <= 6)
    else if(Ytype == "WY")
       id <- (mon <= 9)
-
+   else if(Ytype == "WY2")
+      id <- (mon <= 8)
+   
    Y[id] <- paste(year[id]-1, "/", year[id], sep = "")
    Y[!id] <- paste(year[!id], "/", year[!id]+1, sep = "")
-
-
+   
+   
    Y
 }
+
 

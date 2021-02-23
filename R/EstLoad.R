@@ -19,6 +19,7 @@ EstLoad <- function(CQdat, Qdat, Xdesign, W, sig2, rho,
   cf <- numeric(length(Sigma))
   for(i in 1:length(Sigma))
         cf[i] <- exp((sig2-Sigma[i])/2)
+ 
   LhatC <- Chat*Qhat*cf
   Lhat <- Chat*Qhat
 
