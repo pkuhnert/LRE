@@ -41,7 +41,8 @@ CreateLoadVars <- function(Q, csQ, Qflush, samp.unit, Date, Y){
     discount <- c(24, 24*2, 24*7, 24*30, 24*30*3, 24*30*6, 24*30*12)
     ema.sm <- sapply(discount, function(x) EMA(Q, n = x))
     # now replace NAs with MA of values up to n, where n is the largest n used
-    replNA <- EMA(Q, n = 1:(24*30*12))
+    replNA <- unlist(lapply(1:(30*12), function(x){ tmp <- EMA(Q, n = x)
+                                         tmp[!is.na(tmp)][1]}))
     for(i in 1:ncol(ema.sm)){
       ema.sm[,i][is.na(ema.sm[,i])] <- replNA[is.na(ema.sm[,i])]
     }
@@ -53,7 +54,8 @@ CreateLoadVars <- function(Q, csQ, Qflush, samp.unit, Date, Y){
    discount <- c(1, 2, 7, 30, 30*3, 30*6, 30*12)
    ema.sm <- sapply(discount, function(x) EMA(Q, n = x))
    # now replace NAs with MA of values up to n, where n is the largest n used
-   replNA <- EMA(Q, n = 1:(30*12))
+   replNA <- unlist(lapply(1:(30*12), function(x){ tmp <- EMA(Q, n = x)
+                                            tmp[!is.na(tmp)][1]}))
    for(i in 1:ncol(ema.sm)){
      ema.sm[,i][is.na(ema.sm[,i])] <- replNA[is.na(ema.sm[,i])]
    }

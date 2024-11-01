@@ -23,7 +23,7 @@ CreateLD(
 
 \item{samp.unit}{Sampling unit}
 
-\item{Ytype}{Year type. One of water year ("WY") or financial year ("FY")}
+\item{Ytype}{Year type. One of water year ("WY" or "WY2") or financial year ("FY")}
 
 \item{Qflush}{Quantile for "first flush"}
 

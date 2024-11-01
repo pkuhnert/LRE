@@ -26,7 +26,7 @@ datasets (default: NULL)}
 
 \item{samp.unit}{sampling unit 'hour' or 'daily'}
 
-\item{Ytype}{water year "WY" or financial year "FY" (note only WY
+\item{Ytype}{water year "WY" or "WY2" or financial year "FY" (note only WY
 implemented at this stage)}
 
 \item{Qflush}{Qflush}

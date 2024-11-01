@@ -4,7 +4,7 @@
 \alias{CreateCQDataset}
 \title{CreateCQDAtaset}
 \usage{
-CreateCQDataset(Conc, Qreg, startdate, Ytype)
+CreateCQDataset(Conc, Qreg, startdate)
 }
 \arguments{
 \item{Conc}{Concentration data}
@@ -12,8 +12,6 @@ CreateCQDataset(Conc, Qreg, startdate, Ytype)
 \item{Qreg}{Regularised flow data}
 
 \item{startdate}{Starting date}
-
-\item{Ytype}{Year type. One of water year "WY" or financial "FY"}
 }
 \description{
 LRE Internal function

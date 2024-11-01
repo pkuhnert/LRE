@@ -11,7 +11,7 @@ CreateRegDate(Q, samp.unit, Ytype)
 
 \item{samp.unit}{sampling unit}
 
-\item{Ytype}{Year type: water year ("WY"), financial year ("FY")}
+\item{Ytype}{Year type: water year ("WY" or "WY2"), financial year ("FY")}
 }
 \description{
 LRE Internal function.

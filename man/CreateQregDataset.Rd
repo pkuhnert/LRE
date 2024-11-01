@@ -13,7 +13,7 @@ CreateQregDataset(Q, samp.unit, Qflush, Ytype, Reg)
 
 \item{Qflush}{quantile corresponding to first flush}
 
-\item{Ytype}{Year type: water year ("WY"), financial year ("FY")}
+\item{Ytype}{Year type: water year ("WY" or "WY2"), financial year ("FY")}
 
 \item{Reg}{Regularisation parameters}
 }

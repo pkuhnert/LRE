@@ -2,8 +2,27 @@
 % Please edit documentation in R/LRE-package.r
 \docType{package}
 \name{LRE}
+\alias{LRE-package}
 \alias{LRE}
 \title{Loads Regression Estimator}
 \description{
 Estimates loads using a generalised rating curve approach with uncertainties.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://pkuhnert.github.io/LRE/}
+  \item \url{https://github.com/pkuhnert/LRE}
+}
+
+}
+\author{
+\strong{Maintainer}: Petra Kuhnert \email{Petra.Kuhnert@data61.csiro.au} (\href{https://orcid.org/0000-0001-9070-0091}{ORCID})
+
+Other contributors:
+\itemize{
+  \item Dan Pagendam (\href{https://orcid.org/0000-0002-8347-4767}{ORCID}) [contributor]
+  \item Brent Henderson (\href{https://orcid.org/0000-0002-4825-3993}{ORCID}) [contributor]
+}
+
 }
