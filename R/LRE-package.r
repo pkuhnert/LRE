@@ -2,8 +2,9 @@
 #'
 #' Estimates loads using a generalised rating curve approach with uncertainties.
 #'
-#' @docType package
 #' @name LRE
 #' @useDynLib LRE
-NULL
+#' @keywords internal
+"_PACKAGE"
+
 
