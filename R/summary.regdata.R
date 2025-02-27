@@ -30,8 +30,20 @@ summary.regdata <- function(object, Qcutoff = NULL, ...){
     # combining information from flow and concentration records
     yrC <- unique(c(yr, names(n)))
     id <- match(yrC, names(n))
-    sumtab <- data.frame(Year = yr, n = as.vector(n)[id], AvgFlowC = qbar[id], AvgFlowR = Q1bar,
-                         AvgFlowO = Qbar, FlowC.bias = qbar[id]/Q1bar, FlowQ.bias = Q1bar/Qbar)
+    
+    
+    n <- as.vector(n)[id] 
+    AvgFlowC <- qbar[id] 
+    AvgFlowR <- Q1bar
+    AvgFlowO <- Qbar 
+    FlowC.bias <- qbar[id]/Q1bar 
+    FlowQ.bias <- Q1bar/Qbar
+    
+    names(AvgFlowC) <- names(AvgFlowR) <- names(AvgFlowO) <- names(FlowC.bias) <-
+      names(FlowQ.bias) <- yrC
+    
+    sumtab <- data.frame(Year = yr, n = n, AvgFlowC = AvgFlowC, AvgFlowR = AvgFlowR,
+                         AvgFlowO = AvgFlowO, FlowC.bias = FlowC.bias, FlowQ.bias = FlowQ.bias)
     
     row.names(sumtab) <- NULL
 
