@@ -6,9 +6,9 @@
 #' @description Creates a regularised flow dataset
 #' using a smoothing spline or rainfall record using
 #' Random Forests. Predictions produced from the smoothing
-#' splint approach are capped to the
-#' median within year to ensure predictions do not
-#' go outside the range of the raw data.
+#' spline approach are checked to ensure predictions do not
+#' go outside the range of the raw data. If this occurs for any year
+#' a warning is issued for the user to check.
 #'
 #'
 #' @param Q Q
@@ -28,16 +28,19 @@ NULL
 regularizeFlowSS <- function(Q, Qreg){
 
   val <- FitSmQ(Q = Q, Qreg = Qreg)
-
+  
   Qreg <- val$Qreg
   smf <- val$smf
   medvals <- with(Q, tapply(Flow, Y, median))
+  
   y.id <- match(Qreg$Y, names(medvals))
-#  Qreg$pQ[is.na(y.id)] <- medvals[y.id[is.na(y.id)]]
-
-  id <- match(Q$Date, Qreg$Date)
-  Qreg$pQ[-id] <- medvals[y.id[-id]]
-
+  
+  maxvalsQ <- with(Q, tapply(Flow, Y, max))
+  maxvalsQreg <- with(Qreg, tapply(pQ, Y, max))
+  if(any(maxvalsQreg > maxvalsQ))
+    warning("Regularisation has identified some predicted flows outside what was measured.\n")
+  
+  
   Qreg
 
 }

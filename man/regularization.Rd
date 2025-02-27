@@ -28,7 +28,7 @@ regularizeFlowR(rainfall, dateTimeRainfall, flow, dateTimeFlow)
 Creates a regularised flow dataset
 using a smoothing spline or rainfall record using
 Random Forests. Predictions produced from the smoothing
-splint approach are capped to the
-median within year to ensure predictions do not
-go outside the range of the raw data.
+spline approach are checked to ensure predictions do not
+go outside the range of the raw data. If this occurs for any year
+a warning is issued for the user to check.
 }
