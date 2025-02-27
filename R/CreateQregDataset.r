@@ -84,7 +84,7 @@ CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){
   start.date <- min(Qreg$Date)
   trend <- difftime(Qreg$Date, start.date, units = "days")
   Qreg$trend <- trend
-  Qreg$trendY <- Qreg$Y
+  Qreg$trendY <- as.factor(Qreg$Y)
   levels(Qreg$trendY) <- paste(1:length(levels(Qreg$trendY)))
   Qreg$trendY <- as.numeric(as.vector(Qreg$trendY))
   # Month term (1:12 needs to run from October - September)
