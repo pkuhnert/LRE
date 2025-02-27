@@ -55,7 +55,7 @@ CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
       mind <- as.Date(min(Conc$Date))
       maxd <- as.Date(max(Conc$Date))
    }
-   ind <- with(Q, as.Date(Date) >= mind & as.Date(Date) <= maxd)
+   ind <- as.Date(Q$Date) >= mind & as.Date(Q$Date) <= maxd
    Q <- Q[ind,]
 
 
