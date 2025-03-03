@@ -8,6 +8,7 @@ Authors@R: c(
     person("Dan", "Pagendam", role = "ctb", comment = c(ORCID = "0000-0002-8347-4767")),
     person("Brent", "Henderson", role = "ctb", comment = c(ORCID = "0000-0002-4825-3993"))
     )
+Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.au>    
 Depends: 
     R (>= 4.4.0)
 Imports:
