@@ -22,8 +22,6 @@ Imports:
     reshape2,
     nlme,
     quantregForest
-Remotes:
-    pbreheny/visreg
 Description: 
     Estimates loads using a generalised rating curve approach with uncertainties.
 URL: https://pkuhnert.github.io/LRE/, https://github.com/pkuhnert/LRE
