@@ -1,11 +1,11 @@
 ## ----echo=TRUE, fig.align = "center", eval = FALSE----------------------------
 # # Version 1: Read In Burdekin data from an external file
+# library(LRE)
 # burd <- ReadInData(dirnm = system.file("extdata", package = "LRE"), filenm = "/BurdRdaily", Cnames = "TSS",
 #                    format = "%Y-%m-%d")
 
 ## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5----
 library(LRE)
-
 # Version 2: burdRC and burdRQ are already stored as part of the package
 burd <- ReadInDataFromR(x.C = burdRC, x.Q = burdRQ)
 plot(burd)
