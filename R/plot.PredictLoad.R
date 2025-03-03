@@ -26,7 +26,7 @@
 
 plot.PredictLoad <- function(x, type = "annual", Conc, newQ = NULL, scale = "Mt", ...){
 
-  if(class(x) != "PredictLoad")
+  if(!inherits(x, "PredictLoad"))
     stop("Object is not of class 'PredictLoad'.\n")
   if(missing(Conc))
     stop("Please provide a Concentration label (Conc)\n.")

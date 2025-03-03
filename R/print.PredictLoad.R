@@ -19,7 +19,7 @@
 #'
 print.PredictLoad <- function(x, ...){
 
-  if(class(x) != "PredictLoad")
+  if(!inherits(x, "PredictLoad"))
     stop("Object is not of class 'PredictLoad'.\n")
 
 

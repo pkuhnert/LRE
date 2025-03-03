@@ -19,11 +19,11 @@ features <- function(series, dateTime){
   {
     stop("The rainfall series and the rainfall datetime series must be the same length.")
   }
-  if(class(series) != "numeric")
+  if(!inherits(series, "numeric"))
   {
     stop("The rainfall series must be a numeric vector.")
   }
-  if(class(dateTime) != "Date" & class(dateTime) != "POSIXlt" & class(dateTime) != "POSIXct")
+  if(!inherits(dateTime, "Date")  & !inherits(dateTime, "POSIXlt") & !inherits(dateTime, "POSIXct"))
   {
     stop("The datetime series must be of class Date, POSIXlt or POSIXct.")
   }

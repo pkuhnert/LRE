@@ -12,10 +12,10 @@
 
 summary.data <- function(object, ...){
 
-  if(class(object) != "data")
+  if(!inherits(object, "data"))
     stop("Object is not of class 'data'.\n")
 
-  if(class(object) != "data")
+  if(!inherits(object, "data"))
     stop("Object is not of class 'data'.\n")
 
 

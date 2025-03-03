@@ -17,7 +17,7 @@
 
 plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
 
-  if(class(x) != "regdata")
+  if(!inherits(x, "regdata"))
     stop("Object is not of class 'regdata'.\n")
 
   if(missing(Type))

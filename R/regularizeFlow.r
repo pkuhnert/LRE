@@ -54,11 +54,12 @@ regularizeFlowR <- function(rainfall, dateTimeRainfall, flow, dateTimeFlow){
   {
     stop("The rainfall series and the rainfall datetime series must be the same length.")
   }
-  if(class(rainfall) != "numeric")
+  if(!inherits(rainfall, "numeric"))
   {
     stop("The rainfall series must be a numeric vector.")
   }
-  if(class(dateTimeRainfall) != "Date" & class(dateTimeRainfall) != "POSIXlt" & class(dateTimeRainfall) != "POSIXct")
+  if(!inherits(dateTimeRainfall, "Date") & !inherits(dateTimeRainfall, "POSIXlt") & 
+     !inherits(dateTimeRainfall, "POSIXct"))
   {
     stop("The datetime series must be of class Date, POSIXlt or POSIXct.")
   }
@@ -67,11 +68,12 @@ regularizeFlowR <- function(rainfall, dateTimeRainfall, flow, dateTimeFlow){
   {
     stop("The flow series and the flow datetime series must be the same length.")
   }
-  if(class(flow) != "numeric")
+  if(!inherits(flow, "numeric"))
   {
     stop("The rainfall series must be a numeric vector.")
   }
-  if(any(class(dateTimeFlow) != "Date" & class(dateTimeFlow) != "POSIXlt" & class(dateTimeFlow) != "POSIXct" & class(dateTimeFlow) != "POSIXt"))
+  if(any(!inherits(dateTimeFlow, "Date") & !inherits(dateTimeFlow, "POSIXlt") & 
+         !inherits(dateTimeFlow, "POSIXct") & !inherits(dateTimeFlow, "POSIXt")))
   {
     stop("The datetime series must be of class Date, POSIXlt or POSIXct.")
   }

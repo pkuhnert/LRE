@@ -16,7 +16,7 @@
 plot.data <- function(x, logt = FALSE, ...){
 
 
-    if(class(x) != "data")
+    if(!inherits(x, "data"))
       stop("Object is not of class 'data'.")
 
     # work out xlimits so dates match up
