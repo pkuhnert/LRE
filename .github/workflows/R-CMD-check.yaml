@@ -12,10 +12,10 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: '4.3.1'  # Set the R version here
+          r-version: '4.4.2'  # Set the R version here
 
       - name: Install dependencies
-        run: Rscript -e 'install.packages("remotes"); remotes::install_deps(dependencies = TRUE)'
+        run: Rscript -e 'install.packages("remotes", "TTR"); remotes::install_deps(dependencies = TRUE)'
 
       - name: Run R CMD check
         run: R CMD check .
