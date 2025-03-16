@@ -8,6 +8,7 @@ Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.au>
 Depends: 
     R (>= 4.4.0)
 Imports:
+    dplyr,
     methods,
     mgcv,
     ggplot2,
@@ -30,3 +31,4 @@ Encoding: UTF-8
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
+

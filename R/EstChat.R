@@ -21,7 +21,7 @@
 #' @param modobjfix modobjfix
 #' @param len len
 #' @param Xdesign Design matrix
-#' @param W Var(betahat)
+#' #' @param W Var(betahat)
 #' @param sig2 sigma^2
 #' @param rho rho
 #' @param alpha1 measurement error
@@ -39,7 +39,7 @@
 #' @param error error
 #' @param modparms modparms
 #' @param est estimate
-#' @param pvalue pvalue
+#' #' @param pvalue pvalue
 #'
 #' @importFrom "stats" "predict" "vcov" "coef"
 #'
@@ -70,7 +70,28 @@ EstChat <- function(Qdat, modobj, modobjfix){
      else
         rho <- coef(x, unconstrained = FALSE)
   }
-  else{
+  else
+    if(inherits(modobj, "bam")){
+      if(length(coef(modobj)) == 1){
+        # Constant model
+        Cpred <- predict(modobj, type = "response", se.fit = TRUE)
+        Cpred$fit <- rep(Cpred$fit[1], nrow(Qdat))
+        Cpred$se.fit <- rep(Cpred$se.fit[1], nrow(Qdat))
+        
+        # Get design matrix, Var(betahat), sigma^2
+        Xdesign <- data.frame(Intercept = rep(1, nrow(Qdat)))
+      }
+      else{
+        Cpred <- predict(modobj, Qdat, type = "response", se.fit = TRUE)
+        # Get design matrix, Var(betahat), sigma^2
+        Xdesign <- predict(modobj, newdata = Qdat, type = "lpmatrix")
+      }
+      
+      W <- modobj$Vp
+      sig2 <- modobj$sig2
+      rho <- modobj$AR1.rho
+    }
+else{
 
      if(length(coef(modobj)) == 1){
         # Constant model

@@ -43,6 +43,8 @@ The function *ReadInData* reads in a concentration and flow dataset as two separ
 ```{r, echo=TRUE, fig.align = "center", eval = FALSE}
 # Version 1: Read In Burdekin data from an external file
 library(LRE)
+library(TTR)
+library(ggplot2)
 burd <- ReadInData(dirnm = system.file("extdata", package = "LRE"), filenm = "/BurdRdaily", Cnames = "TSS",
                    format = "%Y-%m-%d")
 ```

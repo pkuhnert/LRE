@@ -56,9 +56,8 @@ Intervals(est, pvalue)
 \arguments{
 \item{len}{len}
 
-\item{Xdesign}{Design matrix}
-
-\item{W}{Var(betahat)}
+\item{Xdesign}{Design matrix
+#' @param W Var(betahat)}
 
 \item{LhatC}{Concentration estimate}
 
@@ -98,9 +97,8 @@ Intervals(est, pvalue)
 
 \item{modparms}{modparms}
 
-\item{est}{estimate}
-
-\item{pvalue}{pvalue}
+\item{est}{estimate
+#' @param pvalue pvalue}
 }
 \description{
 Internal functions used for prediction.

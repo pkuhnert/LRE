@@ -42,7 +42,7 @@ CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
    }
    indC <- with(Conc, as.Date(Date) >= mind & as.Date(Date) <= maxd)
    Conc <- Conc[indC,]
-
+ 
    #----------------------------- Extract prediction dataset --------------------------------#
    if(!is.null(date.range$pred)){
       # Restrict flow data to specific dates set by user

@@ -1,6 +1,6 @@
 #' @importFrom "stats" "na.omit"
 #' @rdname LRE-predict-Internal
-ExtractDailyLoads <-function(Date, Xdesign, Lhat, LhatC, Qhat, error, modparms){
+ExtractDailyLoads <- function(Date, Xdesign, Lhat, LhatC, Qhat, error, modparms){
 
     startdate <- min(Date)
     startdate <- as.POSIXlt(startdate)

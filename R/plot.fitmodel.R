@@ -13,9 +13,9 @@
 #' @importFrom "stats" "model.matrix"
 #' @import "ggplot2"
 #' @import "gridExtra"
+#' @import "dplyr"
 #'
 #' @export
-
 plot.fitmodel <- function(x, Qreg, data, ...){
 
   if(class(x)[1] != "fitmodel")
@@ -36,23 +36,27 @@ plot.fitmodel <- function(x, Qreg, data, ...){
      modelfit$data <- data
   }
   else{
+ 
      term.pred <- predict(x, Qreg, type = "terms", se.fit = TRUE)
      modelfit <- x
      class(modelfit) <- class(modelfit)[-1]
+     
   }
 
   ##########################################
   # Termplots
   ##########################################
 
+
   # Plot 1
 
   # Rising/Falling Limb
   id <- match("limb", names(data.frame(term.pred$fit)))
   if(any(!is.na(id))){
-     limb.est <- tapply(term.pred$fit[,id], Qreg$limb, unique)
+
+     limb.est <- tapply(term.pred$fit[,id], Qreg$limb, function(x) na.omit(unique(x)))
      limb.est <- limb.est[names(limb.est) != 0]
-     limb.se <- tapply(term.pred$se.fit[,id], Qreg$limb, unique)
+     limb.se <- tapply(term.pred$se.fit[,id], Qreg$limb, function(x) na.omit(unique(x)))
      limb.se <- limb.se[names(limb.se) != 0]
      limb.95lci <- limb.est - 1.96 * limb.se
      limb.95uci <- limb.est + 1.96 * limb.se
@@ -89,7 +93,7 @@ plot.fitmodel <- function(x, Qreg, data, ...){
         flow.df <- data.frame(x = sort(lpQ), est = flow.est[order(lpQ)], lci = flow.95lci[order(lpQ)],
                               uci = flow.95uci[order(lpQ)])
 
-
+        
         p1 <- ggplot(aes_string('x', 'est'), data = flow.df) + xlab("log(Flow)") +
           ylab("Contribution to predicted concentration (log-scale)") + ggtitle("Flow term")
         pFlow <- p1 + geom_ribbon(aes_string(ymin = 'lci', ymax = 'uci'), fill = "grey70") + geom_line(size = 1)
@@ -119,7 +123,7 @@ plot.fitmodel <- function(x, Qreg, data, ...){
 
   # Plot: MA terms
   id <- grep("MA", allterms)
-  if(!(any(is.na(id)) | length(id) == 0)){
+ if(!(any(is.na(id)) | length(id) == 0)){
      sterms <- allterms[id]
      p <- list()
      for(i in 1:length(sterms))
@@ -165,9 +169,17 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   yhat.u <- yhat$fit + 1.96 * yhat$se.fit
   yhat <- yhat$fit
 
-  predmat <- data.frame(Date = data$Date, Y = data$Y, Conc = data$Conc, yhat = yhat,
-                      yhat.l = yhat.l, yhat.u = yhat.u, pQ = data$pQ)
-
+  # check for NAs which may occur with the moving averages
+#  any.na <- apply(data, 1, function(x) any(is.na(x)))
+  
+#  predmat <- data.frame(Date = data$Date[!any.na], Y = data$Y[!any.na], 
+ #                       Conc = data$Conc[!any.na], yhat = yhat,
+#                      yhat.l = yhat.l, yhat.u = yhat.u, pQ = data$pQ[!any.na])
+#
+  predmat <- data.frame(Date = data$Date, Y = data$Y, 
+                                               Conc = data$Conc, yhat = yhat,
+                        yhat.l = yhat.l, yhat.u = yhat.u, pQ = data$pQ)
+  
   # regularised dataset
   if(length(x) == 2){
     Xdesign <- predict(modelfit, newdata = Qreg, type = "lpmatrix")
@@ -194,20 +206,38 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   conc_mon <- predmatC[predmatC$Concentration == "Monitoring" | predmatC$Concentration == "Observed",]
   conc_reg <- predmatC[predmatC$Concentration == "Regularised",]
 
-  pConc <- ggplot(aes_string('Date', 'yhat', colour = 'Concentration'), data = predmatC) +
-    geom_point(aes_string('Date', 'yhat'), data = conc_mon) +
-    geom_line(aes_string('Date', 'yhat'), data = conc_reg) +
+  pConc <- ggplot(aes(Date, yhat, colour = Concentration), data = predmatC) +
+    geom_point(aes(Date, yhat), data = conc_mon) +
+    geom_line(aes(Date, yhat), data = conc_reg) +
         scale_color_manual(values = c("green3", "orange2", "blue")) + ylab("log(Concentration)") + xlab("") +
     theme(legend.position="top")
   predmatC$lpQ <- log(predmatC$pQ)
-  pFlow <- ggplot(aes_string('Date', 'lpQ'), data = predmatC) + geom_line() + xlab(paste(xlabel[1], " to ",
+  pFlow <- ggplot(aes(Date, lpQ), data = predmatC) + geom_line() + xlab(paste(xlabel[1], " to ",
                                                                                       xlabel[length(xlabel)])) + ylab("log(Flow_R)")
   ppred <- marrangeGrob(list(pConc,pFlow), nrow = 2, ncol = 1, heights = c(2,1), top = "Predicted Time Series Concentration")
 
+  #  with error bands
+  # Filter data for regularised estimates
+  df_regularised <- predmatC %>% filter(Concentration == "Regularised")
+  
+  # Plot
+  pConcInt <- ggplot(predmatC, aes(x = Date)) +
+    # Line for yhat
+    geom_line(aes(y = yhat), color = "blue", linewidth = 1) +
+    # Error bands for Regularised estimates
+    geom_ribbon(data = df_regularised, aes(ymin = yhat.l, ymax = yhat.u), 
+                fill = "blue", alpha = 0.2) +
+    # Points for Observed
+    geom_point(data = predmatC %>% filter(Concentration == "Observed"), 
+               aes(y = yhat, color = "Observed"), size = 1) +
+    scale_color_manual(values = c("Monitoring" = "red", "Observed" = "green")) +
+    labs(x = "", y = "log(Concentration)", title = "Predicted Time Series Concentrations and Uncertainties with observed") +
+    theme_minimal()
+  
 
+    list(pTrend = pTrend, pMA = pMA, pSeas = pSeas, pRFL = pRFL, ppred = ppred, pConc = pConc,
+         pConcInt)
 
-
-    list(pTrend = pTrend, pMA = pMA, pSeas = pSeas, pRFL = pRFL, ppred = ppred, pConc = pConc)
 
 
 }

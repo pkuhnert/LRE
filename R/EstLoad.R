@@ -54,4 +54,3 @@ EstLoad <- function(CQdat, Qdat, Xdesign, W, sig2, rho,
 
   list(est.annual = est.annual, est.daily = est.daily)
 }
-

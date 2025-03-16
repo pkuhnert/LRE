@@ -8,7 +8,6 @@
 #' @param Ytype Year type: water year ("WY" or "WY2"), financial year ("FY")
 #' @param Reg Regularisation parameters
 #'
-
 CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){
 
   startdate <- min(Q$Date)
@@ -129,3 +128,4 @@ CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){
 
 
 }
+
