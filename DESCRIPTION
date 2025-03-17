@@ -6,7 +6,7 @@ Date: 2025-03-03
 Author: Petra Kuhnert [aut, cre] (<Petra.Kuhnert@data61.csiro.au>), Dan Pagendam [ctb], Brent Henderson [ctb]
 Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.au>    
 Depends: 
-    R (>= 4.4.0)
+    R (>= 4.3.0)
 Imports:
     dplyr,
     methods,
