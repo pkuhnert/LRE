@@ -16,8 +16,7 @@ jobs:
 
       - name: Install dependencies
         run: 
-          Rscript -e 'install.packages("remotes"); remotes::install_deps(dependencies = TRUE)'
-          install.packages('TTR')
+          Rscript -e 'install.packages("remotes"); install.packages("TTR"); remotes::install_deps(dependencies = TRUE)'
         
       - name: Run R CMD check
         run: R CMD check .
