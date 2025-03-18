@@ -15,7 +15,10 @@ jobs:
           r-version: '4.4.2'  # Set the R version here
 
       - name: Install dependencies
-        run: Rscript -e 'install.packages("remotes"); remotes::install_deps(dependencies = TRUE)'
-
+        run: 
+          Rscript -e 'install.packages("remotes"); remotes::install_deps(dependencies = TRUE)'
+          options(repos = c(CRAN = "https://cran.r-project.org"))
+          install.packages('TTR')
+        
       - name: Run R CMD check
         run: R CMD check .
