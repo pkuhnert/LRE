@@ -86,18 +86,33 @@ CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){
   Qreg$trendY <- as.factor(Qreg$Y)
   levels(Qreg$trendY) <- paste(1:length(levels(Qreg$trendY)))
   Qreg$trendY <- as.numeric(as.vector(Qreg$trendY))
-  # Month term (1:12 needs to run from October - September)
-  Qreg$month <- as.POSIXlt(Qreg$Date)$mon + 1
-  Qreg$month <- Qreg$month-9
-  Qreg$month[Qreg$month == -8] <- 4
-  Qreg$month[Qreg$month == -7] <- 5
-  Qreg$month[Qreg$month == -6] <- 6
-  Qreg$month[Qreg$month == -5] <- 7
-  Qreg$month[Qreg$month == -4] <- 8
-  Qreg$month[Qreg$month == -3] <- 9
-  Qreg$month[Qreg$month == -2] <- 10
-  Qreg$month[Qreg$month == -1] <- 11
-  Qreg$month[Qreg$month == 0] <- 12
+  # Month term 
+  # If FY, month terms needs to run from July - June
+  # If WY, month needs to run from October - September)
+  if(Ytype == "WY"){
+    Qreg$month <- as.POSIXlt(Qreg$Date)$mon + 1
+    Qreg$month <- Qreg$month-9
+    Qreg$month[Qreg$month == -8] <- 4
+    Qreg$month[Qreg$month == -7] <- 5
+    Qreg$month[Qreg$month == -6] <- 6
+    Qreg$month[Qreg$month == -5] <- 7
+    Qreg$month[Qreg$month == -4] <- 8
+    Qreg$month[Qreg$month == -3] <- 9
+    Qreg$month[Qreg$month == -2] <- 10
+    Qreg$month[Qreg$month == -1] <- 11
+    Qreg$month[Qreg$month == 0] <- 12
+  }
+  else{
+    Qreg$month <- as.POSIXlt(Qreg$Date)$mon + 1
+    Qreg$month <- Qreg$month-6
+    Qreg$month[Qreg$month == -5] <- 7
+    Qreg$month[Qreg$month == -4] <- 8
+    Qreg$month[Qreg$month == -3] <- 9
+    Qreg$month[Qreg$month == -2] <- 10
+    Qreg$month[Qreg$month == -1] <- 11
+    Qreg$month[Qreg$month == 0] <- 12
+  }
+
   # Compute additional covariates
   # cumulative forms of flow
   #   Qreg
