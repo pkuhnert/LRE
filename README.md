@@ -16,11 +16,7 @@ uncertainties.
 
 ## Installation
 
-You can install a development version of the LRE package from
-[GitHub](https://github.com/pkuhnert/LRE)
-
-    # install.packages("devtools")
-    remotes::install_github(repo = "pkuhnert/LRE", build_vignettes = TRUE, force = TRUE)
+This package is now maintained by CSIRO.  More information will be posted shortly about how to access the latest version.
 
 ## Authors
 
