@@ -3,11 +3,7 @@
 
 # LRE <img src='man/figures/LRE_logo.jpg' align="right" height="138.5" />
 
-## The Loads Regression Estimator
-
-[![R-CMD-check](https://github.com/pkuhnert/LRE/workflows/R-CMD-check/badge.svg)](https://github.com/pkuhnert/LRE/actions)
-
-`LRE` pkgdown site with vignette: <https://pkuhnert.github.io/LRE/>.
+## The Loads Regression Estimator (UPDATED 9 May 2025)
 
 ## About the LRE Package
 
