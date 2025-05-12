@@ -6,7 +6,8 @@
 \alias{LRE}
 \title{Loads Regression Estimator}
 \description{
-Estimates loads using a generalised rating curve approach with uncertainties.
+Estimates loads using a generalised additive modelling approach to
+model a concentration process given flow and other hydrological terms.
 }
 \seealso{
 Useful links:

@@ -3,7 +3,11 @@
 
 # LRE <img src='man/figures/LRE_logo.jpg' align="right" height="138.5" />
 
-## The Loads Regression Estimator (UPDATED 9 May 2025)
+## The Loads Regression Estimator
+
+[![R-CMD-check](https://github.com/pkuhnert/LRE/workflows/R-CMD-check/badge.svg)](https://github.com/pkuhnert/LRE/actions)
+
+`LRE` pkgdown site with vignette: <https://pkuhnert.github.io/LRE/>.
 
 ## About the LRE Package
 
@@ -12,7 +16,11 @@ uncertainties.
 
 ## Installation
 
-This package is now maintained by CSIRO.  More information will be posted shortly about how to access the latest version.
+You can install a development version of the LRE package from
+[GitHub](https://github.com/pkuhnert/LRE)
+
+    # install.packages("devtools")
+    remotes::install_github(repo = "pkuhnert/LRE", build_vignettes = TRUE, force = TRUE)
 
 ## Authors
 
@@ -40,13 +48,13 @@ We have developed a statistical methodology for estimating pollutant
 loads with uncertainties. The approach is regression based and
 incorporates a four step process:
 
-1.  Methods for flow regularisation to correct for sampling bias,
+1)  Methods for flow regularisation to correct for sampling bias,
 
-2.  Statistical model for concentration
+2)  Statistical model for concentration
 
-3.  The load calculated at regular time intervals, and
+3)  The load calculated at regular time intervals, and
 
-4.  An estimate of the uncertainty in the loads estimate.
+4)  An estimate of the uncertainty in the loads estimate.
 
 The statistical model incorporates terms for flow, and other
 characteristics of flow (e.g. rising or falling limb or flow history),
@@ -68,7 +76,7 @@ sites.
 
 ## License
 
-LRE is free under the GNU General Public License (GPL &gt;= 3.0)
+LRE is free under the GNU General Public License (GPL \>= 3.0)
 
 The Burdekin and Tully flow and TSS datasets have been provided by DSTIA
 and are provided under the Creative Commons Attribution 4.0.

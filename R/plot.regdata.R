@@ -52,8 +52,10 @@ plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
 
        start <- as.POSIXct(start, format = "%Y-%m-%d %H:%M", tz = "GMT")
        stop <- as.POSIXct(stop, format = "%Y-%m-%d %H:%M", tz = "GMT")
-       p[[i]] <- ggplot(aes_string('Date', 'pQ'), data = mat) + geom_line() + ylab("Concentration (log scale)") +
-         geom_point(aes_string('Date', 'pQ', shape = 'limb'), size = 2) + ggtitle(paste("Year: ", un.yr[i], sep = ""))
+       p[[i]] <- ggplot(aes(x = .data[["Date"]], y = .data[["pQ"]]), data = mat) + 
+         geom_line() + ylab("Concentration (log scale)") +
+         geom_point(aes(x = .data[["Date"]], y = .data[["pQ"]], shape = .data[["limb"]]), 
+                    size = 2) + ggtitle(paste("Year: ", un.yr[i], sep = ""))
    }
 
       if(length(un.yr) == 1)
@@ -97,20 +99,25 @@ plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
 
    percsamp.df <- data.frame(y = percsamp.tab, x = names(percsamp.tab))
    row.names(percsamp.df) <- NULL
-   pD <- ggplot(aes_string('x', 'y'), data = percsamp.df) + geom_bar(stat = "identity") + coord_flip() +
-     xlab("Percentage of samples captured") + ylab("") + ggtitle("Percentage of samples captured by Flow")
+   pD <- ggplot(aes(x = .data[["x"]], y = .data[["y"]]), data = percsamp.df) + 
+     geom_bar(stat = "identity") + coord_flip() +
+     xlab("Percentage of samples captured") + ylab("") + 
+     ggtitle("Percentage of samples captured by Flow")
 
    ###############################################################################################
    # PLOT 3: plot of concentration versus discharge
    ###############################################################################################
    mat.nona <- x$CQ[x$CQ$Conc != 0,]
-   pS1 <- ggplot(aes_string('pQ', 'Conc'), data = mat.nona) + geom_point() + xlab("Discharge (m3/s)") + ylab("Concentration (mg/L)") +
+   pS1 <- ggplot(aes(x = .data[["pQ"]], y = .data[["Conc"]]), data = mat.nona) + 
+     geom_point() + xlab("Discharge (m3/s)") + ylab("Concentration (mg/L)") +
      geom_vline(xintercept = quantile(x$Q$Flow, c(0.95, 0.98, 0.99), na.rm = TRUE), colour = c("green", "blue", "black"))
    mat.nona$lpQ <- log(mat.nona$pQ)
    mat.nona$lConc <- log(mat.nona$Conc)
-   pS2 <- ggplot(aes_string('lpQ', 'lConc'), data = mat.nona) + geom_point() + xlab("log(Discharge)") +
+   pS2 <- ggplot(aes(x = .data[["lpQ"]], y = .data[["lConc"]]), data = mat.nona) + 
+     geom_point() + xlab("log(Discharge)") +
      ylab("log(Concentration)") +
-     geom_vline(xintercept = log(quantile(x$Q$Flow, c(0.95, 0.98, 0.99), na.rm = TRUE)), colour = c("green", "blue", "black")) +
+     geom_vline(xintercept = log(quantile(x$Q$Flow, c(0.95, 0.98, 0.99), na.rm = TRUE)), 
+                colour = c("green", "blue", "black")) +
      geom_smooth(method = "loess", size = 1.5, col = "red")
 
    pS <- marrangeGrob(list(pS1, pS2), ncol = 1, nrow = 2, top = "Summaries of concentration and flow")
@@ -123,13 +130,9 @@ plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
    QregM <- melt(data = x$Qreg, id.vars = 1, measure.vars = c("pQ", "MA1day", "MA2days",
                                                               "MAweek", "MAmonth", "MA3months",
                                                               "MA6months", "MA12months"))
-   pSm <- ggplot(data = QregM, aes_string('Date', 'value', color = 'variable')) + geom_line(size = 1) + ggtitle("Smoothing Parameters") +
-     xlab("") + ylab("Flow (m3/s)")
-
-
-
-
-
+   pSm <- ggplot(data = QregM, aes(x = .data[["Date"]], y = .data[["value"]], 
+                                   color = 'variable')) + geom_line(linewidth = 1) + 
+     ggtitle("Smoothing Parameters") + xlab("") + ylab("Flow (m3/s)")
 
      list(p_RiseFallLimb = pF, p_DistSum = pD, p_CQsum = pS, p_SmoothParms = pSm)
 

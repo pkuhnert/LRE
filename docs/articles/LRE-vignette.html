@@ -6,19 +6,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Using the Loads Regression Estimator (LRE) to quantify loads and uncertainties • LRE</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Using the Loads Regression Estimator (LRE) to quantify loads and uncertainties">
-<meta property="og:description" content="LRE">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,25 +32,19 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">LRE</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -61,9 +56,9 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/pkuhnert/LRE/">
+  <a href="https://github.com/pkuhnert/LRE/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -74,39 +69,57 @@
 </div>
 <!--/.navbar -->
 
-      
 
-      </header><script src="LRE-vignette_files/header-attrs-2.6.6/header-attrs.js"></script><div class="row">
+
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Using the Loads Regression Estimator (LRE) to quantify loads and uncertainties</h1>
-                        <h4 class="author">Petra Kuhnert, Dan Pagendam and Brent Henderson</h4>
+      <h1 data-toc-skip>Using the Loads Regression Estimator (LRE) to
+quantify loads and uncertainties</h1>
+                        <h4 data-toc-skip class="author">Petra Kuhnert,
+Dan Pagendam and Brent Henderson</h4>
             
-            <h4 class="date">2021-02-04</h4>
+            <h4 data-toc-skip class="date">2025-05-09</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/pkuhnert/LRE/blob/master/vignettes/LRE-vignette.Rmd"><code>vignettes/LRE-vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pkuhnert/LRE/blob/HEAD/vignettes/LRE-vignette.Rmd" class="external-link"><code>vignettes/LRE-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>LRE-vignette.Rmd</code></div>
 
     </div>
 
     
     
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
-<p><strong>LRE</strong> is a tool for quantifying loads with uncertainties (Kuhnert et al. 2012). The tool uses a generalized additive modelling approach to relate concentration to flow and other terms in the model that mimic hydrological relationships of the complex river system being modelled.</p>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
+<p><strong>LRE</strong> is a tool for quantifying loads with
+uncertainties (Kuhnert et al. 2012). The tool uses a generalized
+additive modelling approach to relate concentration to flow and other
+terms in the model that mimic hydrological relationships of the complex
+river system being modelled.</p>
 <p>The LRE methodology comprises four steps:</p>
 <ol style="list-style-type: decimal">
-<li>Estimation steps for flow that ensures flow values occur at regular intervals (e.g. hourly, daily or monthly);</li>
-<li>Estimation steps for concentration, where a generalised additive model (GAM) is proposed for estimating concentration using covariates that account for seasonality and important hydrological processes of complex river systems;</li>
+<li>Estimation steps for flow that ensures flow values occur at regular
+intervals (e.g. hourly, daily or monthly);</li>
+<li>Estimation steps for concentration, where a generalised additive
+model (GAM) is proposed for estimating concentration using covariates
+that account for seasonality and important hydrological processes of
+complex river systems. In some cases, a random effect term will need to
+be considered;</li>
 <li>The estimation of the load that includes a bias correction, and</li>
-<li>The quantification of the standard error, which accounts for transect (spatial) error in addition to measurement error.</li>
+<li>The quantification of the standard error, which accounts for
+transect (spatial) error in addition to measurement error.</li>
 </ol>
 </div>
-<div id="analysis-of-the-inkerman-bridge-site-in-the-burdekin" class="section level2">
-<h2 class="hasAnchor">
-<a href="#analysis-of-the-inkerman-bridge-site-in-the-burdekin" class="anchor"></a>Analysis of the Inkerman Bridge site in the Burdekin</h2>
-<p>The Inkerman Bridge site in the Burdekin catchment drains water into the Great Barrier Reef (GBR) lagoon from an area 300,000 square kilometres in area. Courtesy from the Queensland State Government (DSITI) we have flow and total suspended sediment (TSS) data. Flow data consists of daily measurements (cumecs) spanning December 1973 through to June 2015. Concentration data consists of daily measurements (mg/L) spanning January 2006 through to June 2016.</p>
+<div class="section level2">
+<h2 id="analysis-of-the-inkerman-bridge-site-in-the-burdekin">Analysis of the Inkerman Bridge site in the Burdekin<a class="anchor" aria-label="anchor" href="#analysis-of-the-inkerman-bridge-site-in-the-burdekin"></a>
+</h2>
+<p>The Inkerman Bridge site in the Burdekin catchment drains water into
+the Great Barrier Reef (GBR) lagoon from an area 300,000 square
+kilometres in area. Courtesy from the Queensland State Government
+(DSITI) we have flow and total suspended sediment (TSS) data. Flow data
+consists of daily measurements (cumecs) spanning December 1973 through
+to June 2015. Concentration data consists of daily measurements (mg/L)
+spanning January 2006 through to June 2016.</p>
 <p>The LRE package is used to</p>
 <ol style="list-style-type: decimal">
 <li>Read in flow and concentration data;</li>
@@ -114,362 +127,448 @@
 <li>Fit a GAM to predict concentration given flow; and</li>
 <li>Calculate the load.</li>
 </ol>
-<p>Below are a series of steps for calculating the load in R using the LRE package.</p>
-<div id="step-1-read-in-the-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-1-read-in-the-data" class="anchor"></a>Step 1: Read in the data</h3>
-<p>There are a couple of different ways of getting your data into R for analysing with the LRE package.</p>
-<p>The function <em>ReadInData</em> reads in a concentration and flow dataset as two separate .csv datasets. The name of the csv files should be common to both files with the extension _C and _Q referencing the concentration and flow files respectively. An example below reads in ‘BurdRdaily’ which is housed in the <em>extdata</em> directory within the LRE package.</p>
+<p>Below are a series of steps for calculating the load in R using the
+LRE package.</p>
+<div class="section level3">
+<h3 id="step-1-read-in-the-data">Step 1: Read in the data<a class="anchor" aria-label="anchor" href="#step-1-read-in-the-data"></a>
+</h3>
+<p>There are a couple of different ways of getting your data into R for
+analysing with the LRE package.</p>
+<p>The function <em>ReadInData</em> reads in a concentration and flow
+dataset as two separate .csv datasets. The name of the csv files should
+be common to both files with the extension _C and _Q referencing the
+concentration and flow files respectively. An example below reads in
+‘BurdRdaily’ which is housed in the <em>extdata</em> directory within
+the LRE package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Version 1: Read In Burdekin data from an external file</span>
-<span class="va">burd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Read-Data.html">ReadInData</a></span><span class="op">(</span>dirnm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"LRE"</span><span class="op">)</span>, filenm <span class="op">=</span> <span class="st">"/BurdRdaily"</span>, Cnames <span class="op">=</span> <span class="st">"TSS"</span>,
-                   format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span></code></pre></div>
-<p>An alternative version reads in the flow and concentration data using the <em>ReadInDataFromR</em> function and assumes that both flow and concentration objects are R bojects stored with the R package.</p>
+<code class="sourceCode R"><span><span class="co"># Version 1: Read In Burdekin data from an external file</span></span>
+<span><span class="va">burd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Read-Data.html">ReadInData</a></span><span class="op">(</span>dirnm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"LRE"</span><span class="op">)</span>, filenm <span class="op">=</span> <span class="st">"/BurdRdaily"</span>, Cnames <span class="op">=</span> <span class="st">"TSS"</span>,</span>
+<span>                   format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span></span></code></pre></div>
+<p>An alternative version reads in the flow and concentration data using
+the <em>ReadInDataFromR</em> function and assumes that both flow and
+concentration objects are R bojects stored with the R package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">LRE</span><span class="op">)</span>
-
-<span class="co"># Version 2: burdRC and burdRQ are already stored as part of the package</span>
-<span class="va">burd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Read-Data.html">ReadInDataFromR</a></span><span class="op">(</span>x.C <span class="op">=</span> <span class="va">burdRC</span>, x.Q <span class="op">=</span> <span class="va">burdRQ</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">burd</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning: Removed 32 rows containing missing values (geom_point).</code></pre>
+<code class="sourceCode R"><span><span class="co"># Version 2: burdRC and burdRQ are already stored as part of the package</span></span>
+<span><span class="va">burd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Read-Data.html">ReadInDataFromR</a></span><span class="op">(</span>x.C <span class="op">=</span> <span class="va">burdRC</span>, x.Q <span class="op">=</span> <span class="va">burdRQ</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">burd</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: Removed 32 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">## (`geom_point()`).</span></span></code></pre>
 <p><img src="LRE-vignette_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">burd</span><span class="op">)</span></code></pre></div>
-<pre><code>## Flow Data:
-## ---------
-## Flow Collection Period: From  1973-12-02  to  2015-06-30 
-## No. of records:  15186   Average sampling frequency:  1 days 
-## Flow:     min=0 max=25482.8
-##   percentiles: 25th (10) 50th (22) 75th (74.17) 90th (451.99) 95th (1377.12) 97.5th (2906.43) 99th (6488.2)
-##   median=21.51
-##   mean=302.26
-## 
-## Concentration Data:
-## -------------------
-## Pollutant:  TSS
-## Concentration Collection Period: From  2006-01-26  to  2016-06-23 
-## No. of records:  461   Average sampling frequency:  713927 secs 
-## Concentration:    min=1 max=3060
-##   percentiles: 25th (28) 50th (135) 75th (313) 90th (451.99) 95th (812) 97.5th (1545) 99th (2304)
-##   median=135
-##   mean=264.49</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">burd</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Flow Data:</span></span>
+<span><span class="co">## ---------</span></span>
+<span><span class="co">## Flow Collection Period: From  1973-12-02  to  2015-06-30 </span></span>
+<span><span class="co">## No. of records:  15186   Average sampling frequency:  1 days </span></span>
+<span><span class="co">## Flow:     min=0 max=25482.8</span></span>
+<span><span class="co">##   percentiles: 25th (10) 50th (22) 75th (74.17) 90th (451.99) 95th (1377.12) 97.5th (2906.43) 99th (6488.2)</span></span>
+<span><span class="co">##   median=21.51</span></span>
+<span><span class="co">##   mean=302.26</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Concentration Data:</span></span>
+<span><span class="co">## -------------------</span></span>
+<span><span class="co">## Pollutant:  TSS</span></span>
+<span><span class="co">## Concentration Collection Period: From  2006-01-26  to  2016-06-23 </span></span>
+<span><span class="co">## No. of records:  461   Average sampling frequency:  713927 secs </span></span>
+<span><span class="co">## Concentration:    min=1 max=3060</span></span>
+<span><span class="co">##   percentiles: 25th (28) 50th (135) 75th (313) 90th (451.99) 95th (812) 97.5th (1545) 99th (2304)</span></span>
+<span><span class="co">##   median=135</span></span>
+<span><span class="co">##   mean=264.49</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/hist.html">hist</a></span><span class="op">(</span><span class="va">burd</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/hist.html">hist</a></span><span class="op">(</span><span class="va">burd</span><span class="op">)</span></span></code></pre></div>
 <p><img src="LRE-vignette_files/figure-html/unnamed-chunk-2-2.png" width="576" style="display: block; margin: auto;"></p>
 </div>
-<div id="step-2-regularization" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-2-regularization" class="anchor"></a>Step 2: Regularization</h3>
-<p>Before fitting the Generalized Additive Model or GAM we need to create a ‘regularised’ dataset, whereby a dataset of flow is created for a regular time interval e.g. daily. In addition to flow, additional terms that mimic the hydrological relationships inherent in many flow systems are also created at the daily time step. The inputs to the <em>CreateData</em> function are</p>
+<div class="section level3">
+<h3 id="step-2-regularization">Step 2: Regularization<a class="anchor" aria-label="anchor" href="#step-2-regularization"></a>
+</h3>
+<p>Before fitting the Generalized Additive Model or GAM we need to
+create a ‘regularised’ dataset, whereby a dataset of flow is created for
+a regular time interval e.g. daily. In addition to flow, additional
+terms that mimic the hydrological relationships inherent in many flow
+systems are also created at the daily time step. The inputs to the
+<em>CreateData</em> function are</p>
 <ul>
-<li>the flow and concentration data frames produced from Step 1 above;</li>
-<li>the date range for modelling (date.rangeM) and prediction (date.rangeP) and whether the dates have an hour component;</li>
+<li>the flow and concentration data frames produced from Step 1
+above;</li>
+<li>the date range for modelling (date.rangeM) and prediction
+(date.rangeP) and whether the dates have an hour component;</li>
 <li>the sampling unit (hour or day);</li>
-<li>the year type for summaries (water year (WY) or financial year (FY));</li>
+<li>the year type for summaries (water year (WY) or financial year
+(FY));</li>
 <li>the percentile used to calculate a flush (e.g. 0.9);</li>
-<li>whether infilling or regularization is to be performed (none, smoothers (ss) or quantile random forests (qrforest))</li>
+<li>whether infilling or regularization is to be performed (none,
+smoothers (ss) or quantile random forests (qrforest))</li>
 </ul>
-<p>Below is an example where regularization was not required as flow data was available at the daily time step.</p>
+<p>Below is an example where regularization was not required as flow
+data was available at the daily time step.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">date.rangeM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1973-12-02"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span>
-<span class="va">date.rangeP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1973-12-02"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span>
-<span class="va">loaddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateData.html">CreateData</a></span><span class="op">(</span>Q <span class="op">=</span> <span class="va">burd</span><span class="op">$</span><span class="va">Q</span>, Conc <span class="op">=</span> <span class="va">burd</span><span class="op">$</span><span class="va">Conc</span>,
-                       date.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">date.rangeM</span>, pred <span class="op">=</span> <span class="va">date.rangeP</span>, hour <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
-                       samp.unit <span class="op">=</span> <span class="st">"day"</span>, Ytype <span class="op">=</span> <span class="st">"WY"</span>, Qflush <span class="op">=</span> <span class="fl">0.9</span>,
-                       Reg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"none"</span>, rainfall <span class="op">=</span> <span class="cn">NULL</span>, date <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in CreateQregDataset(Q = Q, samp.unit = samp.unit, Qflush = Qflush, :
-## NAs introduced by coercion</code></pre>
-<p>We can then produce some exploratory plots to investigate the hydrological processes within the system.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">regplots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">loaddata</span>, Type <span class="op">=</span> <span class="st">"WY"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">regplots</span><span class="op">)</span> <span class="co"># terms we can plot</span></code></pre></div>
-<pre><code>## [1] "p_RiseFallLimb" "p_DistSum"      "p_CQsum"        "p_SmoothParms"</code></pre>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Rising Falling Limb</span>
-<span class="va">regplots</span><span class="op">$</span><span class="va">p_RiseFallLimb</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">date.rangeM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1973-12-02"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span></span>
+<span><span class="va">date.rangeP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1973-12-02"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span></span>
+<span><span class="va">loaddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateData.html">CreateData</a></span><span class="op">(</span>Q <span class="op">=</span> <span class="va">burd</span><span class="op">$</span><span class="va">Q</span>, Conc <span class="op">=</span> <span class="va">burd</span><span class="op">$</span><span class="va">Conc</span>,</span>
+<span>                       date.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">date.rangeM</span>, pred <span class="op">=</span> <span class="va">date.rangeP</span>, hour <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>                       samp.unit <span class="op">=</span> <span class="st">"day"</span>, Ytype <span class="op">=</span> <span class="st">"WY"</span>, Qflush <span class="op">=</span> <span class="fl">0.9</span>,</span>
+<span>                       Reg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"none"</span>, rainfall <span class="op">=</span> <span class="cn">NULL</span>, date <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>We can then produce some exploratory plots to investigate the
+hydrological processes within the system.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">regplots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">loaddata</span>, Type <span class="op">=</span> <span class="st">"WY"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">regplots</span><span class="op">)</span> <span class="co"># terms we can plot</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "p_RiseFallLimb" "p_DistSum"      "p_CQsum"        "p_SmoothParms"</span></span></code></pre>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Rising Falling Limb</span></span>
+<span><span class="va">regplots</span><span class="op">$</span><span class="va">p_RiseFallLimb</span></span></code></pre></div>
 <p><img src="LRE-vignette_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;"><img src="LRE-vignette_files/figure-html/unnamed-chunk-4-2.png" width="576" style="display: block; margin: auto;"><img src="LRE-vignette_files/figure-html/unnamed-chunk-4-3.png" width="576" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Distributional Summary</span>
-<span class="va">regplots</span><span class="op">$</span><span class="va">p_DistSum</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Distributional Summary</span></span>
+<span><span class="va">regplots</span><span class="op">$</span><span class="va">p_DistSum</span></span></code></pre></div>
 <p><img src="LRE-vignette_files/figure-html/unnamed-chunk-4-4.png" width="576" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Flow and Concentration summary</span>
-<span class="va">regplots</span><span class="op">$</span><span class="va">p_CQsum</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Flow and Concentration summary</span></span>
+<span><span class="va">regplots</span><span class="op">$</span><span class="va">p_CQsum</span></span></code></pre></div>
 <p><img src="LRE-vignette_files/figure-html/unnamed-chunk-4-5.png" width="576" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Smooth parameters</span>
-<span class="va">regplots</span><span class="op">$</span><span class="va">p_SmoothParms</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Smooth parameters</span></span>
+<span><span class="va">regplots</span><span class="op">$</span><span class="va">p_SmoothParms</span></span></code></pre></div>
 <p><img src="LRE-vignette_files/figure-html/unnamed-chunk-4-6.png" width="576" style="display: block; margin: auto;"></p>
-<p>Plots can also be saved using the <em>ggsave</em> function, which is part of the <em>ggplot2</em> package. Note, all plots are produced using the <em>ggplot2</em> package in R.</p>
+<p>Plots can also be saved using the <em>ggsave</em> function, which is
+part of the <em>ggplot2</em> package. Note, all plots are produced using
+the <em>ggplot2</em> package in R.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Save output as a pdf file</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"p_SmoothParms.pdf"</span>, <span class="va">regplots</span><span class="op">$</span><span class="va">p_SmoothParms</span><span class="op">)</span></span></code></pre></div>
+<p>We can also produce some summaries of the regularized data. These
+summaries include a table outlining the bias in concentration and flow
+samples, broken up by water type (either water year (WY) or financial
+year (FY)) and a distributional summary of flow sampling to indicate the
+nature of the flow sampling undertaken.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Save output as a pdf file</span>
-<span class="fu">ggsave</span><span class="op">(</span><span class="st">"p_SmoothParms.pdf"</span>, <span class="va">regplots</span><span class="op">$</span><span class="va">p_SmoothParms</span><span class="op">)</span></code></pre></div>
-<p>We can also produce some summaries of the regularized data. These summaries include a table outlining the bias in concentration and flow samples, broken up by water type (either water year (WY) or financial year (FY)) and a distributional summary of flow sampling to indicate the nature of the flow sampling undertaken.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">loaddata</span><span class="op">)</span></code></pre></div>
-<pre><code>## Bias in flow and concentration sampling:
-##         Year  n  AvgFlowC   AvgFlowR   AvgFlowO FlowC.bias FlowQ.bias
-## 1  1973/1974 NA        NA 2057.60410 2057.60410         NA          1
-## 2  1974/1975 NA        NA  264.52109  264.52109         NA          1
-## 3  1975/1976 NA        NA  374.91938  374.91938         NA          1
-## 4  1976/1977 NA        NA  272.58740  272.58740         NA          1
-## 5  1977/1978 NA        NA  165.90277  165.90277         NA          1
-## 6  1978/1979 NA        NA  493.41670  493.41670         NA          1
-## 7  1979/1980 NA        NA  145.24868  145.24868         NA          1
-## 8  1980/1981 NA        NA  575.67087  575.67087         NA          1
-## 9  1981/1982 NA        NA   67.75941   67.75941         NA          1
-## 10 1982/1983 NA        NA  280.63198  280.63198         NA          1
-## 11 1983/1984 NA        NA  170.57724  170.57724         NA          1
-## 12 1984/1985 NA        NA   38.01298   38.01298         NA          1
-## 13 1985/1986 NA        NA  119.32072  119.32072         NA          1
-## 14 1986/1987 NA        NA   20.82907   20.82907         NA          1
-## 15 1987/1988 NA        NA  125.83615  125.83615         NA          1
-## 16 1988/1989 NA        NA  291.20616  291.20616         NA          1
-## 17 1989/1990 NA        NA  296.43897  296.43897         NA          1
-## 18 1990/1991 NA        NA 1277.56067 1277.56067         NA          1
-## 19 1991/1992 NA        NA   16.77969   16.77969         NA          1
-## 20 1992/1993 NA        NA   17.58636   17.58636         NA          1
-## 21 1993/1994 NA        NA   92.83138   92.83138         NA          1
-## 22 1994/1995 NA        NA   24.56647   24.56647         NA          1
-## 23 1995/1996 NA        NA   68.40040   68.40040         NA          1
-## 24 1996/1997 NA        NA  275.21871  275.21871         NA          1
-## 25 1997/1998 NA        NA  286.82611  286.82611         NA          1
-## 26 1998/1999 NA        NA  190.50413  190.50413         NA          1
-## 27 1999/2000 NA        NA  437.95500  437.95500         NA          1
-## 28 2000/2001 NA        NA  277.96023  277.96023         NA          1
-## 29 2001/2002 NA        NA  142.22841  142.22841         NA          1
-## 30 2002/2003 NA        NA   66.36333   66.36333         NA          1
-## 31 2003/2004 NA        NA   47.94674   47.94674         NA          1
-## 32 2004/2005 NA        NA  137.24775  137.24775         NA          1
-## 33 2005/2006 14  824.3909   69.75343   69.75343  11.818643          1
-## 34 2006/2007 20 3633.2679  309.77088  309.77088  11.728888          1
-## 35 2007/2008 47 4513.8394  869.72241  869.72241   5.189977          1
-## 36 2008/2009 44 5459.2125  930.75820  930.75820   5.865339          1
-## 37 2009/2010 40 1335.2939  251.97980  251.97980   5.299210          1
-## 38 2010/2011 94 2654.2267 1104.36741 1104.36741   2.403391          1
-## 39 2011/2012 53  151.2060   82.44307   82.44307   1.834066          1
-## 40 2012/2013 24  578.1959  108.83642  108.83642   5.312522          1
-## 41 2013/2014 25  128.4263   46.64155   46.64155   2.753474          1
-## 42 2014/2015 16  147.4887   32.15938   32.15938   4.586180          1
-## 
-## 
-## Calculating quantiles from long term flow record with user defined cutoff.
-## No. of samples in the upper 2 percentile of flow: 72 (19% of samples collected) 
-## 
-## Distribution of flow sampling:
-##       &lt;25%ile 25%ile-50%ile 50%ile-75%ile 75%ile-90%ile 90%ile-95%ile 
-##          0.27          2.39         14.06         20.42         18.04 
-## 95%ile-98%ile 98%ile-99%ile       &gt;99%ile 
-##         25.73          7.43         11.67</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">loaddata</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Bias in flow and concentration sampling:</span></span>
+<span><span class="co">##         Year  n  AvgFlowC   AvgFlowR   AvgFlowO FlowC.bias FlowQ.bias</span></span>
+<span><span class="co">## 1  1973/1974 NA        NA 2057.60410 2057.60410         NA          1</span></span>
+<span><span class="co">## 2  1974/1975 NA        NA  264.52109  264.52109         NA          1</span></span>
+<span><span class="co">## 3  1975/1976 NA        NA  374.91938  374.91938         NA          1</span></span>
+<span><span class="co">## 4  1976/1977 NA        NA  272.58740  272.58740         NA          1</span></span>
+<span><span class="co">## 5  1977/1978 NA        NA  165.90277  165.90277         NA          1</span></span>
+<span><span class="co">## 6  1978/1979 NA        NA  493.41670  493.41670         NA          1</span></span>
+<span><span class="co">## 7  1979/1980 NA        NA  145.24868  145.24868         NA          1</span></span>
+<span><span class="co">## 8  1980/1981 NA        NA  575.67087  575.67087         NA          1</span></span>
+<span><span class="co">## 9  1981/1982 NA        NA   67.75941   67.75941         NA          1</span></span>
+<span><span class="co">## 10 1982/1983 NA        NA  280.63198  280.63198         NA          1</span></span>
+<span><span class="co">## 11 1983/1984 NA        NA  170.57724  170.57724         NA          1</span></span>
+<span><span class="co">## 12 1984/1985 NA        NA   38.01298   38.01298         NA          1</span></span>
+<span><span class="co">## 13 1985/1986 NA        NA  119.32072  119.32072         NA          1</span></span>
+<span><span class="co">## 14 1986/1987 NA        NA   20.82907   20.82907         NA          1</span></span>
+<span><span class="co">## 15 1987/1988 NA        NA  125.83615  125.83615         NA          1</span></span>
+<span><span class="co">## 16 1988/1989 NA        NA  291.20616  291.20616         NA          1</span></span>
+<span><span class="co">## 17 1989/1990 NA        NA  296.43897  296.43897         NA          1</span></span>
+<span><span class="co">## 18 1990/1991 NA        NA 1277.56067 1277.56067         NA          1</span></span>
+<span><span class="co">## 19 1991/1992 NA        NA   16.77969   16.77969         NA          1</span></span>
+<span><span class="co">## 20 1992/1993 NA        NA   17.58636   17.58636         NA          1</span></span>
+<span><span class="co">## 21 1993/1994 NA        NA   92.83138   92.83138         NA          1</span></span>
+<span><span class="co">## 22 1994/1995 NA        NA   24.56647   24.56647         NA          1</span></span>
+<span><span class="co">## 23 1995/1996 NA        NA   68.40040   68.40040         NA          1</span></span>
+<span><span class="co">## 24 1996/1997 NA        NA  275.21871  275.21871         NA          1</span></span>
+<span><span class="co">## 25 1997/1998 NA        NA  286.82611  286.82611         NA          1</span></span>
+<span><span class="co">## 26 1998/1999 NA        NA  190.50413  190.50413         NA          1</span></span>
+<span><span class="co">## 27 1999/2000 NA        NA  437.95500  437.95500         NA          1</span></span>
+<span><span class="co">## 28 2000/2001 NA        NA  277.96023  277.96023         NA          1</span></span>
+<span><span class="co">## 29 2001/2002 NA        NA  142.22841  142.22841         NA          1</span></span>
+<span><span class="co">## 30 2002/2003 NA        NA   66.36333   66.36333         NA          1</span></span>
+<span><span class="co">## 31 2003/2004 NA        NA   47.94674   47.94674         NA          1</span></span>
+<span><span class="co">## 32 2004/2005 NA        NA  137.24775  137.24775         NA          1</span></span>
+<span><span class="co">## 33 2005/2006 14  824.3909   69.75343   69.75343  11.818643          1</span></span>
+<span><span class="co">## 34 2006/2007 20 3633.2679  309.77088  309.77088  11.728888          1</span></span>
+<span><span class="co">## 35 2007/2008 47 4513.8394  869.72241  869.72241   5.189977          1</span></span>
+<span><span class="co">## 36 2008/2009 44 5459.2125  930.75820  930.75820   5.865339          1</span></span>
+<span><span class="co">## 37 2009/2010 40 1335.2939  251.97980  251.97980   5.299210          1</span></span>
+<span><span class="co">## 38 2010/2011 94 2654.2267 1104.36741 1104.36741   2.403391          1</span></span>
+<span><span class="co">## 39 2011/2012 53  151.2060   82.44307   82.44307   1.834066          1</span></span>
+<span><span class="co">## 40 2012/2013 24  578.1959  108.83642  108.83642   5.312522          1</span></span>
+<span><span class="co">## 41 2013/2014 25  128.4263   46.64155   46.64155   2.753474          1</span></span>
+<span><span class="co">## 42 2014/2015 16  147.4887   32.15938   32.15938   4.586180          1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Calculating quantiles from long term flow record with user defined cutoff.</span></span>
+<span><span class="co">## No. of samples in the upper 2 percentile of flow: 72 (19% of samples collected) </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Distribution of flow sampling:</span></span>
+<span><span class="co">##       &lt;25%ile 25%ile-50%ile 50%ile-75%ile 75%ile-90%ile 90%ile-95%ile </span></span>
+<span><span class="co">##          0.27          2.39         14.06         20.42         18.04 </span></span>
+<span><span class="co">## 95%ile-98%ile 98%ile-99%ile       &gt;99%ile </span></span>
+<span><span class="co">##         25.73          7.43         11.67</span></span></code></pre>
 </div>
-<div id="step-3-fit-the-gam" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-3-fit-the-gam" class="anchor"></a>Step 3: Fit the GAM</h3>
-<p>A generalized additive model (GAM) can be fit to a log-transformed regularized dataset. The <em>FitModel</em> function fits a GAM using the mgcv package. While the <em>gam</em> function within <em>mgcv</em> can be used to fit the model directly, the <em>FitModel</em> function makes the implementation easier as the user just needs to specify what terms can be fit in the model (e.g. flow, seasonal, rising-falling limb (RFlimb), moving average (MA) terms, a trend term and autocorrelation through an AR1 process. Note, care should be taken when fitting trend terms in models, particularly their interpretation. The correlation term is fit using a generalized additive mixed model using the <em>gamm</em> function in the <em>mgcv</em> package and may take a considerable time to fit if <em>correlation = TRUE</em>.</p>
-<p><strong>Tip 1:</strong> When attempting to fit a GAM using the <em>FitModel</em> function, start with setting all parameters (apart from the trend and correlation arguments) to TRUE. Investigate the significance of the terms through the p-value and omit any terms, one by one, that are not significant starting with the terms that have the highest p-value. This approach is otherwise known as backward elimination. The model below is a result of a backward elimination process.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/FitModel.html">FitModel</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">loaddata</span><span class="op">$</span><span class="va">CQ</span>, parms <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>flow <span class="op">=</span> <span class="st">"quadratic"</span>, seasonal <span class="op">=</span> <span class="cn">TRUE</span>,
-                                               RFlimb <span class="op">=</span> <span class="cn">FALSE</span>,
-                                               MA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>MA1day <span class="op">=</span> <span class="cn">FALSE</span>, MA2days <span class="op">=</span> <span class="cn">FALSE</span>, MAweek <span class="op">=</span> <span class="cn">TRUE</span>,
-                                                      MAmonth <span class="op">=</span> <span class="cn">TRUE</span>, MA6months <span class="op">=</span> <span class="cn">TRUE</span>, MA12months <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-                                               trend <span class="op">=</span> <span class="cn">FALSE</span>, correlation <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Fitting a Generalized Additive Model ...</code></pre>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Family: gaussian 
-## Link function: identity 
-## 
-## Formula:
-## log(Conc) ~ LQflow(pQ, quad = TRUE) + s(month, bs = "cc") + NULL + 
-##     NULL + NULL + s(MAweek, bs = "cr") + s(MAmonth, bs = "cr") + 
-##     s(MA6months, bs = "cr") + s(MA12months, bs = "cr") + NULL
-## 
-## Parametric coefficients:
-##                          Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)              10.54076    1.75035   6.022 4.53e-09 ***
-## LQflow(pQ, quad = TRUE)1 -3.09315    0.54688  -5.656 3.32e-08 ***
-## LQflow(pQ, quad = TRUE)2  0.30669    0.04213   7.280 2.40e-12 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Approximate significance of smooth terms:
-##                 edf Ref.df     F  p-value    
-## s(month)      5.462  8.000 1.911 0.008361 ** 
-## s(MAweek)     9.000  9.000 7.453  &lt; 2e-16 ***
-## s(MAmonth)    6.771  7.207 2.063 0.046206 *  
-## s(MA6months)  8.942  8.995 3.367 0.000558 ***
-## s(MA12months) 8.672  8.945 3.391 0.000622 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## R-sq.(adj) =  0.779   Deviance explained = 80.3%
-## GCV = 0.62409  Scale est. = 0.55481   n = 377</code></pre>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Family: gaussian 
-## Link function: identity 
-## 
-## Formula:
-## log(Conc) ~ LQflow(pQ, quad = TRUE) + s(month, bs = "cc") + NULL + 
-##     NULL + NULL + s(MAweek, bs = "cr") + s(MAmonth, bs = "cr") + 
-##     s(MA6months, bs = "cr") + s(MA12months, bs = "cr") + NULL
-## 
-## Parametric Terms:
-##                         df     F p-value
-## LQflow(pQ, quad = TRUE)  2 44.35  &lt;2e-16
-## 
-## Approximate significance of smooth terms:
-##                 edf Ref.df     F  p-value
-## s(month)      5.462  8.000 1.911 0.008361
-## s(MAweek)     9.000  9.000 7.453  &lt; 2e-16
-## s(MAmonth)    6.771  7.207 2.063 0.046206
-## s(MA6months)  8.942  8.995 3.367 0.000558
-## s(MA12months) 8.672  8.945 3.391 0.000622</code></pre>
+<div class="section level3">
+<h3 id="step-3-fit-the-gam">Step 3: Fit the GAM<a class="anchor" aria-label="anchor" href="#step-3-fit-the-gam"></a>
+</h3>
+<p>A generalized additive model (GAM) can be fit to a log-transformed
+regularized dataset. The <em>FitModel</em> function fits a GAM using the
+mgcv package. While the <em>gam</em> function within <em>mgcv</em> can
+be used to fit the model directly, the <em>FitModel</em> function makes
+the implementation easier as the user just needs to specify what terms
+can be fit in the model (e.g. flow, seasonal, rising-falling limb
+(RFlimb), moving average (MA) terms, a trend term and autocorrelation
+through an AR1 process. Note, care should be taken when fitting trend
+terms in models, particularly their interpretation. The correlation term
+is fit using a generalized additive mixed model using the <em>gamm</em>
+function in the <em>mgcv</em> package and may take a considerable time
+to fit if <em>correlation = TRUE</em>.</p>
+<p><strong>Tip 1:</strong> When attempting to fit a GAM using the
+<em>FitModel</em> function, start with setting all parameters (apart
+from the trend and correlation arguments) to TRUE. Investigate the
+significance of the terms through the p-value and omit any terms, one by
+one, that are not significant starting with the terms that have the
+highest p-value. This approach is otherwise known as backward
+elimination. The model below is a result of a backward elimination
+process.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/FitModel.html">FitModel</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">loaddata</span><span class="op">$</span><span class="va">CQ</span>, parms <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>flow <span class="op">=</span> <span class="st">"quadratic"</span>, seasonal <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                                               RFlimb <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                                               MA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>MA1day <span class="op">=</span> <span class="cn">FALSE</span>, MA2days <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                                                      MAweek <span class="op">=</span> <span class="cn">TRUE</span>,  MAmonth <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                                                      MA6months <span class="op">=</span> <span class="cn">TRUE</span>, MA12months <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>                                               trend <span class="op">=</span> <span class="cn">FALSE</span>, correlation <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Fitting a Generalized Additive Model ...</span></span></code></pre>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Family: gaussian </span></span>
+<span><span class="co">## Link function: identity </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Formula:</span></span>
+<span><span class="co">## log(Conc) ~ LQflow(pQ, quad = TRUE) + s(month, bs = "cc") + NULL + </span></span>
+<span><span class="co">##     NULL + NULL + s(MAweek, bs = "cr") + s(MAmonth, bs = "cr") + </span></span>
+<span><span class="co">##     s(MA6months, bs = "cr") + s(MA12months, bs = "cr") + NULL</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Parametric coefficients:</span></span>
+<span><span class="co">##                          Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)              10.54076    1.75035   6.022 4.53e-09 ***</span></span>
+<span><span class="co">## LQflow(pQ, quad = TRUE)1 -3.09315    0.54688  -5.656 3.32e-08 ***</span></span>
+<span><span class="co">## LQflow(pQ, quad = TRUE)2  0.30669    0.04213   7.280 2.40e-12 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Approximate significance of smooth terms:</span></span>
+<span><span class="co">##                 edf Ref.df     F  p-value    </span></span>
+<span><span class="co">## s(month)      5.462  8.000 1.911 0.008361 ** </span></span>
+<span><span class="co">## s(MAweek)     9.000  9.000 7.453  &lt; 2e-16 ***</span></span>
+<span><span class="co">## s(MAmonth)    6.771  7.207 2.063 0.046206 *  </span></span>
+<span><span class="co">## s(MA6months)  8.942  8.995 3.367 0.000558 ***</span></span>
+<span><span class="co">## s(MA12months) 8.672  8.945 3.391 0.000622 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## R-sq.(adj) =  0.779   Deviance explained = 80.3%</span></span>
+<span><span class="co">## GCV = 0.62409  Scale est. = 0.55481   n = 377</span></span></code></pre>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Family: gaussian </span></span>
+<span><span class="co">## Link function: identity </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Formula:</span></span>
+<span><span class="co">## log(Conc) ~ LQflow(pQ, quad = TRUE) + s(month, bs = "cc") + NULL + </span></span>
+<span><span class="co">##     NULL + NULL + s(MAweek, bs = "cr") + s(MAmonth, bs = "cr") + </span></span>
+<span><span class="co">##     s(MA6months, bs = "cr") + s(MA12months, bs = "cr") + NULL</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Parametric Terms:</span></span>
+<span><span class="co">##                         df     F p-value</span></span>
+<span><span class="co">## LQflow(pQ, quad = TRUE)  2 44.35  &lt;2e-16</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Approximate significance of smooth terms:</span></span>
+<span><span class="co">##                 edf Ref.df     F  p-value</span></span>
+<span><span class="co">## s(month)      5.462  8.000 1.911 0.008361</span></span>
+<span><span class="co">## s(MAweek)     9.000  9.000 7.453  &lt; 2e-16</span></span>
+<span><span class="co">## s(MAmonth)    6.771  7.207 2.063 0.046206</span></span>
+<span><span class="co">## s(MA6months)  8.942  8.995 3.367 0.000558</span></span>
+<span><span class="co">## s(MA12months) 8.672  8.945 3.391 0.000622</span></span></code></pre>
 </div>
-<div id="step-4-diagnostics" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-4-diagnostics" class="anchor"></a>Step 4: Diagnostics</h3>
-<p>It is useful to check the fit and validity of your model through some diagnostic plots. The function <em>diagnostic</em> simplifies this process by producing two sets of figures. The first set (<em>pD</em>) produces 4 figures that allow the user to examine the fit of their model. The plots (from left to right) show a plot of</p>
+<div class="section level3">
+<h3 id="step-4-diagnostics">Step 4: Diagnostics<a class="anchor" aria-label="anchor" href="#step-4-diagnostics"></a>
+</h3>
+<p>It is useful to check the fit and validity of your model through some
+diagnostic plots. The function <em>diagnostic</em> simplifies this
+process by producing two sets of figures. The first set (<em>pD</em>)
+produces 4 figures that allow the user to examine the fit of their
+model. The plots (from left to right) show a plot of</p>
 <ul>
 <li>the residuals versus fitted;</li>
 <li>histogram of residuals;</li>
 <li>a quantile-quantile or Q-Q plot of the residuals; and</li>
-<li>a plot of the predicted versus observed with a line of best fit.</li>
+<li>a plot of the predicted versus observed with a line of best
+fit.</li>
 </ul>
-<p>The second figure examines the auto-correlation function of the residuals (<em>pacf</em>). In this figure we hope to see a dampening out of correlations over at past lags (i.e. spikes in correlations at lags where the spikes fall within the 95% confidence intervals). In the figure below we observe some correlation ~0.3 at a lag of 1 but this diminishes at lags 2 and beyond.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod1D</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/diagnostic.html">diagnostic</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">mod1D</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "pD"   "pacf"</code></pre>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Diagnostic Plots</span>
-<span class="va">mod1D</span><span class="op">$</span><span class="va">pD</span></code></pre></div>
+<p>The second figure examines the auto-correlation function of the
+residuals (<em>pacf</em>). In this figure we hope to see a dampening out
+of correlations over at past lags (i.e. spikes in correlations at lags
+where the spikes fall within the 95% confidence intervals). In the
+figure below we observe some correlation ~0.3 at a lag of 1 but this
+diminishes at lags 2 and beyond.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod1D</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/diagnostic.html">diagnostic</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mod1D</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "pD"   "pacf"</span></span></code></pre>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Diagnostic Plots</span></span>
+<span><span class="va">mod1D</span><span class="op">$</span><span class="va">pD</span></span></code></pre></div>
 <p><img src="LRE-vignette_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># ACF of residuals</span>
-<span class="va">mod1D</span><span class="op">$</span><span class="va">pacf</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># ACF of residuals</span></span>
+<span><span class="va">mod1D</span><span class="op">$</span><span class="va">pacf</span></span></code></pre></div>
 <p><img src="LRE-vignette_files/figure-html/unnamed-chunk-8-2.png" width="576" style="display: block; margin: auto;"></p>
 </div>
-<div id="step-5-interpretation-of-the-model" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-5-interpretation-of-the-model" class="anchor"></a>Step 5: Interpretation of the Model</h3>
-<p>It is important to gain an understanding of the terms fit in the model and how they relate to concentration. We can obtain a marginal representation of each term in the model by plotting the output from the fit of the model housed in the R object <em>mod1I</em>. As we only fit MA terms and a seasonal term, we can only plot these terms.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod1I</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mod1</span>, Qreg <span class="op">=</span> <span class="va">loaddata</span><span class="op">$</span><span class="va">Qreg</span>, data <span class="op">=</span> <span class="va">loaddata</span><span class="op">$</span><span class="va">CQ</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">mod1I</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "pTrend" "pMA"    "pSeas"  "pRFL"   "ppred"  "pConc"</code></pre>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Investigate impact of MA terms</span>
-<span class="va">mod1I</span><span class="op">$</span><span class="va">pMA</span></code></pre></div>
-<p><img src="LRE-vignette_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;"></p>
+<div class="section level3">
+<h3 id="step-5-interpretation-of-the-model">Step 5: Interpretation of the Model<a class="anchor" aria-label="anchor" href="#step-5-interpretation-of-the-model"></a>
+</h3>
+<p>It is important to gain an understanding of the terms fit in the
+model and how they relate to concentration. We can obtain a marginal
+representation of each term in the model by plotting the output from the
+fit of the model housed in the R object <em>mod1I</em>. As we only fit
+MA terms and a seasonal term, we can only plot these terms.</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod1I</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod1</span>, Qreg <span class="op">=</span> <span class="va">loaddata</span><span class="op">$</span><span class="va">Qreg</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mod1I</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "ppred"    "pConc"    "pConcInt"</span></span></code></pre>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Investigate impact of MA terms</span></span>
+<span><span class="va">mod1I</span><span class="op">$</span><span class="va">pMA</span></span></code></pre></div>
+<pre><code><span><span class="co">## NULL</span></span></code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Investigate seasonal terms</span>
-<span class="va">mod1I</span><span class="op">$</span><span class="va">pSeas</span></code></pre></div>
-<p><img src="LRE-vignette_files/figure-html/unnamed-chunk-9-2.png" width="576" style="display: block; margin: auto;"></p>
-<p>We can also investigate the predicted concentration time series together with the regularized flow through the following plot.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Investigate predicted concentration time series (with flow)</span>
-<span class="va">mod1I</span><span class="op">$</span><span class="va">ppred</span></code></pre></div>
-<p><img src="LRE-vignette_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;"></p>
-<p>Sometimes it is also useful to plot the predicted concentrations interactively and explore the predictions at different parts of the time series by zooming in and zooming out using your mouse. Here is an example using the <em>ggplotly</em> function which is part of the <em>plotly</em> package in R. Note, the code below is not run for this vignette.</p>
+<code class="sourceCode R"><span><span class="co"># Investigate seasonal terms</span></span>
+<span><span class="va">mod1I</span><span class="op">$</span><span class="va">pSeas</span></span></code></pre></div>
+<pre><code><span><span class="co">## NULL</span></span></code></pre>
+<p>We can also investigate the predicted concentration time series
+together with the regularized flow through the following plot.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Investigate predicted concentration using ggplotly</span>
-<span class="co"># </span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly</a></span><span class="op">(</span><span class="va">mod1I</span><span class="op">$</span><span class="va">pConc</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="step-6-predicting-the-load-with-uncertainties" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-6-predicting-the-load-with-uncertainties" class="anchor"></a>Step 6: Predicting the Load with uncertainties</h3>
-<p>We can form estimates of the load with uncertainties using the <em>predictL</em> function in R. Using this function we can output two types of predictions. The first is the loads (<em>pL1</em>), while the second set of estimates are the flow weighted concentrations (<em>pFWC1</em>). Each of these estimates are accompanyied by confidence intervals, where the width of the confidence interval is determined by the pvalue argument that the user sets. By default, the error in flow is assumed to be zero but can be set through the flow.error argument. Users can enter a coefficient of variation that reflects the measurement error (<em>me</em>) and/or the spatial error or positioning of the flow gauge (<em>ce</em>). Load estimates can be produced at the annual scale (<em>type = annual</em>) or daily scale (<em>type = daily</em>).</p>
+<code class="sourceCode R"><span><span class="co"># Investigate predicted concentration time series (with flow)</span></span>
+<span><span class="va">mod1I</span><span class="op">$</span><span class="va">ppred</span></span></code></pre></div>
+<p><img src="LRE-vignette_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;"></p>
+<p>Sometimes it is also useful to plot the predicted concentrations
+interactively and explore the predictions at different parts of the time
+series by zooming in and zooming out using your mouse. Here is an
+example using the <em>ggplotly</em> function which is part of the
+<em>plotly</em> package in R. Note, the code below is not run for this
+vignette.</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">predLoad</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictL.html">predictL</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">mod1</span>, objfix <span class="op">=</span> <span class="va">mod1</span><span class="op">$</span><span class="va">gam</span>, x <span class="op">=</span> <span class="va">loaddata</span>, flow.error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>me <span class="op">=</span> <span class="fl">0</span>, ce <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,
-                  samp.unit <span class="op">=</span> <span class="st">"day"</span>, pvalue <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Investigate predicted concentration using ggplotly</span></span>
+<span><span class="co"># </span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com" class="external-link">plotly</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html" class="external-link">ggplotly</a></span><span class="op">(</span><span class="va">mod1I</span><span class="op">$</span><span class="va">pConc</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="step-6-predicting-the-load-with-uncertainties">Step 6: Predicting the Load with uncertainties<a class="anchor" aria-label="anchor" href="#step-6-predicting-the-load-with-uncertainties"></a>
+</h3>
+<p>We can form estimates of the load with uncertainties using the
+<em>predictL</em> function in R. Using this function we can output two
+types of predictions. The first is the loads (<em>pL1</em>), while the
+second set of estimates are the flow weighted concentrations
+(<em>pFWC1</em>). Each of these estimates are accompanyied by confidence
+intervals, where the width of the confidence interval is determined by
+the pvalue argument that the user sets. By default, the error in flow is
+assumed to be zero but can be set through the flow.error argument. Users
+can enter a coefficient of variation that reflects the measurement error
+(<em>me</em>) and/or the spatial error or positioning of the flow gauge
+(<em>ce</em>). Load estimates can be produced at the annual scale
+(<em>type = annual</em>) or daily scale (<em>type = daily</em>).</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod1pL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">predLoad</span><span class="op">$</span><span class="va">loadest</span>, type <span class="op">=</span> <span class="st">"annual"</span>, Conc <span class="op">=</span> <span class="st">"TSS"</span>, scale <span class="op">=</span> <span class="st">"Mt"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">mod1pL</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "pL1"   "pFWC1"</code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Annual loads</span>
-<span class="va">mod1pL</span><span class="op">$</span><span class="va">pL1</span></code></pre></div>
-<p><img src="LRE-vignette_files/figure-html/unnamed-chunk-13-1.png" width="768" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span><span class="va">predLoad</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictL.html">predictL</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">mod1</span>, objfix <span class="op">=</span> <span class="va">mod1</span><span class="op">$</span><span class="va">gam</span>, x <span class="op">=</span> <span class="va">loaddata</span>, flow.error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>me <span class="op">=</span> <span class="fl">0</span>, ce <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>                  samp.unit <span class="op">=</span> <span class="st">"day"</span>, pvalue <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod1pL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">predLoad</span><span class="op">$</span><span class="va">loadest</span>, type <span class="op">=</span> <span class="st">"annual"</span>, Conc <span class="op">=</span> <span class="st">"TSS"</span>, scale <span class="op">=</span> <span class="st">"Mt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mod1pL</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "pL1"   "pFWC1"</span></span></code></pre>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Flow weighted concentrations</span>
-<span class="va">mod1pL</span><span class="op">$</span><span class="va">pFWC1</span></code></pre></div>
-<p><img src="LRE-vignette_files/figure-html/unnamed-chunk-13-2.png" width="768" style="display: block; margin: auto;"></p>
-<p>An interactive plot of the flow weighted concentrations can be called using the <em>ggplotly</em> function. Note, this is not run for the vignette.</p>
+<code class="sourceCode R"><span><span class="co"># Annual loads</span></span>
+<span><span class="va">mod1pL</span><span class="op">$</span><span class="va">pL1</span></span></code></pre></div>
+<p><img src="LRE-vignette_files/figure-html/unnamed-chunk-13-1.png" width="768" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># interactive flow weighted concentrations</span>
-<span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly</a></span><span class="op">(</span><span class="va">mod1pL</span><span class="op">$</span><span class="va">pFWC1</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="step-7-storing-results" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-7-storing-results" class="anchor"></a>Step 7: Storing Results</h3>
-<p>Load estimates can be accessed from the <em>predLoad</em> object as follows. These can then be written to file using the <em>write.csv</em> function in R.</p>
+<code class="sourceCode R"><span><span class="co"># Flow weighted concentrations</span></span>
+<span><span class="va">mod1pL</span><span class="op">$</span><span class="va">pFWC1</span></span></code></pre></div>
+<p><img src="LRE-vignette_files/figure-html/unnamed-chunk-13-2.png" width="768" style="display: block; margin: auto;"></p>
+<p>An interactive plot of the flow weighted concentrations can be called
+using the <em>ggplotly</em> function. Note, this is not run for the
+vignette.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">predLoad</span><span class="op">$</span><span class="va">loadest</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "annual" "daily"</code></pre>
+<code class="sourceCode R"><span><span class="co"># interactive flow weighted concentrations</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html" class="external-link">ggplotly</a></span><span class="op">(</span><span class="va">mod1pL</span><span class="op">$</span><span class="va">pFWC1</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="step-7-storing-results">Step 7: Storing Results<a class="anchor" aria-label="anchor" href="#step-7-storing-results"></a>
+</h3>
+<p>Load estimates can be accessed from the <em>predLoad</em> object as
+follows. These can then be written to file using the <em>write.csv</em>
+function in R.</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">predLoad</span><span class="op">$</span><span class="va">loadest</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "annual" "daily"</span></span></code></pre>
 </div>
 </div>
-<div id="infilling-flow" class="section level2">
-<h2 class="hasAnchor">
-<a href="#infilling-flow" class="anchor"></a>Infilling Flow</h2>
-<p>When there are gaps in the flow record, we need a methodology for infilling flow to form a regularized dataset. In LRE, there are two approaches for achieving this. The first uses a smoothing spline approach using the <em>gam</em> function in the <em>mgcv</em> package. The second approach uses quantile Random Forests to fit a model between flow and rainfall at different lags to develop a predictive model that is used to predict flow at records with missing data.</p>
-<p>To illustrate the two approaches, we artificially exclude 100 consecutive records spanning the date ranges: 2004-01-13 to 2004-04-22. This dataset is called <em>burdRNA</em>.</p>
+<div class="section level2">
+<h2 id="infilling-flow">Infilling Flow<a class="anchor" aria-label="anchor" href="#infilling-flow"></a>
+</h2>
+<p>When there are gaps in the flow record, we need a methodology for
+infilling flow to form a regularized dataset. In LRE, there are two
+approaches for achieving this. The first uses a smoothing spline
+approach using the <em>gam</em> function in the <em>mgcv</em> package.
+The second approach uses quantile Random Forests to fit a model between
+flow and rainfall at different lags to develop a predictive model that
+is used to predict flow at records with missing data.</p>
+<p>To illustrate the two approaches, we artificially exclude 100
+consecutive records spanning the date ranges: 2004-01-13 to 2004-04-22.
+This dataset is called <em>burdRNA</em>.</p>
 <p>Below is an example of infilling using smoothing splines.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">date.rangeM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2011-01-01"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span>
-<span class="va">date.rangeP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2011-01-01"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span>
-<span class="va">loaddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateData.html">CreateData</a></span><span class="op">(</span>Q <span class="op">=</span> <span class="va">burdRNA</span><span class="op">$</span><span class="va">Q</span>, Conc <span class="op">=</span> <span class="va">burdRNA</span><span class="op">$</span><span class="va">Conc</span>,
-                       date.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">date.rangeM</span>, pred <span class="op">=</span> <span class="va">date.rangeP</span>, hour <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
-                       samp.unit <span class="op">=</span> <span class="st">"day"</span>, Ytype <span class="op">=</span> <span class="st">"WY"</span>, Qflush <span class="op">=</span> <span class="fl">0.9</span>,
-                       Reg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"ss"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in CreateQregDataset(Q = Q, samp.unit = samp.unit, Qflush = Qflush, :
-## NAs introduced by coercion</code></pre>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">date.rangeM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2011-01-01"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span></span>
+<span><span class="va">date.rangeP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2011-01-01"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span></span>
+<span><span class="va">loaddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateData.html">CreateData</a></span><span class="op">(</span>Q <span class="op">=</span> <span class="va">burdRNA</span><span class="op">$</span><span class="va">Q</span>, Conc <span class="op">=</span> <span class="va">burdRNA</span><span class="op">$</span><span class="va">Conc</span>,</span>
+<span>                       date.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">date.rangeM</span>, pred <span class="op">=</span> <span class="va">date.rangeP</span>, hour <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>                       samp.unit <span class="op">=</span> <span class="st">"day"</span>, Ytype <span class="op">=</span> <span class="st">"WY"</span>, Qflush <span class="op">=</span> <span class="fl">0.9</span>,</span>
+<span>                       Reg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"ss"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Here is an example of infilling using quantile Random Forests.</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">date.rangeM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2011-01-01"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span>
-<span class="va">date.rangeP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2011-01-01"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span>
-<span class="va">loaddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateData.html">CreateData</a></span><span class="op">(</span>Q <span class="op">=</span> <span class="va">burdRNA</span><span class="op">$</span><span class="va">Q</span>, Conc <span class="op">=</span> <span class="va">burdRNA</span><span class="op">$</span><span class="va">Conc</span>,
-                       date.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">date.rangeM</span>, pred <span class="op">=</span> <span class="va">date.rangeP</span>, hour <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
-                       samp.unit <span class="op">=</span> <span class="st">"day"</span>, Ytype <span class="op">=</span> <span class="st">"WY"</span>, Qflush <span class="op">=</span> <span class="fl">0.9</span>,
-                       Reg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"qrforest"</span>, rainfall <span class="op">=</span> <span class="va">burd_rain</span><span class="op">$</span><span class="va">Rainfall</span>,
-                                  date <span class="op">=</span> <span class="va">burd_rain</span><span class="op">$</span><span class="va">Date</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in CreateQregDataset(Q = Q, samp.unit = samp.unit, Qflush = Qflush, :
-## NAs introduced by coercion</code></pre>
+<code class="sourceCode R"><span><span class="va">date.rangeM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2011-01-01"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span></span>
+<span><span class="va">date.rangeP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2011-01-01"</span>, <span class="st">"2015-06-30"</span><span class="op">)</span></span>
+<span><span class="va">loaddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateData.html">CreateData</a></span><span class="op">(</span>Q <span class="op">=</span> <span class="va">burdRNA</span><span class="op">$</span><span class="va">Q</span>, Conc <span class="op">=</span> <span class="va">burdRNA</span><span class="op">$</span><span class="va">Conc</span>,</span>
+<span>                       date.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">date.rangeM</span>, pred <span class="op">=</span> <span class="va">date.rangeP</span>, hour <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>                       samp.unit <span class="op">=</span> <span class="st">"day"</span>, Ytype <span class="op">=</span> <span class="st">"WY"</span>, Qflush <span class="op">=</span> <span class="fl">0.9</span>,</span>
+<span>                       Reg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"qrforest"</span>, rainfall <span class="op">=</span> <span class="va">burd_rain</span><span class="op">$</span><span class="va">Rainfall</span>,</span>
+<span>                                  date <span class="op">=</span> <span class="va">burd_rain</span><span class="op">$</span><span class="va">Date</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="reference" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reference" class="anchor"></a>Reference</h2>
-<p>Kuhnert, P.M., Henderson, B.L., Lewis, S.E., Bainbridge, Z.T., Wilkinson, S.N. and Brodie, J.E. (2012) Quantifying total suspended sediment export from the Burdekin River catchment using the loads regression estimator tool, Water Resources Research, 48, W04533,<a href="doi:10.1029/2011WR011080" class="uri">doi:10.1029/2011WR011080</a>.</p>
+<div class="section level2">
+<h2 id="reference">Reference<a class="anchor" aria-label="anchor" href="#reference"></a>
+</h2>
+<p>Kuhnert, P.M., Henderson, B.L., Lewis, S.E., Bainbridge, Z.T.,
+Wilkinson, S.N. and Brodie, J.E. (2012) Quantifying total suspended
+sediment export from the Burdekin River catchment using the loads
+regression estimator tool, Water Resources Research, 48, W04533,<a href="doi:10.1029/2011WR011080" class="uri">doi:10.1029/2011WR011080</a>.</p>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
 
 
       <footer><div class="copyright">
-  <p>Developed by Petra Kuhnert.</p>
+  <p></p>
+<p>Developed by Petra Kuhnert.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>
 </div>
 
-  
+
+
+
 
 
   </body>

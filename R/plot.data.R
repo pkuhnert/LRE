@@ -60,10 +60,10 @@ plot.data <- function(x, logt = FALSE, ...){
     names(newdatC) <- names(x$Conc)
 
 
-    p1 <- ggplot(data = newdatQ, aes_string(names(newdatQ)[1], names(newdatQ)[2])) + geom_line() + xlab(paste("Flow Collection Period", dd.Q)) +
+    p1 <- ggplot(data = newdatQ, aes(x = .data[[names(newdatQ)[1]]], y = .data[[names(newdatQ)[2]]])) + geom_line() + xlab(paste("Flow Collection Period", dd.Q)) +
       ylab(ylab.flow) + ggtitle(main.flow) + geom_rug(data = newdatC,
-                                                      aes_string(names(newdatC)[1], names(newdatC)[2]), sides = "b")
-    p2 <- ggplot(data = newdatC, aes_string(names(newdatC)[1], names(newdatC)[2])) +
+                                                      aes(x = .data[[names(newdatC)[1]]], y = .data[[names(newdatC)[2]]]), sides = "b")
+    p2 <- ggplot(data = newdatC, aes(x = .data[[names(newdatC)[1]]], y = .data[[names(newdatC)[2]]])) +
       geom_point(col = "blue") + xlab(paste("Concentration Collection Period", dd.C)) +
       ylab(ylab.conc) + xlim(xlimit.Q) + ggtitle(main.conc)
 

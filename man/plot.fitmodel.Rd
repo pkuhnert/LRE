@@ -4,16 +4,14 @@
 \alias{plot.fitmodel}
 \title{Plot fitmodel objects}
 \usage{
-\method{plot}{fitmodel}(x, Qreg, data, ...)
+\method{plot}{fitmodel}(x, Qreg, ...)
 }
 \arguments{
 \item{x}{data object}
 
 \item{Qreg}{regularised flow}
 
-\item{data}{data object}
-
-\item{...}{other parameters passed to \code{plot}}
+\item{...}{other arguments to pass plot}
 }
 \description{
 Plot object of class 'fitmodel'

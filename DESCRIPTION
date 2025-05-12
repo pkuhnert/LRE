@@ -8,18 +8,18 @@ Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.au>
 Depends: 
     R (>= 4.4.0)
 Imports:
-    dplyr,
-    methods,
-    mgcv,
     ggplot2,
     gridExtra,
+    dplyr,
     lubridate,
+    methods,
+    mgcv,
+    nlme,
+    quantregForest,
+    reshape2,
     stats,
     TTR,
-    visreg,
-    reshape2,
-    nlme,
-    quantregForest
+    visreg
 Description: 
     Estimates loads using a generalised rating curve approach with uncertainties.
 URL: https://pkuhnert.github.io/LRE/, https://github.com/pkuhnert/LRE

@@ -30,6 +30,8 @@
 #'
 #'  @importFrom "stats" "resid"
 #'  @importFrom "stats" "lag"
+#'  @importFrom "mgcv" "predict.gam"
+#'  @importFrom "nlme" "predict"
 #'
 #'  @references Kuhnert, P.M., Henderson, B.L., Lewis, S.E.,
 #'  Bainbridge, Z.T., Wilkinson, S.N. and Brodie, J.E. (2012) Quantifying

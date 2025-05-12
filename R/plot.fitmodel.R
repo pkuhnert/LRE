@@ -6,17 +6,19 @@
 #'
 #' @param x data object
 #' @param Qreg regularised flow
-#' @param data data object
-#' @param ... other parameters passed to \code{plot}
+#' @param ... other arguments to pass plot
 #'
 #' @importFrom "visreg" "visreg"
-#' @importFrom "stats" "model.matrix"
+#' @importFrom "stats" "model.matrix" "vcov"
+#' @importFrom "mgcv" "predict.gam"
+#' @importFrom "gridExtra" "marrangeGrob"
+#' @importFrom "dplyr" "%>%" "filter"
 #' @import "ggplot2"
-#' @import "gridExtra"
-#' @import "dplyr"
 #'
+#' @method plot fitmodel
 #' @export
-plot.fitmodel <- function(x, Qreg, data, ...){
+plot.fitmodel <- function(x, Qreg, ...){
+  
 
   if(class(x)[1] != "fitmodel")
     stop("Object is not of class 'fitmodel'.\n")
@@ -24,8 +26,9 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   if(missing(Qreg))
     stop("Regularised flow (Qreg) has not been supplied.\n")
   
-  if(missing(data))
-    stop("Data object has not been supplied.\n")
+ # if(missing(data))
+#    stop("Data object has not been supplied.\n")
+  
   
   ##########################################
   # Preliminaries
@@ -33,7 +36,7 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   if(length(x) == 2){
     term.pred <- predict(x$gam, Qreg, type = "terms", se.fit = TRUE)
     modelfit <- x$gam
-    modelfit$data <- data
+   # modelfit$data <- data
   }
   else{
     
@@ -63,9 +66,9 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   yhat <- yhat$fit
   
 
-  predmat <- data.frame(Date = data$Date, Y = data$Y, 
-                        Conc = data$Conc, yhat = yhat,
-                        yhat.l = yhat.l, yhat.u = yhat.u, pQ = data$pQ)
+  predmat <- data.frame(Date = modelfit$data$Date, Y = modelfit$data$Y, 
+                        Conc = modelfit$data$Conc, yhat = yhat,
+                        yhat.l = yhat.l, yhat.u = yhat.u, pQ = modelfit$data$pQ)
   
   # regularised dataset
   if(length(x) == 2){
@@ -89,34 +92,35 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   predmatC <- rbind(predmatR, predmat[,-3], predmatO)
   predmatC$Concentration <- c(rep("Regularised", nrow(predmatR)), rep("Monitoring", nrow(predmat)), rep("Observed", nrow(predmatO)))
   
-  xlabel <- unique(data$Y)
+  xlabel <- unique(modelfit$data$Y)
   conc_mon <- predmatC[predmatC$Concentration == "Monitoring" | predmatC$Concentration == "Observed",]
   conc_reg <- predmatC[predmatC$Concentration == "Regularised",]
   
-  pConc <- ggplot(aes_string('Date', 'yhat', colour = 'Concentration'), data = predmatC) +
-    geom_point(aes_string('Date', 'yhat'), data = conc_mon) +
-    geom_line(aes_string('Date', 'yhat'), data = conc_reg) +
+  pConc <- ggplot(aes(x = .data[["Date"]], y = .data[["yhat"]], colour = .data[["Concentration"]]), 
+                  data = predmatC) +
+    geom_point(aes(x = .data[["Date"]], y = .data[["yhat"]]), data = conc_mon) +
+    geom_line(aes(x = .data[["Date"]], y = .data[["yhat"]]), data = conc_reg) +
     scale_color_manual(values = c("green3", "orange2", "blue")) + ylab("log(Concentration)") + xlab("") +
     theme(legend.position="top")
   predmatC$lpQ <- log(predmatC$pQ)
-  pFlow <- ggplot(aes_string('Date', 'lpQ'), data = predmatC) + geom_line() + xlab(paste(xlabel[1], " to ",
+  pFlow <- ggplot(aes(x = .data[["Date"]], y = .data[["lpQ"]]), data = predmatC) + geom_line() + xlab(paste(xlabel[1], " to ",
                                                                                          xlabel[length(xlabel)])) + ylab("log(Flow_R)")
   ppred <- marrangeGrob(list(pConc,pFlow), nrow = 2, ncol = 1, heights = c(2,1), top = "Predicted Time Series Concentration")
   
   #  with error bands
   # Filter data for regularised estimates
-  df_regularised <- predmatC %>% filter(Concentration == "Regularised")
-  
+  df_regularised <- predmatC %>% filter(.data$Concentration == "Regularised")
+
   # Plot
-  pConcInt <- ggplot(predmatC, aes(x = Date)) +
+  pConcInt <- ggplot(predmatC, aes(x = .data[["Date"]])) +
     # Line for yhat
-    geom_line(aes(y = yhat), color = "blue", size = 1) +
+    geom_line(aes(y = .data[["yhat"]]), color = "blue", linewidth = 1) +
     # Error bands for Regularised estimates
     geom_ribbon(data = df_regularised, aes(ymin = yhat.l, ymax = yhat.u), 
                 fill = "blue", alpha = 0.2) +
     # Points for Observed
-    geom_point(data = predmatC %>% filter(Concentration == "Observed"), 
-               aes(y = yhat, color = "Observed"), size = 1) +
+    geom_point(data = predmatC %>% filter(.data$Concentration == "Observed"), 
+               aes(y = .data[["yhat"]], color = "Observed"), size = 1) +
     scale_color_manual(values = c("Monitoring" = "red", "Observed" = "green")) +
     labs(x = "", y = "log(Concentration)", title = "Predicted Time Series Concentrations and Uncertainties with observed") +
     theme_minimal()

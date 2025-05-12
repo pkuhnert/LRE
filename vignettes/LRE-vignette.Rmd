@@ -8,6 +8,13 @@ vignette: >
   %\VignetteIndexEntry{Using the Loads Regression Estimator (LRE) to quantify loads and uncertainties}
   %\usepackage[UTF-8]{inputenc}
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(LRE)   
+```
+
+
 ## Overview
 
 **LRE** is a tool for quantifying loads with uncertainties (Kuhnert et al. 2012). The tool uses a generalized additive modelling approach to relate concentration to flow and other terms in the model that mimic hydrological relationships of the complex river system being modelled.  
@@ -15,7 +22,7 @@ vignette: >
 The LRE methodology comprises four steps: 
 
 1. Estimation steps for flow that ensures flow values occur at regular intervals (e.g. hourly, daily or monthly); 
-2. Estimation steps for concentration, where a generalised additive model (GAM) is proposed for estimating concentration using covariates that account for seasonality and important hydrological processes of complex river systems; 
+2. Estimation steps for concentration, where a generalised additive model (GAM) is proposed for estimating concentration using covariates that account for seasonality and important hydrological processes of complex river systems.  In some cases, a random effect term will need to be considered; 
 3. The estimation of the load that includes a bias correction, and 
 4. The quantification of the standard error, which accounts for transect (spatial) error in addition to measurement error. 
 
@@ -42,9 +49,6 @@ The function *ReadInData* reads in a concentration and flow dataset as two separ
 
 ```{r, echo=TRUE, fig.align = "center", eval = FALSE}
 # Version 1: Read In Burdekin data from an external file
-library(LRE)
-library(TTR)
-library(ggplot2)
 burd <- ReadInData(dirnm = system.file("extdata", package = "LRE"), filenm = "/BurdRdaily", Cnames = "TSS",
                    format = "%Y-%m-%d")
 ```
@@ -54,7 +58,6 @@ An alternative version reads in the flow and concentration data using the *ReadI
 
 
 ```{r, echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5}
-library(LRE)
 # Version 2: burdRC and burdRQ are already stored as part of the package
 burd <- ReadInDataFromR(x.C = burdRC, x.Q = burdRQ)
 plot(burd)
@@ -127,8 +130,9 @@ A generalized additive model (GAM) can be fit to a log-transformed regularized d
 ```{r, echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5}
 mod1 <- FitModel(x = loaddata$CQ, parms = list(flow = "quadratic", seasonal = TRUE,
                                                RFlimb = FALSE,
-                                               MA = c(MA1day = FALSE, MA2days = FALSE, MAweek = TRUE,
-                                                      MAmonth = TRUE, MA6months = TRUE, MA12months = TRUE),
+                                               MA = c(MA1day = FALSE, MA2days = FALSE,
+                                                      MAweek = TRUE,  MAmonth = TRUE,
+                                                      MA6months = TRUE, MA12months = TRUE),
                                                trend = FALSE, correlation = FALSE))
 summary(mod1)
 anova(mod1)
@@ -161,7 +165,7 @@ mod1D$pacf
 It is important to gain an understanding of the terms fit in the model and how they relate to concentration. We can obtain a marginal representation of each term in the model by plotting the output from the fit of the model housed in the R object *mod1I*.  As we only fit MA terms and a seasonal term, we can only plot these terms.
 
 ```{r, echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5}
-mod1I <- plot(mod1, Qreg = loaddata$Qreg, data = loaddata$CQ)
+mod1I <- plot(mod1, Qreg = loaddata$Qreg)
 names(mod1I)
 
 # Investigate impact of MA terms

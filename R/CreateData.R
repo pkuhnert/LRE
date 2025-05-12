@@ -59,11 +59,10 @@
 #' summary(loaddata)
 #'
 #' @export
-
-
 CreateData <-
-function(Q, Conc, date.range = list(model = NULL, pred = NULL, hour = FALSE), samp.unit = "hour", Ytype = "WY",
-                    Qflush = 0.9, Reg = list(type = "ss", rainfall = NULL, date = NULL)){
+function(Q, Conc, date.range = list(model = NULL, pred = NULL, hour = FALSE), 
+         samp.unit = "hour", Ytype = "WY", Qflush = 0.9, 
+         Reg = list(type = "ss", rainfall = NULL, date = NULL)){
 
 
   if(missing(Q))

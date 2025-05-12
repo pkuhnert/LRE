@@ -47,6 +47,7 @@
 #' @importFrom "utils" "write.table"
 #'
 #' @export
+#' 
 predictL.fitmodel <- function(object, objfix = NULL, x, flow.error = list(me = 0, ce = 0),
                               samp.unit = "hour", pvalue = 0.05){
 

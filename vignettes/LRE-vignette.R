@@ -1,11 +1,13 @@
+## ----setup, include=FALSE-----------------------------------------------------
+knitr::opts_chunk$set(echo = TRUE)
+library(LRE)   
+
 ## ----echo=TRUE, fig.align = "center", eval = FALSE----------------------------
 # # Version 1: Read In Burdekin data from an external file
-# library(LRE)
 # burd <- ReadInData(dirnm = system.file("extdata", package = "LRE"), filenm = "/BurdRdaily", Cnames = "TSS",
 #                    format = "%Y-%m-%d")
 
 ## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5----
-library(LRE)
 # Version 2: burdRC and burdRQ are already stored as part of the package
 burd <- ReadInDataFromR(x.C = burdRC, x.Q = burdRQ)
 plot(burd)
@@ -46,8 +48,9 @@ summary(loaddata)
 ## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5----
 mod1 <- FitModel(x = loaddata$CQ, parms = list(flow = "quadratic", seasonal = TRUE,
                                                RFlimb = FALSE,
-                                               MA = c(MA1day = FALSE, MA2days = FALSE, MAweek = TRUE,
-                                                      MAmonth = TRUE, MA6months = TRUE, MA12months = TRUE),
+                                               MA = c(MA1day = FALSE, MA2days = FALSE,
+                                                      MAweek = TRUE,  MAmonth = TRUE,
+                                                      MA6months = TRUE, MA12months = TRUE),
                                                trend = FALSE, correlation = FALSE))
 summary(mod1)
 anova(mod1)
@@ -61,7 +64,7 @@ mod1D$pD
 mod1D$pacf
 
 ## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5----
-mod1I <- plot(mod1, Qreg = loaddata$Qreg, data = loaddata$CQ)
+mod1I <- plot(mod1, Qreg = loaddata$Qreg)
 names(mod1I)
 
 # Investigate impact of MA terms
