@@ -1,23 +1,4 @@
-#' @name plot.fitmodel
-#'
-#' @title Plot fitmodel objects
-#'
-#' @description Plot object of class 'fitmodel'
-#'
-#' @param x data object
-#' @param Qreg regularised flow
-#' @param ... other arguments to pass plot
-#'
-#' @importFrom "visreg" "visreg"
-#' @importFrom "stats" "model.matrix" "vcov"
-#' @importFrom "mgcv" "predict.gam"
-#' @importFrom "gridExtra" "marrangeGrob"
-#' @importFrom "dplyr" "%>%" "filter"
-#' @import "ggplot2"
-#'
-#' @method plot fitmodel
-#' @export
-plot.fitmodel <- function(x, Qreg, ...){
+plot.fitmodel <- function(x, Qreg, data, ...){
   
 
   if(class(x)[1] != "fitmodel")
@@ -26,8 +7,8 @@ plot.fitmodel <- function(x, Qreg, ...){
   if(missing(Qreg))
     stop("Regularised flow (Qreg) has not been supplied.\n")
   
- # if(missing(data))
-#    stop("Data object has not been supplied.\n")
+  if(missing(data))
+    stop("Data object has not been supplied.\n")
   
   
   ##########################################
@@ -36,7 +17,7 @@ plot.fitmodel <- function(x, Qreg, ...){
   if(length(x) == 2){
     term.pred <- predict(x$gam, Qreg, type = "terms", se.fit = TRUE)
     modelfit <- x$gam
-   # modelfit$data <- data
+    modelfit$data <- data
   }
   else{
     
@@ -46,7 +27,7 @@ plot.fitmodel <- function(x, Qreg, ...){
     
   }
   
-  
+
   
   
   ##########################################
@@ -66,9 +47,9 @@ plot.fitmodel <- function(x, Qreg, ...){
   yhat <- yhat$fit
   
 
-  predmat <- data.frame(Date = modelfit$data$Date, Y = modelfit$data$Y, 
-                        Conc = modelfit$data$Conc, yhat = yhat,
-                        yhat.l = yhat.l, yhat.u = yhat.u, pQ = modelfit$data$pQ)
+  predmat <- data.frame(Date = data$Date, Y = data$Y, 
+                        Conc = data$Conc, yhat = yhat,
+                        yhat.l = yhat.l, yhat.u = yhat.u, pQ = data$pQ)
   
   # regularised dataset
   if(length(x) == 2){
@@ -92,7 +73,7 @@ plot.fitmodel <- function(x, Qreg, ...){
   predmatC <- rbind(predmatR, predmat[,-3], predmatO)
   predmatC$Concentration <- c(rep("Regularised", nrow(predmatR)), rep("Monitoring", nrow(predmat)), rep("Observed", nrow(predmatO)))
   
-  xlabel <- unique(modelfit$data$Y)
+  xlabel <- unique(data$Y)
   conc_mon <- predmatC[predmatC$Concentration == "Monitoring" | predmatC$Concentration == "Observed",]
   conc_reg <- predmatC[predmatC$Concentration == "Regularised",]
   
@@ -132,4 +113,3 @@ plot.fitmodel <- function(x, Qreg, ...){
 
 
 }
-
