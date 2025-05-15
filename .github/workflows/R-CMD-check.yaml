@@ -5,6 +5,7 @@ on: [push, pull_request]
 jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -12,17 +13,23 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: '4.4.2'  # Set the R version here
+          r-version: '4.4.2'
 
-      - name: Install dependencies (before)
+      - name: Install system dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: TTR
           needs: check
 
-      - name: Install dependencies
-        run: 
-          Rscript -e 'install.packages("remotes"); remotes::install_deps(dependencies = TRUE)'
-        
-      - name: Run R CMD check
-        run: R CMD check .
+      - name: Install additional R dependencies
+        run: |
+          install.packages("remotes")
+          remotes::install_deps(dependencies = TRUE)
+
+      - name: Build source tarball
+        run: R CMD build .
+
+      - name: Run R CMD check (skip manual to avoid LaTeX issues)
+        run: |
+          PKG_TARBALL=$(ls -1t *.tar.gz | head -n 1)
+          R CMD check "$PKG_TARBALL" --no-manual --as-cran
