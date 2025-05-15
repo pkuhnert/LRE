@@ -21,11 +21,6 @@ jobs:
           extra-packages: TTR
           needs: check
 
-      - name: Install additional R dependencies
-        run: |
-          install.packages("remotes")
-          remotes::install_deps(dependencies = TRUE)
-
       - name: Build source tarball
         run: R CMD build .
 
