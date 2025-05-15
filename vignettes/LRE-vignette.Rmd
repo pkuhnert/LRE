@@ -165,7 +165,7 @@ mod1D$pacf
 It is important to gain an understanding of the terms fit in the model and how they relate to concentration. We can obtain a marginal representation of each term in the model by plotting the output from the fit of the model housed in the R object *mod1I*.  As we only fit MA terms and a seasonal term, we can only plot these terms.
 
 ```{r, echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5}
-mod1I <- plot(mod1, Qreg = loaddata$Qreg)
+mod1I <- plot(mod1, Qreg = loaddata$Qreg, data = loaddata$CQ)
 names(mod1I)
 
 # Investigate impact of MA terms
