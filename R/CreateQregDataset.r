@@ -47,7 +47,7 @@ CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){
       df <- data.frame(Date = testData$Date, m = regFlow[,1], lci = regFlow[,4],
                        uci = regFlow[,12], Discharge = testData$Discharge,
                        Missing = MissingDischarge)
-      pRF <- ggplot(aes_string("Date", "Discharge", colour = "Missing"), data = df) + geom_line(size = 0.5)
+      pRF <- ggplot(aes(Date, Discharge, colour = Missing), data = df) + geom_line(size = 0.5)
 
 
       print(pRF)

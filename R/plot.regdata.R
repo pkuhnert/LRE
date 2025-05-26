@@ -12,8 +12,11 @@
 #' @import "ggplot2"
 #' @import "gridExtra"
 #' @importFrom "reshape2" "melt"
+#' @importFrom "tidyr" "pivot_longer"
+#' @importFrom "dplyr" "%>%"
 #'
 #' @export
+
 
 plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
 
@@ -127,14 +130,33 @@ plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
    # PLOT 4: plot Smoothing parameters
    ###############################################################################################
 
-   QregM <- melt(data = x$Qreg, id.vars = 1, measure.vars = c("pQ", "MA1day", "MA2days",
-                                                              "MAweek", "MAmonth", "MA3months",
-                                                              "MA6months", "MA12months"))
-   pSm <- ggplot(data = QregM, aes(x = .data[["Date"]], y = .data[["value"]], 
-                                   color = 'variable')) + geom_line(linewidth = 1) + 
-     ggtitle("Smoothing Parameters") + xlab("") + ylab("Flow (m3/s)")
+     
+     # Assuming dat is your data frame with Date, pQ, MA1day, ..., MA12months
+     dat <- x$Qreg
+     dat_long <- x$Qreg %>%
+       pivot_longer(cols = starts_with("MA"), 
+                    names_to = "Smoother", 
+                    values_to = "Value")
+     
+     # Plot original + all smoothers
+     psM <- ggplot() +
+       geom_line(data = dat, aes(Date, pQ), color = "black", size = 1, linetype = "solid") +
+       geom_line(data = dat_long, aes(Date, Value, color = Smoother)) +
+       ggtitle("Smoothing Parameters") +
+       xlab("") +
+       ylab("Flow (m³/s)") +
+       scale_color_manual(values = c(
+         MA1day = "red",
+         MA2days = "orange",
+         MAweek = "yellow",
+         MAmonth = "green",
+         MA3months = "lightblue",
+         MA6months = "blue",
+         MA12months = "purple"
+       )) +
+       theme_minimal() 
 
-     list(p_RiseFallLimb = pF, p_DistSum = pD, p_CQsum = pS, p_SmoothParms = pSm)
+     list(p_RiseFallLimb = pF, p_DistSum = pD, p_CQsum = pS, p_SmoothParms = psM)
 
 
 

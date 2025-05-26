@@ -48,10 +48,10 @@ gg_qq <- function(x, distribution = "norm", line.estimate = NULL, conf = 0.95,
     df$label <- ifelse(df$ord.x > df$upper | df$ord.x < df$lower, labels[ord],"")
   }
 
-  p <- ggplot(df, aes_string(x = 'z', y = 'ord.x')) +
+  p <- ggplot(df, aes(x = z, y = ord.x)) +
     geom_point() +
     geom_abline(intercept = coef[1], slope = coef[2]) +
-    geom_ribbon(aes_string(ymin = 'lower', ymax = 'upper'), alpha=0.2)
+    geom_ribbon(aes(ymin = lower, ymax = upper), alpha=0.2)
   if(!is.null(labels)) p <- p + geom_text( aes(label = labels))
   p
 }

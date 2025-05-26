@@ -28,8 +28,8 @@ CreateLoadVars <- function(Q, csQ, Qflush, samp.unit, Date, Y){
  d <- c(0, diff(Q))
  limb <- (Q > qpc) * sign(d)
  df <- data.frame(Date = Date, Q = Q, Limb = limb)
- p1 <- ggplot(df, aes_string('Date', 'Q')) + geom_line() + ylab("Flow")
- p2 <- ggplot(df, aes_string('Date', 'Limb'), col = "blue") + geom_line()
+ p1 <- ggplot(df, aes(Date, Q)) + geom_line() + ylab("Flow")
+ p2 <- ggplot(df, aes(Date, Limb), col = "blue") + geom_line()
  p_flush <- marrangeGrob(list(p1, p2), ncol = 1, nrow = 2, top = "Rising/Falling Limb")
 
 
@@ -74,13 +74,13 @@ CreateLoadVars <- function(Q, csQ, Qflush, samp.unit, Date, Y){
    dat <- data.frame(Q = Q, ema.sm, Date = Date)
    names(dat) <- c("Q", nms, "Date")
    p1 <- ggplot(data = dat, aes(Date, Q)) + geom_line(col = "black")
-   p2 <- p1 + geom_line(data = dat, aes_string('Date', 'MA1day'), col = "red")
-   p3 <- p2 + geom_line(data = dat, aes_string('Date', 'MA2days'), col = "orange")
-   p4 <- p3 + geom_line(data = dat, aes_string('Date', 'MAweek'), col = "yellow")
-   p5 <- p4 + geom_line(data = dat, aes_string('Date', 'MAmonth'), col = "green")
-   p6 <- p5 + geom_line(data = dat, aes_string('Date', 'MA3months'), col = "lightblue")
-   p7 <- p6 + geom_line(data = dat, aes_string('Date', 'MA6months'), col = "blue")
-   p_lagterms <- p7 + geom_line(data = dat, aes_string('Date', 'MA12months'), col = "purple")
+   p2 <- p1 + geom_line(data = dat, aes(Date, MA1day), col = "red")
+   p3 <- p2 + geom_line(data = dat, aes(Date, MA2days), col = "orange")
+   p4 <- p3 + geom_line(data = dat, aes(Date, MAweek), col = "yellow")
+   p5 <- p4 + geom_line(data = dat, aes(Date, MAmonth), col = "green")
+   p6 <- p5 + geom_line(data = dat, aes(Date, MA3months), col = "lightblue")
+   p7 <- p6 + geom_line(data = dat, aes(Date, MA6months), col = "blue")
+   p_lagterms <- p7 + geom_line(data = dat, aes(Date, MA12months), col = "purple")
 
 
 
