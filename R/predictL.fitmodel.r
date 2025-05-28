@@ -44,7 +44,7 @@
 #'
 #' @keywords uncertainty
 #'
-#' @importFrom "utils" "write.table"
+#' @importFrom utils write.table
 #'
 #' @export
 #' 

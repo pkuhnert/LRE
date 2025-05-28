@@ -9,11 +9,12 @@
 #' @param Qcutoff Qcutoff
 #' @param ... other parameters passed to \code{plot}
 #'
-#' @import "ggplot2"
-#' @import "gridExtra"
-#' @importFrom "reshape2" "melt"
-#' @importFrom "tidyr" "pivot_longer"
-#' @importFrom "dplyr" "%>%"
+#' @import ggplot2
+#' @import gridExtra
+#' @importFrom reshape2 melt
+#' @importFrom tidyr pivot_longer
+#' @importFrom dplyr %>% starts_with
+#' @importFrom rlang .data
 #'
 #' @export
 
@@ -140,11 +141,11 @@ plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
      
      # Plot original + all smoothers
      psM <- ggplot() +
-       geom_line(data = dat, aes(Date, pQ), color = "black", size = 1, linetype = "solid") +
-       geom_line(data = dat_long, aes(Date, Value, color = Smoother)) +
+       geom_line(data = dat, aes(.data[["Date"]], .data[["pQ"]]), color = "black", size = 1, linetype = "solid") +
+       geom_line(data = dat_long, aes(x = .data[["Date"]], y = .data[["Value"]], color = .data[["Smoother"]])) +
        ggtitle("Smoothing Parameters") +
        xlab("") +
-       ylab("Flow (m³/s)") +
+       ylab(expression("Flow (m"^3*"/s)")) +
        scale_color_manual(values = c(
          MA1day = "red",
          MA2days = "orange",

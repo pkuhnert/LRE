@@ -44,8 +44,8 @@
 #' River catchment using the loads regression estimator tool,
 #' Water Resources Research, 48, W04533,doi:10.1029/2011WR011080.
 #'
-#' @importFrom "methods" "Quote"
-#' @import "mgcv"
+#' @importFrom methods Quote
+#' @import mgcv
 #'
 #' @seealso ReadInData, CreateData, gam, diagnostic
 #'

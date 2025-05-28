@@ -11,7 +11,10 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(LRE)   
+library(LRE)  
+library(ggplot2)
+library(gratia)
+library(patchwork)
 ```
 
 
@@ -127,7 +130,7 @@ A generalized additive model (GAM) can be fit to a log-transformed regularized d
 
 **Tip 1:**  When attempting to fit a GAM using the *FitModel* function, start with setting all parameters (apart from the trend and correlation arguments) to TRUE.  Investigate the significance of the terms through the p-value and omit any terms, one by one, that are not significant starting with the terms that have the highest p-value.  This approach is otherwise known as backward elimination. The model below is a result of a backward elimination process.
 
-```{r, echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5}
+```{r, echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5, cache = FALSE}
 mod1 <- FitModel(x = loaddata$CQ, parms = list(flow = "quadratic", seasonal = TRUE,
                                                RFlimb = FALSE,
                                                MA = c(MA1day = FALSE, MA2days = FALSE,
@@ -136,6 +139,7 @@ mod1 <- FitModel(x = loaddata$CQ, parms = list(flow = "quadratic", seasonal = TR
                                                trend = FALSE, correlation = FALSE))
 summary(mod1)
 anova(mod1)
+print(class(mod1))
 ```
 
 
@@ -165,20 +169,25 @@ mod1D$pacf
 It is important to gain an understanding of the terms fit in the model and how they relate to concentration. We can obtain a marginal representation of each term in the model by plotting the output from the fit of the model housed in the R object *mod1I*.  As we only fit MA terms and a seasonal term, we can only plot these terms.
 
 ```{r, echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5}
-mod1I <- plot(mod1, Qreg = loaddata$Qreg, data = loaddata$CQ)
-names(mod1I)
+library(gratia)    # exploring smoothers
+library(patchwork) # package for arranging plots
+p1 <- draw(mod1, select = "s(month)") 
+p2 <- draw(mod1, select = "s(MAweek)") 
+p3 <- draw(mod1, select = "s(MAmonth)") 
+p4 <- draw(mod1, select = "s(MA6months)") 
+p5 <- draw(mod1, select = "s(MA12months)") 
+p1 + p2 + p3 + plot_layout(ncol = 3)
+p4 + p5 + plot_layout(ncol = 2)
 
-# Investigate impact of MA terms
-mod1I$pMA
-
-# Investigate seasonal terms
-mod1I$pSeas
 ```
 
 We can also investigate the predicted concentration time series together with the regularized flow through the following plot.
 ```{r, echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5}
-# Investigate predicted concentration time series (with flow)
-mod1I$ppred
+#Exploring predictions from model
+
+mod1_expl <- plot(mod1, Qreg = loaddata$Qreg, data = loaddata$CQ) 
+names(mod1_expl)
+mod1_expl$pConcInt
 ```
 
 Sometimes it is also useful to plot the predicted concentrations interactively and explore the predictions at different parts of the time series by zooming in and zooming out using your mouse.  Here is an example using the *ggplotly* function which is part of the *plotly* package in R. Note, the code below is not run for this vignette.

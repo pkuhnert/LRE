@@ -1,3 +1,22 @@
+#' @name plot.fitmodel
+#'
+#' @title Plot predictions from the fitted model
+#'
+#' @description Plot object of class 'fitmodel'
+#'
+#' @param x data object
+#' @param Qreg Regularised flow record
+#' @param data dataset that was used for modelling
+#' @param ... other parameters passed to \code{plot}
+#'
+#' @import ggplot2
+#' @import gridExtra
+#' @importFrom dplyr %>%
+#' @importFrom dplyr filter
+#' @importFrom stats model.matrix
+#' @importFrom rlang .data
+#'
+#' @export
 plot.fitmodel <- function(x, Qreg, data, ...){
   
 
@@ -9,15 +28,15 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   
   if(missing(data))
     stop("Data object has not been supplied.\n")
-  
-  
+ 
+
   ##########################################
   # Preliminaries
   ##########################################
   if(length(x) == 2){
     term.pred <- predict(x$gam, Qreg, type = "terms", se.fit = TRUE)
     modelfit <- x$gam
-    modelfit$data <- data
+   # modelfit$data <- data
   }
   else{
     
@@ -84,23 +103,23 @@ plot.fitmodel <- function(x, Qreg, data, ...){
     scale_color_manual(values = c("green3", "orange2", "blue")) + ylab("log(Concentration)") + xlab("") +
     theme(legend.position="top")
   predmatC$lpQ <- log(predmatC$pQ)
-  pFlow <- ggplot(aes(x = .data[["Date"]], y = .data[["lpQ"]]), data = predmatC) + geom_line() + xlab(paste(xlabel[1], " to ",
-                                                                                         xlabel[length(xlabel)])) + ylab("log(Flow_R)")
+  pFlow <- ggplot(aes(x = .data[["Date"]], y = .data[["lpQ"]]), data = predmatC) + geom_line() + 
+    xlab(paste(xlabel[1], " to ",  xlabel[length(xlabel)])) + ylab("log(Flow_R)")
   ppred <- marrangeGrob(list(pConc,pFlow), nrow = 2, ncol = 1, heights = c(2,1), top = "Predicted Time Series Concentration")
-  
+
   #  with error bands
   # Filter data for regularised estimates
-  df_regularised <- predmatC %>% filter(.data$Concentration == "Regularised")
+  df_regularised <- predmatC %>% filter(.data[["Concentration"]] == "Regularised")
 
   # Plot
   pConcInt <- ggplot(predmatC, aes(x = .data[["Date"]])) +
     # Line for yhat
     geom_line(aes(y = .data[["yhat"]]), color = "blue", linewidth = 1) +
     # Error bands for Regularised estimates
-    geom_ribbon(data = df_regularised, aes(ymin = yhat.l, ymax = yhat.u), 
+    geom_ribbon(data = df_regularised, aes(ymin = .data[["yhat.l"]], ymax = .data[["yhat.u"]]), 
                 fill = "blue", alpha = 0.2) +
     # Points for Observed
-    geom_point(data = predmatC %>% filter(.data$Concentration == "Observed"), 
+    geom_point(data = predmatC %>% filter(.data[["Concentration"]] == "Observed"), 
                aes(y = .data[["yhat"]], color = "Observed"), size = 1) +
     scale_color_manual(values = c("Monitoring" = "red", "Observed" = "green")) +
     labs(x = "", y = "log(Concentration)", title = "Predicted Time Series Concentrations and Uncertainties with observed") +

@@ -15,10 +15,13 @@
 #'
 #' @importFrom "utils" "read.csv"
 #' @importFrom "stats" "na.omit"
+#' 
+#' @aliases ReadQ ReadC ExtractDT
+#' @keywords internal
 #'
 NULL
 
-#' @rdname LRE-Read-Internal
+#' @keywords internal
 ReadQ <- function(fn, format){
 
   dat.Q <- read.csv(fn)
@@ -52,7 +55,7 @@ ReadQ <- function(fn, format){
   dat.Q
 }
 
-#' @rdname LRE-Read-Internal
+#' @keywords internal
 ReadC <-function(fn, Cnames, OmitCzeros = FALSE, format){
 
   dat.C <- read.csv(fn)
@@ -82,7 +85,7 @@ ReadC <-function(fn, Cnames, OmitCzeros = FALSE, format){
   dat.C
   }
 
-#' @rdname LRE-Read-Internal
+#' @keywords internal
 ExtractDT <- function(dt, format = "%Y-%m-%d"){
 
     

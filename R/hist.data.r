@@ -6,8 +6,9 @@
 #'
 #' @param object data object
 #'
-#' @import "ggplot2"
-#' @import "gridExtra"
+#' @import ggplot2
+#' @import gridExtra
+#' @importFrom rlang .data
 #'
 #' @export
 #'

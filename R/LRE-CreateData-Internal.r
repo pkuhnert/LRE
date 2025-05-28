@@ -1,4 +1,4 @@
-#' @name LRE-Create-Internal
+#' @name LRE-CreateData-Internal
 #'
 #' @title Internal functions for \code{CreateData} function.
 #'
@@ -20,13 +20,17 @@
 #' @param samp.unit sampling unit
 #' @param Date Date vector
 #' @param Y Year type
+#' 
+#' @aliases AssignVal CreateCQDataset CreateLD CreateLoadVars CreateQregDataset CreateRegDate PlotCQ
+#' @keywords internal
 #'
 #'
 #' @importFrom TTR EMA
+#' @importFrom rlang .data
 #'
 NULL
 
-#' @rdname LRE-Create-Internal
+#' @keywords internal
 CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
                      Qflush, Reg = list(type = "none", rainfall = NULL, date = NULL)){
   
@@ -100,7 +104,7 @@ CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
 
 
 
-#' @rdname LRE-Create-Internal
+#' @keywords internal
 CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){
   
   startdate <- min(Q$Date)
@@ -225,7 +229,7 @@ CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){
   
 }
 
-#' @rdname LRE-Create-Internal
+#' @keywords internal
 PlotCQ <- function(Conc, Q){
   
   Conc$lConc <- log(Conc$Conc)
@@ -250,7 +254,7 @@ PlotCQ <- function(Conc, Q){
 }
 
 
-#' @rdname LRE-Create-Internal
+#' @keywords internal
 CreateCQDataset <- function(Conc, Qreg, startdate){
   
   Cm <- Conc
@@ -342,7 +346,7 @@ CreateCQDataset <- function(Conc, Qreg, startdate){
 }
 
 
-#' @rdname LRE-Create-Internal
+#' @keywords internal
 AssignVal <- function(x, y){
   
   id <- sapply(as.numeric(x), function(x, y){
@@ -352,7 +356,7 @@ AssignVal <- function(x, y){
   id
 }
 
-#' @rdname LRE-Create-Internal
+#' @keywords internal
 CreateRegDate <- function(Q, samp.unit, Ytype){
   
   start.date <- min(Q$Date)
@@ -377,7 +381,7 @@ CreateRegDate <- function(Q, samp.unit, Ytype){
 }
 
 
-#' @rdname LRE-Create-Internal
+#' @keywords internal
 CreateLoadVars <- function(Q, csQ, Qflush, samp.unit, Date, Y){
   
   

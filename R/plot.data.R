@@ -8,8 +8,9 @@
 #' @param logt log transformation. Default: FALSE
 #' @param ... other parameters passed to \code{plot}
 #'
-#' @import "ggplot2"
-#' @import "gridExtra"
+#' @import ggplot2
+#' @import gridExtra
+#' @importFrom rlang .data
 #'
 #' @export
 

@@ -6,13 +6,6 @@
 \alias{ReadC}
 \alias{ExtractDT}
 \title{Internal functions for \code{ReadInData} function.}
-\usage{
-ReadQ(fn, format)
-
-ReadC(fn, Cnames, OmitCzeros = FALSE, format)
-
-ExtractDT(dt, format = "\%Y-\%m-\%d")
-}
 \arguments{
 \item{fn}{file name}
 
@@ -29,3 +22,4 @@ that no zeros should be omitted from the record if they exist.}
 \description{
 Internal functions for reading in data
 }
+\keyword{internal}

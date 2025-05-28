@@ -5,7 +5,7 @@
 #' @param object data object
 #' @param ... other parameters passed to \code{summary}
 #'
-#' @importFrom "stats" "median"
+#' @importFrom stats median
 #'
 #'
 #' @export

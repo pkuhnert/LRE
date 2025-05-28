@@ -44,11 +44,16 @@
 #' @param error error
 #' @param modparms modparms
 #'
-#' @import "ggplot2" "gridExtra"
-#' @importFrom "stats" "qnorm" "na.omit" "coef"
-#' @importFrom "mgcv" "predict.gam"
+#' @import ggplot2 gridExtra
+#' @importFrom stats qnorm na.omit coef vcov
+#' @importFrom mgcv predict.gam
+#' @importFrom rlang .data
+#' 
+#' @aliases Intervals calcSE BlockSigma ConvertFacts EstChat EstLoadYS ExtractDailyLoads LoadPlot
+#' @keywords internal
+NULL
 
-#' @rdname LRE-predict-Internal
+#' @keywords internal EstLoad
 Intervals <- function(est, pvalue){
 
   qn <- qnorm(1-pvalue/2)
@@ -82,7 +87,7 @@ Intervals <- function(est, pvalue){
 }
 
 
-#' @rdname LRE-predict-Internal
+#' @keywords internal
 #' @useDynLib LRE, .registration = TRUE
 CalcSE <-function(Xdesign, LhatC, alpha1, alpha2, beta1, rho, W, sig2){
   
@@ -100,7 +105,7 @@ CalcSE <-function(Xdesign, LhatC, alpha1, alpha2, beta1, rho, W, sig2){
   
 }
 
-#' @rdname LRE-predict-Internal
+#' @keywords internal
 BlockSigma <- function(len, Xdesign, W){
   
   n <- nrow(Xdesign)
@@ -121,7 +126,7 @@ BlockSigma <- function(len, Xdesign, W){
   
 }
 
-#' @rdname LRE-predict-Internal
+#' @keywords internal
 ConvertFacts <- function(samp.unit){
   
   if(samp.unit == "day"){
@@ -138,7 +143,7 @@ ConvertFacts <- function(samp.unit){
 }
 
 
-#' @rdname LRE-predict-Internal
+#' @keywords internal
 EstChat <- function(Qdat, modobj, modobjfix){
   
   
@@ -217,9 +222,9 @@ EstChat <- function(Qdat, modobj, modobjfix){
 }
 
 
-#' @rdname LRE-predict-Internal
+#' @keywords internal
 EstLoad <- function(CQdat, Qdat, Xdesign, W, sig2, rho,
-                    alpha1, alpha2, beta1, samp.unit, se = TRUE, Blocklen=5000){
+                    alpha1, alpha2, beta1, samp.unit, se = TRUE, Blocklen = 5000){
   
   
   Chat <- CQdat$Chat
@@ -275,7 +280,7 @@ EstLoad <- function(CQdat, Qdat, Xdesign, W, sig2, rho,
 }
 
 
-#' @rdname LRE-predict-Internal
+#' @keywords internal
 EstLoadYS <- function(CQdat, Qdat, concY, modobj, samp.unit = samp.unit,
                       alpha1, alpha2, se = TRUE, Blocklen=5000){
   
@@ -347,7 +352,7 @@ EstLoadYS <- function(CQdat, Qdat, concY, modobj, samp.unit = samp.unit,
 }
 
 
-#' @rdname LRE-predict-Internal
+#' @keywords internal
 ExtractDailyLoads <- function(Date, Xdesign, Lhat, LhatC, Qhat, error, modparms){
   
   startdate <- min(Date)
@@ -389,7 +394,7 @@ ExtractDailyLoads <- function(Date, Xdesign, Lhat, LhatC, Qhat, error, modparms)
   
 }
 
-#' @rdname LRE-predict-Internal
+#' @keywords internal
 LoadPlot <- function(x, Conc, scale = "Mt"){
     
     # Annual Loads

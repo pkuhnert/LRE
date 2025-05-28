@@ -13,11 +13,16 @@
 #'
 #' @details Taken from GitHub rentrop/gg_qq.r (Parts of code copied from car:::qqPlot)
 #'
-#' @import "lubridate"
-#' @importFrom "stats" "ppoints"
-#' @importFrom "stats" "quantile"
+#' @import lubridate
+#' @importFrom stats ppoints
+#' @importFrom stats quantile
+#' @importFrom rlang .data
+#' 
+#' @aliases gg_qq
+#' @keywords internal
 NULL
 
+#' @keywords internal
 gg_qq <- function(x, distribution = "norm", line.estimate = NULL, conf = 0.95,
                   labels = names(x), ...){
 

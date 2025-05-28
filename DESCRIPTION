@@ -2,7 +2,7 @@ Package: LRE
 Type: Package
 Title: Loads Regression Estimator
 Version: 1.0
-Date: 2025-03-03
+Date: 2025-05-28
 Author: Petra Kuhnert [aut, cre] (<Petra.Kuhnert@data61.csiro.au>), Dan Pagendam [ctb], Brent Henderson [ctb]
 Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.au>    
 Depends: 
@@ -17,9 +17,10 @@ Imports:
     nlme,
     quantregForest,
     reshape2,
+    rlang,
     stats,
-    TTR,
-    visreg
+    tidyr,
+    TTR
 Description: 
     Estimates loads using a generalised rating curve approach with uncertainties.
 URL: https://pkuhnert.github.io/LRE/, https://github.com/pkuhnert/LRE
@@ -29,6 +30,8 @@ LazyData: TRUE
 RoxygenNote: 7.3.2
 Encoding: UTF-8
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    gratia,
+    patchwork
 VignetteBuilder: knitr
 

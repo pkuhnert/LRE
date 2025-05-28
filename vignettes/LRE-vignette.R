@@ -1,6 +1,7 @@
 ## ----setup, include=FALSE-----------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
-library(LRE)   
+library(LRE)  
+library(ggplot2)
 
 ## ----echo=TRUE, fig.align = "center", eval = FALSE----------------------------
 # # Version 1: Read In Burdekin data from an external file
@@ -45,7 +46,7 @@ regplots$p_SmoothParms
 ## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE------------
 summary(loaddata)
 
-## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5----
+## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5, cache = FALSE----
 mod1 <- FitModel(x = loaddata$CQ, parms = list(flow = "quadratic", seasonal = TRUE,
                                                RFlimb = FALSE,
                                                MA = c(MA1day = FALSE, MA2days = FALSE,
@@ -54,6 +55,7 @@ mod1 <- FitModel(x = loaddata$CQ, parms = list(flow = "quadratic", seasonal = TR
                                                trend = FALSE, correlation = FALSE))
 summary(mod1)
 anova(mod1)
+print(class(mod1))
 
 ## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5----
 mod1D <- diagnostic(mod1)
@@ -64,18 +66,23 @@ mod1D$pD
 mod1D$pacf
 
 ## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5----
-mod1I <- plot(mod1, Qreg = loaddata$Qreg)
-names(mod1I)
+library(gratia)    # exploring smoothers
+library(patchwork) # package for arranging plots
+p1 <- draw(mod1, select = "s(month)") 
+p2 <- draw(mod1, select = "s(MAweek)") 
+p3 <- draw(mod1, select = "s(MAmonth)") 
+p4 <- draw(mod1, select = "s(MA6months)") 
+p5 <- draw(mod1, select = "s(MA12months)") 
+p1 + p2 + p3 + plot_layout(ncol = 3)
+p4 + p5 + plot_layout(ncol = 2)
 
-# Investigate impact of MA terms
-mod1I$pMA
-
-# Investigate seasonal terms
-mod1I$pSeas
 
 ## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5----
-# Investigate predicted concentration time series (with flow)
-mod1I$ppred
+#Exploring predictions from model
+
+mod1_expl <- plot(mod1, Qreg = loaddata$Qreg, data = loaddata$CQ) 
+names(mod1_expl)
+mod1_expl$pConcInt
 
 ## ----echo=TRUE, fig.align = "center", eval = FALSE----------------------------
 # # Investigate predicted concentration using ggplotly

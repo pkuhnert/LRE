@@ -21,18 +21,20 @@
 #' @param method spline method for interpolation
 #' @param series series
 #' @param dateTime dateTime
-
 #'
-#'
-#' @importFrom "stats" "splinefun"
-#' @importFrom "stats" "median"
-#' @importFrom "stats" "sd"
-#' @importFrom "quantregForest" "quantregForest"
-#' @importFrom "stats" "predict"
-#' @import "lubridate"
+#' @importFrom stats splinefun
+#' @importFrom stats median
+#' @importFrom stats sd
+#' @importFrom quantregForest quantregForest
+#' @importFrom stats predict
+#' @import lubridate
+#' @importFrom rlang .data
+#' 
+#' @aliases features regularizeFlowSS regularizeFlowR FitSmQ
+#' @keywords internal
 NULL
 
-#' @rdname LRE-regularize-Internal
+#' @keywords internal
 features <- function(series, dateTime){
 
 
@@ -77,7 +79,7 @@ features <- function(series, dateTime){
 }
 
 
-#' @rdname LRE-regularize-Internal
+#' @keywords internal
 regularizeFlowSS <- function(Q, Qreg){
   
   val <- FitSmQ(Q = Q, Qreg = Qreg)
@@ -99,7 +101,7 @@ regularizeFlowSS <- function(Q, Qreg){
 }
 
 
-#' @rdname LRE-regularize-Internal
+#' @keywords internal
 regularizeFlowR <- function(rainfall, dateTimeRainfall, flow, dateTimeFlow){
   
   
@@ -155,7 +157,7 @@ regularizeFlowR <- function(rainfall, dateTimeRainfall, flow, dateTimeFlow){
 }
 
 
-#' @rdname LRE-regularize-Internal
+#' @keywords internal
 FitSmQ <- function(Q, Qreg, method = "monoH.FC"){
   
   
