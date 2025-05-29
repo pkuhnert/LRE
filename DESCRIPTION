@@ -15,11 +15,13 @@ Imports:
     methods,
     mgcv,
     nlme,
+    patchwork,
     quantregForest,
     reshape2,
     rlang,
     stats,
     tidyr,
+    trend,
     TTR
 Description: 
     Estimates loads using a generalised rating curve approach with uncertainties.
@@ -31,7 +33,6 @@ RoxygenNote: 7.3.2
 Encoding: UTF-8
 Suggests: knitr,
     rmarkdown,
-    gratia,
-    patchwork
+    gratia
 VignetteBuilder: knitr
 
