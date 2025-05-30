@@ -406,7 +406,7 @@ LoadPlot <- function(x, Conc, scale = "Mt"){
     
     if(scale == "Mt"){
       pC1 <- ggplot(aes(x = .data[["y"]], y = .data[["Date"]]), data = x) + geom_point() +
-        geom_errorbarh(aes(xmin = .data[["CI.low"]], xmax = .data[["CI.high"]]), size = 1) +
+        geom_errorbarh(aes(xmin = .data[["CI.low"]], xmax = .data[["CI.high"]]), linewidth = 1) +
         ylab("") + xlab(paste(Conc, "(Mt)", sep = ""))
       pL1 <- marrangeGrob(list(pC1, pF2), nrow = 1, ncol = 2, widths = c(3,1), top = "Load Estimates (Mt)")
       
@@ -416,7 +416,7 @@ LoadPlot <- function(x, Conc, scale = "Mt"){
       x$CI.lowt <- x$CI.low*1000000
       x$CI.hight <- x$CI.high*1000000
       pC1 <- ggplot(aes(x = .data[["yt"]], y = .data[["Date"]]), data = x) + geom_point() +
-        geom_errorbarh(aes(xmin = .data[["CI.lowt"]], xmax = .data[["CI.hight"]]), size = 1) +
+        geom_errorbarh(aes(xmin = .data[["CI.lowt"]], xmax = .data[["CI.hight"]]), linewidth = 1) +
         ylab("") + xlab(paste(Conc, "(t)", sep = ""))
       pL1 <- marrangeGrob(list(pC1, pF2), nrow = 1, ncol = 2, widths = c(3,1), top = "Load Estimates (t)")
       
@@ -430,7 +430,7 @@ LoadPlot <- function(x, Conc, scale = "Mt"){
     pFWC1 <- ggplot(aes(x = .data[["Date"]], y = .data[["AvgConc"]]), data = x) + 
       geom_point() +
       geom_errorbar(aes(ymin = .data[["AvgConcCI.low"]], ymax = .data[["AvgConcCI.high"]]), 
-                    size = 1, width = 0.4) +
+                    linewidth = 1, width = 0.4) +
       theme(axis.text.x = element_text(angle = 45, hjust = 1)) + xlab("WY") +
       ylab("Flow weighted concentrations (mg/L)") + ggtitle(Conc)
     

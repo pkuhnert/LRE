@@ -2,6 +2,8 @@
 knitr::opts_chunk$set(echo = TRUE)
 library(LRE)  
 library(ggplot2)
+library(gratia)
+library(patchwork)
 
 ## ----echo=TRUE, fig.align = "center", eval = FALSE----------------------------
 # # Version 1: Read In Burdekin data from an external file
@@ -13,7 +15,7 @@ library(ggplot2)
 burd <- ReadInDataFromR(x.C = burdRC, x.Q = burdRQ)
 plot(burd)
 summary(burd)
-hist(burd)
+ghist(burd)
 
 ## ----echo=TRUE, fig.align = "center", eval = TRUE, message = FALSE, fig.height=8, fig.width=6, fig.asp=.5----
 date.rangeM <- c("1973-12-02", "2015-06-30")

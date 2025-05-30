@@ -96,7 +96,7 @@ library(LRE)
 burdR <- ReadInDataFromR(x.C = burdRC, x.Q = burdRQ)
 plot(burdR)
 summary(burdR)
-hist(burdR)
+ghist(burdR)
 
  \dontrun{
  # Reading in data from external files

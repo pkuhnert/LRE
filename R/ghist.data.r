@@ -1,4 +1,4 @@
-#' @name hist.data
+#' @name ghist.data
 #'
 #' @title histogram
 #'
@@ -12,7 +12,7 @@
 #'
 #' @export
 #'
-hist.data <- function(object){
+ghist.data <- function(object){
 
   if(!inherits(object, "data"))
     stop("Object is not of class 'data'.\n")

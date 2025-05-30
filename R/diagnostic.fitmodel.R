@@ -32,6 +32,7 @@
 #'  @importFrom "stats" "lag"
 #'  @importFrom "mgcv" "predict.gam"
 #'  @importFrom "nlme" "predict"
+#'  @importFrom rlang .data
 #'
 #'  @references Kuhnert, P.M., Henderson, B.L., Lewis, S.E.,
 #'  Bainbridge, Z.T., Wilkinson, S.N. and Brodie, J.E. (2012) Quantifying
@@ -114,10 +115,14 @@ diagnostic.fitmodel <- function(object){
   )
   ci <- 0.95
   clim <- qnorm((1 + ci)/2) / sqrt(acf$n.used)
-  pacf <- qplot(lag, acf, data = acf_df, yend = 0, xend = lag, geom="segment") +
+  #pacf <- qplot(lag, acf, data = acf_df, yend = 0, xend = lag, geom="segment") +
+  #  geom_hline(yintercept = 0, colour = "grey50") +
+  #  geom_hline(yintercept = c(-clim, clim), colour = "darkblue") + ggtitle("ACF of Residuals")
+  pacf <- ggplot(acf_df, aes(x = .data[["lag"]], y = .data[["acf"]])) +
+    geom_segment(aes(xend = .data[["lag"]], yend = 0)) +
     geom_hline(yintercept = 0, colour = "grey50") +
-    geom_hline(yintercept = c(-clim, clim), colour = "darkblue") + ggtitle("ACF of Residuals")
-
+    geom_hline(yintercept = c(-clim, clim), colour = "darkblue") +
+    ggtitle("ACF of Residuals")
 
     list(pD = pD, pacf = pacf)
 

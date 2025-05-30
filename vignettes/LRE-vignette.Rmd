@@ -65,7 +65,7 @@ An alternative version reads in the flow and concentration data using the *ReadI
 burd <- ReadInDataFromR(x.C = burdRC, x.Q = burdRQ)
 plot(burd)
 summary(burd)
-hist(burd)
+ghist(burd)
 ```
 
 ### Step 2: Regularization

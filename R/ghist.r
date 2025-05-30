@@ -1,4 +1,4 @@
-#' @name hist
+#' @name ghist
 #'
 #' @title histogram
 #'
@@ -9,6 +9,6 @@
 #'
 #' @export
 
-hist <- function(object)
-  UseMethod("hist")
+ghist <- function(object)
+  UseMethod("ghist")
 

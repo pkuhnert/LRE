@@ -93,7 +93,7 @@
 #' burdR <- ReadInDataFromR(x.C = burdRC, x.Q = burdRQ)
 #' plot(burdR)
 #' summary(burdR)
-#' hist(burdR)
+#' ghist(burdR)
 #'
 #'  \dontrun{
 #'  # Reading in data from external files
@@ -121,7 +121,7 @@ ReadInData <- function(dirnm = NULL, filenm, Cnames, OmitCzeros = FALSE, format 
   else
     fn <- filenm
   
-  Q <- ReadQ(fn = paste(fn, "_Q.csv", sep = ""))
+  Q <- ReadQ(fn = paste(fn, "_Q.csv", sep = ""), format = format)
   Conc <- ReadC(fn = paste(fn, "_C.csv", sep = ""), Cnames = Cnames, OmitCzeros)
   if(OmitCzeros){
     zeroID <- Conc[,-1] != 0

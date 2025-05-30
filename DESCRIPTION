@@ -31,8 +31,10 @@ LazyLoad: TRUE
 LazyData: TRUE
 RoxygenNote: 7.3.2
 Encoding: UTF-8
-Suggests: knitr,
+Suggests: 
+    knitr,
     rmarkdown,
-    gratia
+    gratia,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
-
+Config/testthat/edition: 3
