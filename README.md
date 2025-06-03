@@ -31,13 +31,14 @@ The authors of this package are:
 - Dr Dan Pagendam, CSIRO Data61, Brisbane (Contributor)
 - Dr Brent Henderson, CSIRO Data61, Canberra (Contributor)
 
-Additional contributions in terms of the method have been made by:
+Additional contributions in terms of the method, testing, visualisations have been made by:
 
 - Dr Stephen Lewis (JCU, Townsville)
 - Dr Zoe Bainbridge (JCU, Brisbane)
 - Associate Professor Ryan Turner (UQ, Brisbane)
 - Dr Cassandra James (JCU, Townsville)
 - Dr Rebecca Bartley (CSIRO Environment, Brisbane)
+- Dr Emma Lawrence (CSIRO Data61, Brisbane)
 
 ## Package installation and vignette
 
