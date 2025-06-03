@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# LRE <img src='man/figures/LRE_logo.jpg' align="right" height="138.5" />
+# LRE <img src='docs/reference/figures/LRE_logo.jpg' align="right" height="138.5" />
 
 ## The Loads Regression Estimator
 
