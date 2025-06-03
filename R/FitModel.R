@@ -1,7 +1,8 @@
 #' @title FitModel
 #'
-#' @description This function fits a generalized additive model
-#' to a loads dataset
+#' @description This function fits a generalized additive model (\code{gam})
+#' to a loads dataset.  If correlation structures need to be fitted, especially
+#' to large datasets, do not use this wrapper and opt for a manual fit using \code{bam}.
 #'
 #' @usage FitModel(x, parms = list(flow = FALSE, seasonal = FALSE,
 #'           RFlimb = FALSE, MA = c(MA1day = FALSE, MA2days = FALSE,
@@ -59,9 +60,6 @@ FitModel <- function(x, parms = list(flow = FALSE, seasonal = FALSE,
      RFlimb = FALSE, MA = c(MA1day = FALSE, MA2days = FALSE, MAweek = FALSE, MAmonth = FALSE, MA6months = FALSE, MA12months = FALSE),
      trend = FALSE, correlation = FALSE)){
 
-     # Might need to put a clause in here to take into account models with only
-     # linear terms. If this happens, use glm and gls to fit the models with and
-     # without autocorrelation. This means changing the plot, summary and diagnostic functions
 
     if(parms$RFlimb == TRUE & length(table(x$limb)) != 3){
        parms$RFlimb <- FALSE
@@ -71,9 +69,7 @@ FitModel <- function(x, parms = list(flow = FALSE, seasonal = FALSE,
     xterms <- mod <- list()
     xknots <- NULL
 
-    ######################################################################################
-    # Flow terms
-    ######################################################################################
+    #------------------------------- Flow Terms -------------------------------#
     if(parms$flow == "quadratic")
        xterms$flow <- Quote(LQflow(pQ, quad = TRUE))
     else if(parms$flow == "linear")
@@ -82,28 +78,18 @@ FitModel <- function(x, parms = list(flow = FALSE, seasonal = FALSE,
        warning("Model specified is not listed. Defaulting to linear term for flow only.\n")
        xterms$flow <- Quote(LQflow(pQ, quad = FALSE))
     }
-    ######################################################################################
-    # Seasonal term
-    ######################################################################################
 
-    # seasonal
+    #------------------------- Seasonal Terms ---------------------------------#
     if(parms$seasonal){
        xterms$seasonal <- Quote(s(month, bs = "cc"))
        xknots <- Quote(list(month = seq(1, 13, length = 10)))
     }
 
-    ######################################################################################
-    # Rising falling limb term
-    ######################################################################################
-
-    # Rising/Falling Limb
-    if(parms$RFlimb)
+    #----------------------- Rising Falling limb term --------------------------#
+   if(parms$RFlimb)
        xterms$limb <- Quote(limb)
 
-    ######################################################################################
-    # MA terms
-    ######################################################################################
-
+   #------------------------ MA terms -----------------------------------------#
     xterms$MA <- vector(mode = "list", length = 6)
     names(xterms$MA) <- c("MA1day", "MA2days", "MAweek", "MAmonth", "MA6months", "MA12months")
 
@@ -113,7 +99,6 @@ FitModel <- function(x, parms = list(flow = FALSE, seasonal = FALSE,
 
     if(parms$MA["MA2days"])
       xterms$MA$MA2days <- Quote(s(MA2days, bs = "cr"))
-
 
     if(parms$MA["MAweek"])
       xterms$MA$MAweek <- Quote(s(MAweek, bs = "cr"))
@@ -127,20 +112,12 @@ FitModel <- function(x, parms = list(flow = FALSE, seasonal = FALSE,
     if(parms$MA["MA12months"])
       xterms$MA$MA12months <- Quote(s(MA12months, bs = "cr"))
 
-
-
-    ######################################################################################
-    # Trend term
-    ######################################################################################
-
-    # Trend
-    if(parms$trend)
+    #--------------------------- Trend Term -----------------------------------#
+   if(parms$trend)
        xterms$trend <- Quote(s(trendY, bs = "cr"))
 
-    ######################################################################################
-    # Fitting model (with and without correlation)
-    ######################################################################################
-    if(parms$correlation){
+    #------------ Fitting model (with and without correlation) ----------------#
+     if(parms$correlation){
        cat("Fitting a Generalized Additive Model with an AR1 correlation structure. \nThis can take time for longer time series ...\n")
        fitCommand <- Quote({
            mod <- try(gamm(as.numeric(log(Conc)) ~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10, family = gaussian, data = x,

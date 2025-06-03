@@ -16,9 +16,6 @@ anova.fitmodel <- function(object, ...){
   if(class(object)[1] != "fitmodel")
     stop("Object is not of class 'fitmodel'.\n")
 
-
-
-
   if(length(object) == 2)
      anova(object$gam, ...)
   else

@@ -284,8 +284,6 @@ EstLoad <- function(CQdat, Qdat, Xdesign, W, sig2, rho,
 EstLoadYS <- function(CQdat, Qdat, concY, modobj, samp.unit = samp.unit,
                       alpha1, alpha2, se = TRUE, Blocklen=5000){
   
-  # samp.unit = sampling unit the predicted flow is at
-  
   uY <- unique(CQdat$CQhat$Y)
   loadest <- matrix(NA, nrow = length(uY), ncol = 6)
   loadest <- data.frame(loadest)

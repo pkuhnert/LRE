@@ -2,7 +2,7 @@ Package: LRE
 Type: Package
 Title: Loads Regression Estimator
 Version: 1.0
-Date: 2025-05-28
+Date: 2025-06-03
 Author: Petra Kuhnert [aut, cre] (<Petra.Kuhnert@data61.csiro.au>), Dan Pagendam [ctb], Brent Henderson [ctb]
 Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.au>    
 Depends: 

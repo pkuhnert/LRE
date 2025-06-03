@@ -30,9 +30,6 @@ plot.fitmodel <- function(x, Qreg, data, ...){
     stop("Data object has not been supplied.\n")
  
 
-  ##########################################
-  # Preliminaries
-  ##########################################
   if(length(x) == 2){
     term.pred <- predict(x$gam, Qreg, type = "terms", se.fit = TRUE)
     modelfit <- x$gam
@@ -47,11 +44,6 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   }
   
 
-  
-  
-  ##########################################
-  # Predictions
-  ##########################################
   # modelling dataset
   if(length(x) == 2){
     Xdesign <- model.matrix(modelfit)

@@ -82,10 +82,7 @@ diagnostic.fitmodel <- function(object){
 
 
   # Diagnostic plots
-  #################################################################################################################
-  # Plot A: Standard Residual plots for Normal data
-  #################################################################################################################
-
+  #----------------- Standard Residual plots for Normal data --------------------#
 
   df <- data.frame(pred = pred, resids = resids, y = y)
   # Plot 1: Prediction versus residuals
@@ -105,9 +102,7 @@ diagnostic.fitmodel <- function(object){
 
   pD <- marrangeGrob(list(p1, p2, p3, p4), ncol = 2, nrow = 2, top = "Diagnostic Plots")
 
-  #################################################################################################################
-  # Plot B: ACF plot
-  #################################################################################################################
+  #-------------------------- Plot B: ACF plot ---------------------------------#
   acf <- acf(resids, plot = F)
   acf_df <- data.frame(
     acf = acf$acf,
@@ -115,9 +110,6 @@ diagnostic.fitmodel <- function(object){
   )
   ci <- 0.95
   clim <- qnorm((1 + ci)/2) / sqrt(acf$n.used)
-  #pacf <- qplot(lag, acf, data = acf_df, yend = 0, xend = lag, geom="segment") +
-  #  geom_hline(yintercept = 0, colour = "grey50") +
-  #  geom_hline(yintercept = c(-clim, clim), colour = "darkblue") + ggtitle("ACF of Residuals")
   pacf <- ggplot(acf_df, aes(x = .data[["lag"]], y = .data[["acf"]])) +
     geom_segment(aes(xend = .data[["lag"]], yend = 0)) +
     geom_hline(yintercept = 0, colour = "grey50") +

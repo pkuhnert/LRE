@@ -79,12 +79,10 @@ CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
   ind <- as.Date(Q$Date) >= mind & as.Date(Q$Date) <= maxd
   Q <- Q[ind,]
   
-  
   #-------------------------------- REGULARISATION --------------------------------------------#
   
   Qreg <- CreateQregDataset(Q = Q, samp.unit = samp.unit, Qflush = Qflush, Ytype = Ytype,
                             Reg = Reg)
-  
   
   #----------------------------- Creating modelling dataset by matching ------------------------#
   #----------------------------- concentration dates with flow dates ---------------------------#
@@ -94,10 +92,7 @@ CreateLD <- function(Q, Conc, date.range, samp.unit, Ytype,
   CQ <- val$CQ
   Cm <- val$Cm
   
-  
-  
   PlotCQ(Cm, Qreg)
-  
   
   list(Cm = CQ, Qreg = Qreg)
 }
@@ -112,7 +107,6 @@ CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){
   Qreg <- CreateRegDate(Q = Q, samp.unit = samp.unit, Ytype = Ytype)
   date.id <- match(Qreg$Date, Q$Date)
   
-  
   if(any(is.na(date.id))){
     
     if(Reg$type == "qrforest"){
@@ -126,7 +120,8 @@ CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){
       rainfall.df$Discharge <- Qreg$Flow[R.id]
       testData <- rainfall.df
       names(testData) <- c("rain", "Date", "Discharge")
-      regFlow <-  regularizeFlowR(testData[, "rain"], testData[, "Date"], testData$Discharge[!is.na(testData$Discharge)],
+      regFlow <-  regularizeFlowR(testData[, "rain"], testData[, "Date"], 
+                                  testData$Discharge[!is.na(testData$Discharge)],
                                   testData$Date[!is.na(testData$Discharge)])
       MissingDischarge <- is.na(testData$Discharge)
       TD.id <- (1:nrow(testData))[MissingDischarge]
@@ -224,8 +219,6 @@ CreateQregDataset <- function(Q, samp.unit, Qflush, Ytype, Reg){
   Qreg$time.index <- 1:nrow(Qreg)
   
   Qreg
-  
-  
   
 }
 
@@ -374,16 +367,13 @@ CreateRegDate <- function(Q, samp.unit, Ytype){
   days <- with(Qreg, as.numeric(difftime(Date, start.date, units = "days")))
   Y <- CreateY(d, Ytype = Ytype)
   
-  
   data.frame(Date = d, days = days, Y = Y)
-  
   
 }
 
 
 #' @keywords internal
 CreateLoadVars <- function(Q, csQ, Qflush, samp.unit, Date, Y){
-  
   
   # Identify flush
   qY <- data.frame(qpc = tapply(Q, Y, function(x) quantile(x, Qflush)))
@@ -402,8 +392,6 @@ CreateLoadVars <- function(Q, csQ, Qflush, samp.unit, Date, Y){
   p1 <- ggplot(df, aes(x = .data[["Date"]], y = .data[["Q"]])) + geom_line() + ylab("Flow")
   p2 <- ggplot(df, aes(x = .data[["Date"]], y = .data[["Limb"]]), col = "blue") + geom_line()
   p_flush <- marrangeGrob(list(p1, p2), ncol = 1, nrow = 2, top = "Rising/Falling Limb")
-  
-  
   
   # Calculate MA terms
   if(samp.unit == "hour"){
@@ -435,12 +423,9 @@ CreateLoadVars <- function(Q, csQ, Qflush, samp.unit, Date, Y){
   }
   else stop("The sampling unit specified has not been implement. Choose either 'day' or 'hour'.")
   
-  
   dframe <- data.frame(ema.sm)
   nms <- paste("MA", c("1day", "2days", "week", "month", "3months", "6months", "12months"), sep = "")
   names(dframe) <- nms
-  
-  
   
   dat <- data.frame(Q = Q, ema.sm, Date = Date)
   names(dat) <- c("Q", nms, "Date")
@@ -452,7 +437,6 @@ CreateLoadVars <- function(Q, csQ, Qflush, samp.unit, Date, Y){
   p6 <- p5 + geom_line(data = dat, aes(x = .data[["Date"]], y = .data[["MA3months"]]), col = "lightblue")
   p7 <- p6 + geom_line(data = dat, aes(x = .data[["Date"]], y = .data[["MA6months"]]), col = "blue")
   p_lagterms <- p7 + geom_line(data = dat, aes(x = .data[["Date"]], y = .data[["MA12months"]]), col = "purple")
-  
   
   
   list(Flush = qpc, limb = limb, dcum = dframe, p_lagterms = p_lagterms, p_flush = p_flush)

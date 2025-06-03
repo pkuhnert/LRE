@@ -32,9 +32,7 @@ plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
    if(length(xlabel) > 1)
       xlabel <- paste(xlabel[1], "to", xlabel[length(xlabel)])
 
-   ###############################################################################################
    # PLOT 1: Rising/Falling Limb
-   ###############################################################################################
    un.yr <- names(table(x$CQ$Y))
    un.yr <- un.yr[table(x$CQ$Y) !=0]
 
@@ -69,13 +67,9 @@ plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
       else
         pF <- marrangeGrob(p, ncol = 2, nrow = 2, top = "Rising/Falling Limb")
 
-
-
-
-   ###############################################################################################
    # PLOT 2: Distributional summary
-   ###############################################################################################
-   # Data Quality Assessment
+
+      # Data Quality Assessment
    ## no. of samples in the upper 2% of the flow range
    if(is.null(Qcutoff)){
      flow.up2pc <- with(x$Q, quantile(Flow, 0.98, na.rm = TRUE))
@@ -108,9 +102,7 @@ plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
      xlab("Percentage of samples captured") + ylab("") + 
      ggtitle("Percentage of samples captured by Flow")
 
-   ###############################################################################################
    # PLOT 3: plot of concentration versus discharge
-   ###############################################################################################
    mat.nona <- x$CQ[x$CQ$Conc != 0,]
    pS1 <- ggplot(aes(x = .data[["pQ"]], y = .data[["Conc"]]), data = mat.nona) + 
      geom_point() + xlab("Discharge (m3/s)") + ylab("Concentration (mg/L)") +
@@ -127,12 +119,9 @@ plot.regdata <- function(x, Type, Qcutoff = NULL, ...){
    pS <- marrangeGrob(list(pS1, pS2), ncol = 1, nrow = 2, top = "Summaries of concentration and flow")
 
 
-   ###############################################################################################
    # PLOT 4: plot Smoothing parameters
-   ###############################################################################################
 
-     
-     # Assuming dat is your data frame with Date, pQ, MA1day, ..., MA12months
+       # Assuming dat is your data frame with Date, pQ, MA1day, ..., MA12months
      dat <- x$Qreg
      dat_long <- x$Qreg %>%
        pivot_longer(cols = starts_with("MA"), 

@@ -2,7 +2,7 @@
 #'
 #' @title histogram
 #'
-#' @description Produce a histogram of the raw data
+#' @description Produce a histogram of the raw data using ggplot2
 #'
 #' @param object data object
 #'
@@ -24,13 +24,16 @@ ghist.data <- function(object){
   p1 <- ggplot(data = object$Q, aes(x = .data[[names(object$Q)[2]]])) +
     geom_histogram(fill = "purple", bins = 20) + xlab("Flow (m3/s)") +
     ggtitle("Q")
+  
   p2 <- ggplot(data = object$Q, aes(x = .data[["lFlow"]])) + 
     geom_histogram(fill = "orange", bins = 20) +
     xlab("log(Flow)") + ggtitle("log(Q)")
+  
   df <- data.frame(Conc = object$Conc[,2], logConc = log(object$Conc[,2]))
   p3 <- ggplot(data = df, aes(x = .data[["Conc"]])) + 
     geom_histogram(fill = "purple", bins = 20) +
     xlab(paste(names(object$Conc)[2], "mg/L", sep = "")) + ggtitle(names(object$Conc)[2])
+  
   p4 <- ggplot(data = df, aes(x = .data[["logConc"]])) + geom_histogram(fill = "orange", bins = 20) +
     xlab(paste("log(", names(object$Conc)[2], ")", sep = "")) +
     ggtitle(paste("log(", names(object$Conc)[2], ")", sep = ""))
