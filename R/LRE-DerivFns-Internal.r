@@ -44,7 +44,7 @@ NULL
   }
   newDF <- data.frame(newD) ## needs to be a data frame for predict
   names(newDF) <- object.vars
-  X0 <- predict(object, newDF, type = "lpmatrix")
+  X0 <- predict.gam(object, newDF, type = "lpmatrix")
   if(any(object.vars == "limb")){
     newDF <- newDF + eps
     newDF$limb <- newD$limb
@@ -52,7 +52,7 @@ NULL
   else
     newDF <- newDF + eps
   
-  X1 <- predict(object, newDF, type = "lpmatrix")
+  X1 <- predict.gam(object, newDF, type = "lpmatrix")
   Xp <- (X1 - X0) / eps
   Xp.r <- NROW(Xp)
   Xp.c <- NCOL(Xp)
