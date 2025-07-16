@@ -10,5 +10,5 @@
 \item{object}{data object}
 }
 \description{
-Produce a histogram of the raw data
+Produce a histogram of the raw data using ggplot2
 }

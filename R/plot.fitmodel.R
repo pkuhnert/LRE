@@ -28,16 +28,16 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   
   if(missing(data))
     stop("Data object has not been supplied.\n")
- 
+
 
   if(length(x) == 2){
-    term.pred <- predict(x$gam, Qreg, type = "terms", se.fit = TRUE)
+    term.pred <- predict.gam(x$gam, Qreg, type = "terms", se.fit = TRUE)
     modelfit <- x$gam
    # modelfit$data <- data
   }
   else{
     
-    term.pred <- predict(x, Qreg, type = "terms", se.fit = TRUE)
+    term.pred <- predict.gam(x, Qreg, type = "terms", se.fit = TRUE)
     modelfit <- x
     class(modelfit) <- class(modelfit)[-1]
     
@@ -64,13 +64,13 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   
   # regularised dataset
   if(length(x) == 2){
-    Xdesign <- predict(modelfit, newdata = Qreg, type = "lpmatrix")
+    Xdesign <- predict.gam(modelfit, newdata = Qreg, type = "lpmatrix")
     yhatR <- list(fit = predict(modelfit, newdata = Qreg),
                   se.fit = sqrt(rowSums((Xdesign %*% vcov(x$gam)) * Xdesign)))
     
   }
   else
-    yhatR <- predict(modelfit, Qreg, se.fit = TRUE)
+    yhatR <- predict.gam(modelfit, Qreg, se.fit = TRUE)
   
   yhatR.l <- yhatR$fit - 1.96 * yhatR$se.fit
   yhatR.u <- yhatR$fit + 1.96 * yhatR$se.fit

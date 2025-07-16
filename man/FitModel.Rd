@@ -31,8 +31,9 @@ an object of class \code{fitmodel} with elements as described in
 and \code{anova} functions apply.
 }
 \description{
-This function fits a generalized additive model
-to a loads dataset
+This function fits a generalized additive model (\code{gam})
+to a loads dataset.  If correlation structures need to be fitted, especially
+to large datasets, do not use this wrapper and opt for a manual fit using \code{bam}.
 }
 \details{
 This is a wrapper function for fitting a generalised additive model using the

@@ -17,6 +17,7 @@
 #' @import ggplot2
 #' @import patchwork
 #' @importFrom stats qt df.residual confint acf ts
+#' @importFrom dplyr mutate
 #' @importFrom rlang .data
 #'
 #' @export
@@ -32,7 +33,7 @@ periods_of_change <- function(object, Term = "trendY", data,
   object.d <- d$lD
   newDF <- d$newDF
   
-  p2 <- predict(object, newdata = newDF, type = "terms", se.fit = TRUE)
+  p2 <- predict.gam(object, newdata = newDF, type = "terms", se.fit = TRUE)
   
  
   pdat <- data.frame(years = newDF[,Term],  p2 = unique(p2$fit[,paste0("s(", Term, ")")]), 
@@ -41,7 +42,7 @@ periods_of_change <- function(object, Term = "trendY", data,
 
   df.res <- df.residual(object)
   crit.t <- qt(alpha/2, df.res, lower.tail = FALSE)
-  pdat <- transform(pdat,
+  pdat <- mutate(pdat,
                     upper = .data[["p2"]] + (crit.t * .data[["se2"]]),
                     lower = .data[["p2"]] - (crit.t * .data[["se2"]]))
   
@@ -59,10 +60,10 @@ periods_of_change <- function(object, Term = "trendY", data,
   }
   else{
     tab <- nsamps
-    proportion <- as.numeric(tab)/max(table(data[,Term]))
+    
   }
   
-
+  proportion <- as.numeric(tab)/max(table(data[,Term]))
   prop_df  <- data.frame(proportion = proportion, year_index = 1:max(data[,Term]))
   
 
