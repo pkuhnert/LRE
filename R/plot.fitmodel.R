@@ -28,7 +28,14 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   
   if(missing(data))
     stop("Data object has not been supplied.\n")
-
+  
+  # extracting any additional arguments (only main is provided)
+  extra_args <- list(...)
+  
+  if(names(extra_args) == "main") 
+    main <- extra_args$main
+  else
+    main <- ""
 
   if(length(x) == 2){
     term.pred <- predict.gam(x$gam, Qreg, type = "terms", se.fit = TRUE)
@@ -97,7 +104,7 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   predmatC$lpQ <- log(predmatC$pQ)
   pFlow <- ggplot(aes(x = .data[["Date"]], y = .data[["lpQ"]]), data = predmatC) + geom_line() + 
     xlab(paste(xlabel[1], " to ",  xlabel[length(xlabel)])) + ylab("log(Flow_R)")
-  ppred <- marrangeGrob(list(pConc,pFlow), nrow = 2, ncol = 1, heights = c(2,1), top = "Predicted Time Series Concentration")
+  ppred <- marrangeGrob(list(pConc,pFlow), nrow = 2, ncol = 1, heights = c(2,1), top = main)
 
   #  with error bands
   # Filter data for regularised estimates
@@ -114,7 +121,7 @@ plot.fitmodel <- function(x, Qreg, data, ...){
     geom_point(data = predmatC %>% filter(.data[["Concentration"]] == "Observed"), 
                aes(y = .data[["yhat"]], color = "Observed"), size = 1) +
     scale_color_manual(values = c("Monitoring" = "red", "Observed" = "green")) +
-    labs(x = "", y = "log(Concentration)", title = "Predicted Time Series Concentrations and Uncertainties with observed") +
+    labs(x = "", y = "log(Concentration)", title = main) +
     theme_minimal()
   
   
