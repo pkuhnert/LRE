@@ -32,11 +32,11 @@ plot.fitmodel <- function(x, Qreg, data, ...){
   # extracting any additional arguments (only main is provided)
   extra_args <- list(...)
   
-  if(names(extra_args) == "main") 
+  if(length(names(extra_args) == "main") != 0) 
     main <- extra_args$main
   else
     main <- ""
-
+  
   if(length(x) == 2){
     term.pred <- predict.gam(x$gam, Qreg, type = "terms", se.fit = TRUE)
     modelfit <- x$gam
