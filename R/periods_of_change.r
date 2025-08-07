@@ -14,7 +14,7 @@
 #'
 #' @import ggplot2
 #' @import patchwork
-#' @importFrom stats qt df.residual confint acf ts
+#' @importFrom stats qt df.residual acf ts
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
 #'
@@ -24,11 +24,18 @@ periods_of_change <- function(fit_sm, fit_lin = NULL, Term = "trendY", data,
                               object.vars = c("pQ", "MA2days", "MAweek", "MAmonth", 
                                               "MA6months", "MA12months", "trendY"), 
                               spacing = 5){
-  
+
   
   # Get labelling
   year <- as.numeric(format(data$Date, format = "%Y"))
-  yr_min <- min(year)
+  month <- as.numeric(format(data$Date, format = "%m"))
+  # check if the month for the first year is between Jan-Jun.  If so
+  # we need to include the year before as we are working in financial years
+  if(month[1] >=1 & month[1] <=6)
+    yr_min <- min(year) - 1
+  else
+    yr_min <- min(year)
+  
   yr_max <- max(year)
   a <- yr_min:(yr_max-1)
   b <- (yr_min+1):yr_max
