@@ -5,19 +5,19 @@
 \title{Calculate and Plot Periods of Change in a non-linear curve}
 \usage{
 periods_of_change(
-  object,
+  fit_sm,
+  fit_lin = NULL,
   Term = "trendY",
   data,
   object.vars = c("pQ", "MA2days", "MAweek", "MAmonth", "MA6months", "MA12months",
     "trendY"),
-  x_label = NULL,
-  spacing = 5,
-  nsamps = NULL,
-  alpha = 0.05
+  spacing = 5
 )
 }
 \arguments{
-\item{object}{gam model produced from the mgcv R package}
+\item{fit_sm}{gam object with smoother for trend produced from the mgcv R package}
+
+\item{fit_lin}{gam object with linear trend term produced from the mgcv R package (Default: NULL)}
 
 \item{Term}{term to calculate the periods of change over, typically a trend term}
 
@@ -25,13 +25,7 @@ periods_of_change(
 
 \item{object.vars}{variables used in the gam fit.}
 
-\item{x_label}{label for the x-axis.  If NULL, it will default to numbers starting at 1.}
-
 \item{spacing}{white space left between the labels. Defaults to 5.}
-
-\item{nsamps}{Typically NULL but can be a vector of the number of samples shown for each point in time.}
-
-\item{alpha}{significance level. Default is 0.05.}
 }
 \description{
 Calculates and plots the episodic trends in a non-linear trend

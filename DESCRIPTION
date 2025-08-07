@@ -15,6 +15,7 @@ Imports:
     methods,
     mgcv,
     nlme,
+    parameters,
     patchwork,
     quantregForest,
     reshape2,
