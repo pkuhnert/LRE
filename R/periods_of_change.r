@@ -22,10 +22,10 @@
 
 periods_of_change <- function(fit_sm, fit_lin = NULL, Term = "trendY", data, 
                               object.vars = c("pQ", "MA2days", "MAweek", "MAmonth", 
-                                           "MA6months", "MA12months", "trendY"), 
+                                              "MA6months", "MA12months", "trendY"), 
                               spacing = 5){
   
-
+  
   # Get labelling
   year <- as.numeric(format(data$Date, format = "%Y"))
   yr_min <- min(year)
@@ -56,14 +56,14 @@ periods_of_change <- function(fit_sm, fit_lin = NULL, Term = "trendY", data,
     
     
   }
-    
+  
   
   # Computing significant trends on nonlinear curve
   df.res <- df.residual(fit_sm)
   crit.t <- qt(0.025, df.res, lower.tail = FALSE)
-  pdf_sm <- transform(pdf_sm,
-                      upper = .data$p + (crit.t * .data$se2),
-                      lower = .data$p - (crit.t * .data$se2))
+  pdf_sm$upper <- pdf_sm$p + (crit.t * pdf_sm$se2)
+  pdf_sm$lower <- pdf_sm$p - (crit.t * pdf_sm$se2)
+  
   
   fit_sm.dci <- confint(fit_sm.d, term = Term)
   fit_sm.dsig <- signifD(pdf_sm$p, d = fit_sm.d[[Term]]$deriv,
